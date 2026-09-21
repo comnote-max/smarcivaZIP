@@ -35,16 +35,32 @@ public static class ShellRegistration
     }
 
     /// <summary>
-    /// 登録を行う。<paramref name="extensions"/> は関連付けたい拡張子（ドット無し）。
+    /// 登録を行う。
     /// </summary>
+    /// <param name="extensions">関連付けたい拡張子（ドット無し）。</param>
+    /// <param name="knownExtensions">
+    /// 設定画面の一覧に並んでいる拡張子すべて。ここに含まれていて
+    /// <paramref name="extensions"/> に無いものは、チェックが外されたとみなして
+    /// 関連付けを解除する。これをやらないと、一度チェックを入れた拡張子を
+    /// 外しても関連付けが残り続けてしまう。
+    /// </param>
     public static void Register(string executablePath, IReadOnlyList<string> extensions,
-        IReadOnlyList<OutputFormat> formats)
+        IReadOnlyList<OutputFormat> formats, IReadOnlyList<string>? knownExtensions = null)
     {
         RegisterProgId(executablePath);
         RegisterFileAssociations(extensions);
+
+        if (knownExtensions is not null)
+        {
+            var selected = extensions.Select(Normalize).ToHashSet(StringComparer.OrdinalIgnoreCase);
+            RemoveFileAssociations(knownExtensions.Where(e => !selected.Contains(Normalize(e))));
+        }
+
         RegisterContextMenu(executablePath, formats, extensions);
         NotifyShell();
     }
+
+    private static string Normalize(string extension) => extension.TrimStart('.').ToLowerInvariant();
 
     public static void Unregister(IReadOnlyList<string> extensions)
     {
@@ -56,15 +72,32 @@ public static class ShellRegistration
             DeleteSubKeyTreeIfExists(classes, $@"*\shell\{MenuKeyName}");
             DeleteSubKeyTreeIfExists(classes, $@"Directory\shell\{MenuKeyName}");
 
-            foreach (string extension in extensions)
-            {
-                using RegistryKey? progIds =
-                    classes.OpenSubKey($@".{extension}\OpenWithProgids", writable: true);
-                progIds?.DeleteValue(ProgId, throwOnMissingValue: false);
-            }
+            RemoveFileAssociations(extensions);
         }
 
         NotifyShell();
+    }
+
+    /// <summary>指定した拡張子から smarcivaZIP の関連付けだけを取り除く。</summary>
+    private static void RemoveFileAssociations(IEnumerable<string> extensions)
+    {
+        foreach (string extension in extensions)
+        {
+            string normalized = Normalize(extension);
+            if (normalized.Length == 0) continue;
+
+            using RegistryKey? key = Registry.CurrentUser.OpenSubKey(
+                $@"{ClassesRoot}\.{normalized}", writable: true);
+            if (key is null) continue;
+
+            using (RegistryKey? progIds = key.OpenSubKey("OpenWithProgids", writable: true))
+            {
+                progIds?.DeleteValue(ProgId, throwOnMissingValue: false);
+            }
+
+            // 既定として自分を書いていた場合だけ消す。他のアプリの設定は触らない。
+            if (key.GetValue(null) as string == ProgId) key.DeleteValue(string.Empty, throwOnMissingValue: false);
+        }
     }
 
     private static void RegisterProgId(string executablePath)
@@ -94,7 +127,7 @@ public static class ShellRegistration
     {
         foreach (string extension in extensions)
         {
-            string normalized = extension.TrimStart('.').ToLowerInvariant();
+            string normalized = Normalize(extension);
             if (normalized.Length == 0) continue;
 
             using RegistryKey key = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\.{normalized}");
@@ -185,7 +218,7 @@ public static class ShellRegistration
     private static string BuildAppliesToQuery(IReadOnlyList<string> extensions)
     {
         IEnumerable<string> terms = extensions
-            .Select(e => e.TrimStart('.').ToLowerInvariant())
+            .Select(Normalize)
             .Where(e => e.Length > 0)
             .Distinct()
             .Select(e => $"System.FileName:\"*.{e}\"");

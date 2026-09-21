@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="smarcivaZIP の設定"
-        Width="560" Height="580"
-        MinWidth="480" MinHeight="480"
+        Width="580" Height="660"
+        MinWidth="520" MinHeight="520"
         WindowStartupLocation="CenterScreen">
   <Grid Margin="16,14,16,14">
     <Grid.RowDefinitions>
@@ -128,11 +128,56 @@
                        Text="Windows 11 では、右クリックメニューは「その他のオプションを確認」の中に入ります。これは Windows の仕様によるものです。" />
 
             <TextBlock Text="ダブルクリックで開く拡張子" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <TextBox x:Name="ExtensionsBox" Margin="0,8,0,0" Padding="6,4" Height="70"
-                     AcceptsReturn="True" TextWrapping="Wrap"
-                     BorderBrush="{StaticResource Border}" />
-            <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
-                       Text="空白区切りで指定します。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
+                       Text="チェックを入れた拡張子を smarcivaZIP で開きます。チェックを外すと関連付けを解除します。" />
+
+            <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
+                    BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
+              <ListBox x:Name="ExtensionList" BorderThickness="0" Padding="6"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" />
+                  </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                  <Style TargetType="ListBoxItem">
+                    <Setter Property="Padding" Value="2" />
+                    <!-- チェックボックスに触れたら、その行も選択状態にする。
+                         こうしないと「削除」ボタンがどの項目を指しているか分からない。
+                         IsKeyboardFocusWithin のトリガーでやると、削除ボタンへ
+                         フォーカスが移った瞬間に選択が外れてしまうので、
+                         イベントで明示的に立てる。 -->
+                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnExtensionItemActivated" />
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnExtensionItemActivated" />
+                  </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <CheckBox Content="{Binding Extension}" IsChecked="{Binding IsSelected}"
+                              Margin="2,3,8,3" ToolTip="{Binding Description}" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <Button Content="追加..." MinWidth="76" Click="OnAddExtensionClicked" />
+              <Button x:Name="RemoveExtensionButton" Content="削除" MinWidth="76" Margin="8,0,0,0"
+                      Click="OnRemoveExtensionClicked" />
+              <Button Content="すべて選択" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
+              <Button Content="すべて解除" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <Button Content="7z.dll が扱える拡張子をすべて追加" MinWidth="240"
+                      Click="OnAddAllSupportedClicked" />
+              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0" Click="OnResetExtensionsClicked" />
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
+                       Text="変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。" />
 
             <Button Content="Windows の「既定のアプリ」を開く" Margin="0,10,0,0"
                     HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />

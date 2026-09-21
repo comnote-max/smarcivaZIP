@@ -59,10 +59,32 @@ public sealed class AppSettings
 
     // ---- 関連付け ----
 
-    /// <summary>ダブルクリックで smarcivaZIP が開く拡張子。</summary>
-    public List<string> AssociatedExtensions { get; set; } =
+    /// <summary>ダブルクリックで smarcivaZIP が開く拡張子（＝チェックが入っているもの）。</summary>
+    public List<string> AssociatedExtensions { get; set; } = [.. DefaultAssociatedExtensions];
+
+    /// <summary>
+    /// 設定画面の一覧に並べる拡張子。チェックの有無に関わらず表示される。
+    /// 利用者が「追加」した拡張子もここに入るので、チェックを外しても一覧からは消えない。
+    /// </summary>
+    public List<string> ExtensionChoices { get; set; } = [.. DefaultExtensionChoices];
+
+    /// <summary>既定でチェックを入れておく拡張子。まず間違いなく書庫である拡張子だけ。</summary>
+    public static readonly string[] DefaultAssociatedExtensions =
     [
-        "zip", "7z", "rar", "tar", "gz", "tgz", "bz2", "xz", "zst", "lzh", "lha", "cab"
+        "zip", "7z", "rar", "tar", "gz", "tgz", "bz2", "tbz", "xz", "txz",
+        "zst", "tzst", "lzh", "lha", "cab", "arj", "z", "lzma"
+    ];
+
+    /// <summary>
+    /// 一覧に並べる既定の拡張子。
+    /// iso や msi のように「書庫として開けるが、ふつうは別のアプリで開きたい」ものは
+    /// 表示はするがチェックを外してある。
+    /// </summary>
+    public static readonly string[] DefaultExtensionChoices =
+    [
+        "zip", "7z", "rar", "tar", "gz", "tgz", "bz2", "tbz", "xz", "txz",
+        "zst", "tzst", "lzh", "lha", "cab", "arj", "z", "lzma",
+        "iso", "dmg", "msi", "wim", "cpio", "rpm", "deb", "jar", "xar", "chm", "zipx"
     ];
 
     // ---- 永続化 ----
