@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+artifacts/
+dist/
+native/
+TestResults/
+*.7z
+*.zip
+!tests/**/*.zip

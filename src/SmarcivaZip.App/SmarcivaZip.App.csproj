@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>SmarcivaZip</AssemblyName>
+    <RootNamespace>SmarcivaZip.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- ランタイム同梱の単一 exe。Lhaplus と同じく「落としてすぐ動く」ことを優先する。 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../SmarcivaZip.Core/SmarcivaZip.Core.csproj" />
+  </ItemGroup>
+
+  <!--
+    7z.dll は同梱するが、単一 exe には埋め込まず隣に置く。
+    LGPL-2.1 の「利用者が差し替えられること」という要件を満たすため。
+  -->
+  <ItemGroup Condition="'$(RuntimeIdentifier)' != '' And Exists('$(MSBuildThisFileDirectory)../../native/$(RuntimeIdentifier)/7z.dll')">
+    <None Include="../../native/$(RuntimeIdentifier)/7z.dll" Link="7z.dll"
+          CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(RuntimeIdentifier)' == '' And Exists('$(MSBuildThisFileDirectory)../../native/win-x64/7z.dll')">
+    <None Include="../../native/win-x64/7z.dll" Link="7z.dll"
+          CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)../../native/7-Zip-License.txt')">
+    <None Include="../../native/7-Zip-License.txt" Link="7-Zip-License.txt"
+          CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
+  </ItemGroup>
+</Project>
