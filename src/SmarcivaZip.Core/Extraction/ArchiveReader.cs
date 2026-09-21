@@ -30,6 +30,7 @@ public sealed class ArchiveReader : IDisposable
     private readonly IInArchive _archive;
     private readonly InStreamWrapper _stream;
     private readonly FileStream _fileStream;
+    private readonly ZipCentralDirectory? _centralDirectory;
     private bool _disposed;
 
     public string ArchivePath { get; }
@@ -59,8 +60,10 @@ public sealed class ArchiveReader : IDisposable
         int? detectedCodePage,
         double confidence,
         IReadOnlyList<EncodingGuess> candidates,
-        bool isMacArchive)
+        bool isMacArchive,
+        ZipCentralDirectory? centralDirectory)
     {
+        _centralDirectory = centralDirectory;
         ArchivePath = archivePath;
         Handler = handler;
         _archive = archive;
@@ -125,7 +128,8 @@ public sealed class ArchiveReader : IDisposable
                     centralDirectory is null ? null : codePage,
                     detection?.Confidence ?? 1.0,
                     detection?.Ranked ?? [],
-                    isMac || (centralDirectory?.LooksLikeMacArchive ?? false));
+                    isMac || (centralDirectory?.LooksLikeMacArchive ?? false),
+                    centralDirectory);
             }
             catch (Exception ex) when (ex is IOException or COMException or InvalidOperationException)
             {
@@ -344,7 +348,36 @@ public sealed class ArchiveReader : IDisposable
         return fallback.GetString(info.RawName);
     }
 
-    /// <summary>コードページを変えて開き直す。プレビュー画面のドロップダウン用。</summary>
+    /// <summary>
+    /// 指定したコードページで読んだ場合のファイル名を返す。プレビュー画面用。
+    ///
+    /// ZIP なら生バイト列を持っているので、開き直さずに文字列変換だけで済む。
+    /// ドロップダウンを切り替えるたびにアーカイブを開き直すのは、
+    /// エントリ数が多いアーカイブでは目に見えて重くなる。
+    /// </summary>
+    public IReadOnlyList<string> PreviewNames(int codePage, bool normalizeToNfc, int limit = 500)
+    {
+        if (_centralDirectory is null)
+        {
+            return Entries.Take(limit)
+                          .Select(e => normalizeToNfc ? NameNormalizer.ToNfc(e.Path) : e.Path)
+                          .ToList();
+        }
+
+        Encoding decoder = CodePageInfo.GetLenientEncoding(codePage) ?? Encoding.UTF8;
+        var utf8Strict = new UTF8Encoding(false, throwOnInvalidBytes: true);
+
+        return _centralDirectory.Entries
+            .Take(limit)
+            .Select(info =>
+            {
+                string name = DecodeZipName(info, decoder, utf8Strict);
+                return normalizeToNfc ? NameNormalizer.ToNfc(name) : name;
+            })
+            .ToList();
+    }
+
+    /// <summary>コードページを変えて開き直す。プレビューで決めた設定を適用するときに使う。</summary>
     public ArchiveReader Reopen(int codePage, bool normalizeToNfc)
     {
         return Open(ArchivePath, new ArchiveOpenOptions

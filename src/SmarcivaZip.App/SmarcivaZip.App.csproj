@@ -8,10 +8,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <!-- ランタイム同梱の単一 exe。Lhaplus と同じく「落としてすぐ動く」ことを優先する。 -->
-    <PublishSingleFile>true</PublishSingleFile>
-    <SelfContained>true</SelfContained>
-    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <!--
+      自己完結の単一 exe は publish 時にだけ有効にする（tools/build.ps1 を参照）。
+      csproj で SelfContained を立ててしまうと、ふだんの dotnet build まで
+      RID 付きの出力フォルダに変わって開発が面倒になる。
+    -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,18 +23,27 @@
     7z.dll は同梱するが、単一 exe には埋め込まず隣に置く。
     LGPL-2.1 の「利用者が差し替えられること」という要件を満たすため。
   -->
-  <ItemGroup Condition="'$(RuntimeIdentifier)' != '' And Exists('$(MSBuildThisFileDirectory)../../native/$(RuntimeIdentifier)/7z.dll')">
-    <None Include="../../native/$(RuntimeIdentifier)/7z.dll" Link="7z.dll"
+  <PropertyGroup>
+    <SevenZipArchitecture Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</SevenZipArchitecture>
+    <SevenZipArchitecture Condition="'$(SevenZipArchitecture)' == ''">win-x64</SevenZipArchitecture>
+    <SevenZipSource>$(MSBuildThisFileDirectory)../../native/$(SevenZipArchitecture)/7z.dll</SevenZipSource>
+    <SevenZipLicense>$(MSBuildThisFileDirectory)../../native/7-Zip-License.txt</SevenZipLicense>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(SevenZipSource)')">
+    <None Include="$(SevenZipSource)" Link="7z.dll"
           CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
           ExcludeFromSingleFile="true" />
   </ItemGroup>
-  <ItemGroup Condition="'$(RuntimeIdentifier)' == '' And Exists('$(MSBuildThisFileDirectory)../../native/win-x64/7z.dll')">
-    <None Include="../../native/win-x64/7z.dll" Link="7z.dll"
+
+  <ItemGroup Condition="Exists('$(SevenZipLicense)')">
+    <None Include="$(SevenZipLicense)" Link="7-Zip-License.txt"
           CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
           ExcludeFromSingleFile="true" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)../../native/7-Zip-License.txt')">
-    <None Include="../../native/7-Zip-License.txt" Link="7-Zip-License.txt"
+
+  <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)../../THIRD-PARTY-NOTICES.md')">
+    <None Include="../../THIRD-PARTY-NOTICES.md" Link="THIRD-PARTY-NOTICES.md"
           CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
           ExcludeFromSingleFile="true" />
   </ItemGroup>

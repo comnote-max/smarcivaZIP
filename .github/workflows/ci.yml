@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # 結合テストは実物の 7z.dll を読み込む。リポジトリには含めていないので取得する。
+      - name: Fetch 7z.dll
+        shell: pwsh
+        run: ./tools/fetch-7zip.ps1 -Architectures x64
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Test
+        run: dotnet test --no-build -c Release --logger "trx;LogFileName=test-results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/TestResults/*.trx'
+          if-no-files-found: ignore
+
+  package:
+    name: Package
+    runs-on: windows-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Build portable archives
+        shell: pwsh
+        run: ./tools/build.ps1 -SkipTests
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smarcivazip-portable
+          path: dist/*.zip
+          if-no-files-found: error
