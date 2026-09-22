@@ -17,9 +17,14 @@ namespace SmarcivaZip.Core.Shell;
 /// </summary>
 public static class ShellRegistration
 {
-    public const string ProgId = "smarcivaZIP.Archive";
+    /// <summary>ProgID の共通の接頭辞。解除のときはこれで始まるものをすべて消す。</summary>
+    public const string ProgIdPrefix = "smarcivaZIP.";
+
     private const string MenuKeyName = "smarcivaZIP";
     private const string ClassesRoot = @"Software\Classes";
+
+    /// <summary>アイコンを置くフォルダ名（実行ファイルからの相対）。</summary>
+    private const string IconDirectoryName = "Icons";
 
     /// <summary>メニューに出す解凍の動作。</summary>
     private static readonly (string Verb, string LabelKey, string Argument)[] ExtractVerbs =
@@ -29,10 +34,24 @@ public static class ShellRegistration
         ("12extract-preview", "Menu_ExtractPreview", "--extract-preview")
     ];
 
-    public static bool IsRegistered()
+    public static bool IsRegistered() => FindRegisteredProgIds().Count > 0;
+
+    /// <summary>登録済みの ProgID を列挙する。</summary>
+    private static IReadOnlyList<string> FindRegisteredProgIds()
     {
-        using RegistryKey? key = Registry.CurrentUser.OpenSubKey($@"{ClassesRoot}\{ProgId}");
-        return key is not null;
+        try
+        {
+            using RegistryKey? classes = Registry.CurrentUser.OpenSubKey(ClassesRoot);
+            if (classes is null) return [];
+
+            return classes.GetSubKeyNames()
+                .Where(name => name.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException)
+        {
+            return [];
+        }
     }
 
     /// <summary>
@@ -48,7 +67,13 @@ public static class ShellRegistration
     public static void Register(string executablePath, IReadOnlyList<string> extensions,
         IReadOnlyList<CompressMenuItem> compressMenuItems, IReadOnlyList<string>? knownExtensions = null)
     {
-        RegisterProgId(executablePath);
+        // 使う分類の ProgID だけを作る。使わないものまで作ると、
+        // 解除し忘れたときにレジストリに残り続ける。
+        foreach (ArchiveFileType type in ArchiveFileType.UsedBy(extensions))
+        {
+            RegisterProgId(executablePath, type);
+        }
+
         RegisterFileAssociations(extensions);
 
         if (knownExtensions is not null)
@@ -82,7 +107,8 @@ public static class ShellRegistration
             if (normalized.Length == 0) continue;
 
             string? owner = ResolveCurrentOwner(normalized);
-            if (owner is not null && owner != ProgId) owned.Add((normalized, owner));
+            if (owner is not null && !owner.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+                owned.Add((normalized, owner));
         }
 
         return owned;
@@ -124,7 +150,12 @@ public static class ShellRegistration
         {
             if (classes is null) return;
 
-            DeleteSubKeyTreeIfExists(classes, ProgId);
+            // 過去の版が作った ProgID も残さず消せるよう、接頭辞で総当たりする。
+            foreach (string progId in FindRegisteredProgIds())
+            {
+                DeleteSubKeyTreeIfExists(classes, progId);
+            }
+
             DeleteSubKeyTreeIfExists(classes, $@"*\shell\{MenuKeyName}");
             DeleteSubKeyTreeIfExists(classes, $@"Directory\shell\{MenuKeyName}");
 
@@ -148,27 +179,55 @@ public static class ShellRegistration
 
             using (RegistryKey? progIds = key.OpenSubKey("OpenWithProgids", writable: true))
             {
-                progIds?.DeleteValue(ProgId, throwOnMissingValue: false);
+                if (progIds is not null)
+                {
+                    foreach (string name in progIds.GetValueNames())
+                    {
+                        if (name.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+                            progIds.DeleteValue(name, throwOnMissingValue: false);
+                    }
+                }
             }
 
             // 既定として自分を書いていた場合だけ消す。他のアプリの設定は触らない。
-            if (key.GetValue(null) as string == ProgId) key.DeleteValue(string.Empty, throwOnMissingValue: false);
+            if (key.GetValue(null) is string current
+                && current.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+            {
+                key.DeleteValue(string.Empty, throwOnMissingValue: false);
+            }
         }
     }
 
-    private static void RegisterProgId(string executablePath)
+    private static void RegisterProgId(string executablePath, ArchiveFileType type)
     {
-        using RegistryKey progId = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\{ProgId}");
-        progId.SetValue(null, Strings.Get("ProgId_TypeName"));
-        progId.SetValue("FriendlyTypeName", Strings.Get("ProgId_FriendlyName"));
+        using RegistryKey progId = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\{type.ProgId}");
+        progId.SetValue(null, type.DisplayName);
+        progId.SetValue("FriendlyTypeName", type.FriendlyName);
 
         using (RegistryKey icon = progId.CreateSubKey("DefaultIcon"))
         {
-            icon.SetValue(null, $"\"{executablePath}\",0");
+            icon.SetValue(null, $"\"{ResolveIconPath(executablePath, type)}\"");
         }
 
         using RegistryKey command = progId.CreateSubKey(@"shell\open\command");
         command.SetValue(null, $"\"{executablePath}\" \"%1\"");
+    }
+
+    /// <summary>
+    /// その分類のアイコンファイルの場所。
+    ///
+    /// アイコンは実行ファイルに埋め込まず、隣の Icons フォルダに置いている。
+    /// exe に複数のアイコンを埋め込むには Win32 リソースを自前で用意する必要があり、
+    /// .NET SDK からは素直に扱えないため。外に出しておくと利用者が差し替えられる利点もある。
+    /// 見つからない場合は実行ファイル自身のアイコンに落とす。
+    /// </summary>
+    private static string ResolveIconPath(string executablePath, ArchiveFileType type)
+    {
+        string? directory = Path.GetDirectoryName(executablePath);
+        if (directory is null) return executablePath + ",0";
+
+        string icon = Path.Combine(directory, IconDirectoryName, type.IconFileName);
+        return File.Exists(icon) ? icon : executablePath + ",0";
     }
 
     /// <summary>
@@ -186,12 +245,35 @@ public static class ShellRegistration
             string normalized = Normalize(extension);
             if (normalized.Length == 0) continue;
 
+            string progId = ArchiveFileType.ForExtension(normalized).ProgId;
+
             using RegistryKey key = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\.{normalized}");
             using RegistryKey progIds = key.CreateSubKey("OpenWithProgids");
-            progIds.SetValue(ProgId, Array.Empty<byte>(), RegistryValueKind.None);
+
+            // 前回の登録で別の ProgID を割り当てていた場合、それを先に落とす。
+            // 残すと「プログラムから開く」に smarcivaZIP が二重に並ぶ。
+            // 分類を作り変えたときや、旧版から更新したときに起きる。
+            foreach (string existing in progIds.GetValueNames())
+            {
+                if (existing.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase)
+                    && !existing.Equals(progId, StringComparison.OrdinalIgnoreCase))
+                {
+                    progIds.DeleteValue(existing, throwOnMissingValue: false);
+                }
+            }
+
+            progIds.SetValue(progId, Array.Empty<byte>(), RegistryValueKind.None);
+
+            // 既定も古い ProgID のままなら、新しい方へ付け替える。
+            if (key.GetValue(null) is string current
+                && current.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase)
+                && !current.Equals(progId, StringComparison.OrdinalIgnoreCase))
+            {
+                key.SetValue(null, progId);
+            }
 
             // まだ誰も関連付けていない拡張子（.lzh など）なら、そのまま既定にできる。
-            if (key.GetValue(null) is null or "") key.SetValue(null, ProgId);
+            if (key.GetValue(null) is null or "") key.SetValue(null, progId);
         }
     }
 

@@ -398,6 +398,30 @@
   <data name="Extract_UnwrapTar" xml:space="preserve">
     <value>tar.gz などは中の tar まで一度に展開する</value>
   </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>圧縮ファイル</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>LZH 書庫</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>RAR 書庫</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>7z 書庫</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>TAR 書庫</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>ZIP 書庫</value>
+  </data>
   <data name="Level_Fastest" xml:space="preserve">
     <value>最速</value>
   </data>
@@ -484,12 +508,6 @@
   </data>
   <data name="Preview_VerdictMedium" xml:space="preserve">
     <value>自動判定はおおむね確からしいですが、念のため確認してください。</value>
-  </data>
-  <data name="ProgId_FriendlyName" xml:space="preserve">
-    <value>アーカイブ (smarcivaZIP)</value>
-  </data>
-  <data name="ProgId_TypeName" xml:space="preserve">
-    <value>アーカイブ</value>
   </data>
   <data name="Progress_Cancelling" xml:space="preserve">
     <value>中止しています...</value>

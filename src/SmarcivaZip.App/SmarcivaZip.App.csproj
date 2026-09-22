@@ -35,6 +35,19 @@
   </ItemGroup>
 
   <!--
+    書庫ファイル用のアイコン。実行ファイルには埋め込まず隣に置く。
+    exe に複数のアイコンを入れるには Win32 リソースを自前で用意する必要があり、
+    .NET SDK からは素直に扱えない。外に出しておけば利用者が差し替えることもできる。
+  -->
+  <ItemGroup>
+    <Content Include="Assets/Icons/*.ico"
+             CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"
+             ExcludeFromSingleFile="true">
+      <TargetPath>Icons/%(Filename)%(Extension)</TargetPath>
+    </Content>
+  </ItemGroup>
+
+  <!--
     7z.dll は同梱するが、単一 exe には埋め込まず隣に置く。
     LGPL-2.1 の「利用者が差し替えられること」という要件を満たすため。
   -->

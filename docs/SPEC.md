@@ -194,6 +194,37 @@ Visual Studio が生成する `*.Designer.cs` は使わない。
 翻訳を増やすときは resx を足し、`AppLanguage.Available` に登録する。
 一覧に載せるのは訳が揃った言語だけとする。
 
+## 4.5 アイコンと ProgID
+
+`DefaultIcon` は ProgID 単位でしか設定できないため、形式ごとにアイコンを変えるには
+ProgID も分ける必要がある。分類は `ArchiveFileType` に定義する。
+
+| ProgID | アイコン | 拡張子 |
+|---|---|---|
+| `smarcivaZIP.Zip` | zip.ico | zip, zipx, jar |
+| `smarcivaZIP.SevenZip` | 7z.ico | 7z |
+| `smarcivaZIP.Rar` | rar.ico | rar, r00 |
+| `smarcivaZIP.Tar` | tar.ico | tar, tgz, tbz, tbz2, txz, tzst, taz |
+| `smarcivaZIP.Compressed` | gz.ico | gz, bz2, xz, zst, lzma, lz4, z |
+| `smarcivaZIP.Lzh` | lzh.ico | lzh, lha |
+| `smarcivaZIP.Archive` | archive.ico | 上記以外すべて（cab, arj, iso ほか） |
+
+形式ごとに 1 種類ずつ用意するのではなく、まとめられるものはまとめる。
+`.tgz` と `.tar.gz` に別のアイコンを与えても利用者には区別が付かず、
+一覧に並んだときに色が増えすぎて読み取りにくくなるだけである。
+
+アプリ本体と書庫は**形**で分ける。同じ絵だと、同じフォルダに並んだときに
+どれが実行ファイルか分からない。形式の区別は**色**で行う。
+エクスプローラーの詳細表示は 16px で、その大きさでは文字が読めないため。
+
+`.ico` は実行ファイルに埋め込まず、隣の `Icons` フォルダに置く。
+exe に複数のアイコンを入れるには Win32 リソースを自前で用意する必要があり、
+.NET SDK からは素直に扱えない。外に出しておけば利用者が差し替えられる利点もある。
+
+登録時は、その拡張子に割り当たっている古い ProgID を `OpenWithProgids` から
+取り除いてから新しいものを書く。残すと「プログラムから開く」に
+smarcivaZIP が二重に並ぶ。
+
 ## 5. アーキテクチャ
 
 ```

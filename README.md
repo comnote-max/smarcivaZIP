@@ -113,6 +113,34 @@ RAR 形式での圧縮は行いません（unRAR のライセンス制限のた�
 
 ---
 
+## アイコン
+
+アプリ本体と書庫ファイルで形を変えています。同じ絵にすると、同じフォルダに並んだときに
+どれが実行ファイルか分からなくなるためです。
+
+- **アプリ** — 塗りつぶした角丸タイル
+- **書庫** — 紙の形（右上が折れている）＋ 下帯に形式名
+
+形式の区別は色に持たせています。エクスプローラーの詳細表示は 16px で、
+その大きさでは何を書いても文字は読めません。隅に小さくラベルを置く方式は
+48px 以上でしか機能しないので、16px で効く手掛かりは色と輪郭だけです。
+
+| 分類 | 色 | 拡張子 |
+|---|---|---|
+| ZIP | 青 | zip, zipx, jar |
+| 7z | 緑 | 7z |
+| RAR | 紫 | rar, r00 |
+| TAR | 橙 | tar, tgz, tbz, txz, tzst |
+| 圧縮ファイル | 灰青 | gz, bz2, xz, zst, lzma, lz4, z |
+| LZH | 赤 | lzh, lha |
+| アーカイブ | 紺 | cab, arj, iso, dmg ほか |
+
+アイコンは `DefaultIcon` が ProgID 単位でしか設定できないため、分類ごとに
+ProgID を分けています（`smarcivaZIP.Zip` など）。
+`.ico` は exe に埋め込まず隣の `Icons` フォルダに置いてあるので、差し替えられます。
+
+---
+
 ## 安全性
 
 書庫の中身は、他人が自由に決められるデータです。そのつもりで扱っています。
@@ -208,7 +236,7 @@ SmarcivaZip.exe --register / --unregister         関連付けの登録・解除
 （Pillow が必要です。ふだんのビルドでは実行されません）。
 
 ```powershell
-python tools/make-icon.py assets/icon-source.webp src/SmarcivaZip.App/Assets/smarcivazip.ico
+python tools/make-icons.py
 ```
 
 ### テスト用の書庫について

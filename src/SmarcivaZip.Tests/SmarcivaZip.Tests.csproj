@@ -20,6 +20,13 @@
     <Content Include="Fixtures/*.lzh" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <!-- 分類ごとにアイコンが揃っているかをテストで見るため、出力先へ複製する。 -->
+  <ItemGroup>
+    <Content Include="../SmarcivaZip.App/Assets/Icons/*.ico" CopyToOutputDirectory="PreserveNewest">
+      <TargetPath>Icons/%(Filename)%(Extension)</TargetPath>
+    </Content>
+  </ItemGroup>
+
   <!-- 結合テストは実物の 7z.dll を読み込む。tools/fetch-7zip.ps1 で先に取得しておくこと。 -->
   <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)../../native/win-x64/7z.dll')">
     <None Include="../../native/win-x64/7z.dll" Link="7z.dll" CopyToOutputDirectory="PreserveNewest" />
