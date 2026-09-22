@@ -57,6 +57,18 @@ public sealed class AppSettings
     /// <summary>圧縮前に出力先と形式を確認するダイアログを出す。</summary>
     public bool ShowCompressDialog { get; set; }
 
+    /// <summary>
+    /// 右クリックメニューに並べる圧縮の項目（CompressMenuItem.Id の並び）。
+    /// 順番がそのままメニューの並び順になる。
+    /// 全形式を出すとメニューが長くなりすぎるので、よく使うものだけを既定にしてある。
+    /// </summary>
+    public List<string> ContextMenuFormats { get; set; } = [.. DefaultContextMenuFormats];
+
+    public static readonly string[] DefaultContextMenuFormats =
+    [
+        "zip", "zip-password", "7z", "7z-password", "tar.gz"
+    ];
+
     // ---- 関連付け ----
 
     /// <summary>ダブルクリックで smarcivaZIP が開く拡張子（＝チェックが入っているもの）。</summary>

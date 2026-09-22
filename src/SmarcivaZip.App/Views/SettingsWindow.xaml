@@ -13,6 +13,83 @@
 
     <TabControl Grid.Row="0" BorderBrush="{StaticResource Border}" Background="Transparent">
 
+      <TabItem Header="関連付け">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel Margin="16,14,16,14">
+
+            <TextBlock Text="右クリックメニューと関連付け" Style="{StaticResource Heading}" />
+            <TextBlock x:Name="RegistrationStateText" Style="{StaticResource Caption}"
+                       Margin="0,6,0,0" TextWrapping="Wrap" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+              <Button x:Name="RegisterButton" Content="登録する" Style="{StaticResource PrimaryButton}"
+                      Click="OnRegisterClicked" />
+              <Button x:Name="UnregisterButton" Content="解除する" Margin="8,0,0,0"
+                      Click="OnUnregisterClicked" />
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource Caption}" Margin="0,14,0,0" TextWrapping="Wrap"
+                       Text="Windows 11 では、右クリックメニューは「その他のオプションを確認」の中に入ります。これは Windows の仕様によるものです。" />
+
+            <TextBlock Text="ダブルクリックで開く拡張子" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
+                       Text="チェックを入れた拡張子を smarcivaZIP で開きます。チェックを外すと関連付けを解除します。" />
+
+            <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
+                    BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
+              <ListBox x:Name="ExtensionList" BorderThickness="0" Padding="6"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <UniformGrid Columns="4" />
+                  </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                  <Style TargetType="ListBoxItem">
+                    <Setter Property="Padding" Value="2" />
+                    <!-- チェックボックスに触れたら、その行も選択状態にする。
+                         こうしないと「削除」ボタンがどの項目を指しているか分からない。
+                         IsKeyboardFocusWithin のトリガーでやると、削除ボタンへ
+                         フォーカスが移った瞬間に選択が外れてしまうので、
+                         イベントで明示的に立てる。 -->
+                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnExtensionItemActivated" />
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnExtensionItemActivated" />
+                  </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <CheckBox Content="{Binding Extension}" IsChecked="{Binding IsSelected}"
+                              Margin="2,3,8,3" ToolTip="{Binding Description}" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <Button Content="追加..." MinWidth="76" Click="OnAddExtensionClicked" />
+              <Button x:Name="RemoveExtensionButton" Content="削除" MinWidth="76" Margin="8,0,0,0"
+                      Click="OnRemoveExtensionClicked" />
+              <Button Content="すべて選択" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
+              <Button Content="すべて解除" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <Button Content="7z.dll が扱える拡張子をすべて追加" MinWidth="240"
+                      Click="OnAddAllSupportedClicked" />
+              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0" Click="OnResetExtensionsClicked" />
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
+                       Text="変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。" />
+
+            <Button Content="Windows の「既定のアプリ」を開く" Margin="0,10,0,0"
+                    HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
+
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
       <TabItem Header="解凍">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
@@ -101,86 +178,50 @@
             <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
                        Text="強くするほど小さくなりますが時間がかかります。迷ったら標準のままで十分です。" />
 
-            <TextBlock Text="その他" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <CheckBox x:Name="ShowCompressDialogCheck"
-                      Content="圧縮前に保存先を確認する" />
-
-          </StackPanel>
-        </ScrollViewer>
-      </TabItem>
-
-      <TabItem Header="関連付け">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-          <StackPanel Margin="16,14,16,14">
-
-            <TextBlock Text="右クリックメニューと関連付け" Style="{StaticResource Heading}" />
-            <TextBlock x:Name="RegistrationStateText" Style="{StaticResource Caption}"
-                       Margin="0,6,0,0" TextWrapping="Wrap" />
-
-            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-              <Button x:Name="RegisterButton" Content="登録する" Style="{StaticResource PrimaryButton}"
-                      Click="OnRegisterClicked" />
-              <Button x:Name="UnregisterButton" Content="解除する" Margin="8,0,0,0"
-                      Click="OnUnregisterClicked" />
-            </StackPanel>
-
-            <TextBlock Style="{StaticResource Caption}" Margin="0,14,0,0" TextWrapping="Wrap"
-                       Text="Windows 11 では、右クリックメニューは「その他のオプションを確認」の中に入ります。これは Windows の仕様によるものです。" />
-
-            <TextBlock Text="ダブルクリックで開く拡張子" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="右クリックメニューに出す形式" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="チェックを入れた拡張子を smarcivaZIP で開きます。チェックを外すと関連付けを解除します。" />
+                       Text="チェックを入れた形式が、右クリックメニューの smarcivaZIP の中に並びます。上から順に表示されます。" />
 
-            <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
+            <Border Margin="0,8,0,0" Height="168" BorderBrush="{StaticResource Border}"
                     BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
-              <ListBox x:Name="ExtensionList" BorderThickness="0" Padding="6"
+              <ListBox x:Name="MenuFormatList" BorderThickness="0" Padding="6"
                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                        ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemsPanel>
                   <ItemsPanelTemplate>
-                    <UniformGrid Columns="4" />
+                    <UniformGrid Columns="2" />
                   </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
                   <Style TargetType="ListBoxItem">
                     <Setter Property="Padding" Value="2" />
-                    <!-- チェックボックスに触れたら、その行も選択状態にする。
-                         こうしないと「削除」ボタンがどの項目を指しているか分からない。
-                         IsKeyboardFocusWithin のトリガーでやると、削除ボタンへ
-                         フォーカスが移った瞬間に選択が外れてしまうので、
-                         イベントで明示的に立てる。 -->
-                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnExtensionItemActivated" />
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnExtensionItemActivated" />
+                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnMenuFormatItemActivated" />
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnMenuFormatItemActivated" />
                   </Style>
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                   <DataTemplate>
-                    <CheckBox Content="{Binding Extension}" IsChecked="{Binding IsSelected}"
-                              Margin="2,3,8,3" ToolTip="{Binding Description}" />
+                    <CheckBox Content="{Binding Label}" IsChecked="{Binding IsSelected}" Margin="2,3,8,3" />
                   </DataTemplate>
                 </ListBox.ItemTemplate>
               </ListBox>
             </Border>
 
             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="追加..." MinWidth="76" Click="OnAddExtensionClicked" />
-              <Button x:Name="RemoveExtensionButton" Content="削除" MinWidth="76" Margin="8,0,0,0"
-                      Click="OnRemoveExtensionClicked" />
-              <Button Content="すべて選択" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
-              <Button Content="すべて解除" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="7z.dll が扱える拡張子をすべて追加" MinWidth="240"
-                      Click="OnAddAllSupportedClicked" />
-              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0" Click="OnResetExtensionsClicked" />
+              <Button x:Name="MenuFormatUpButton" Content="上へ" MinWidth="72"
+                      Click="OnMenuFormatMoveUpClicked" />
+              <Button x:Name="MenuFormatDownButton" Content="下へ" MinWidth="72" Margin="8,0,0,0"
+                      Click="OnMenuFormatMoveDownClicked" />
+              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0"
+                      Click="OnResetMenuFormatsClicked" />
             </StackPanel>
 
             <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
-                       Text="変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。" />
+                       Text="変更を反映するには、「関連付け」タブの「登録する」を押してください。" />
 
-            <Button Content="Windows の「既定のアプリ」を開く" Margin="0,10,0,0"
-                    HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
+            <TextBlock Text="その他" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <CheckBox x:Name="ShowCompressDialogCheck"
+                      Content="圧縮前に保存先を確認する" />
 
           </StackPanel>
         </ScrollViewer>
@@ -193,6 +234,18 @@
             <TextBlock x:Name="VersionText" Style="{StaticResource Caption}" Margin="0,4,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,12,0,0" TextWrapping="Wrap"
                        Text="Lhaplus の使い心地をそのままに、RAR5・Zstandard・文字化け対策・macOS 由来の書庫に対応したシンプルな圧縮解凍ソフトです。" />
+
+            <TextBlock Margin="0,12,0,0">
+              <Hyperlink NavigateUri="https://smarciva.com/" RequestNavigate="OnHyperlinkRequestNavigate">
+                https://smarciva.com/
+              </Hyperlink>
+            </TextBlock>
+            <TextBlock Margin="0,4,0,0">
+              <Hyperlink NavigateUri="https://github.com/comnote-max/smarcivaZIP"
+                         RequestNavigate="OnHyperlinkRequestNavigate">
+                https://github.com/comnote-max/smarcivaZIP
+              </Hyperlink>
+            </TextBlock>
 
             <TextBlock Text="圧縮エンジン" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock x:Name="EngineText" Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap" />

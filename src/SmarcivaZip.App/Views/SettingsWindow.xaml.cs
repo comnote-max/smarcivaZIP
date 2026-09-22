@@ -47,8 +47,34 @@ public partial class SettingsWindow : Window
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 
+    /// <summary>
+    /// 右クリックメニューに出す圧縮項目ひとつ分の行。
+    /// </summary>
+    private sealed class MenuFormatChoice(CompressMenuItem item, bool isSelected) : INotifyPropertyChanged
+    {
+        private bool _isSelected = isSelected;
+
+        public CompressMenuItem Item { get; } = item;
+
+        public string Label => Item.Label;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                if (_isSelected == value) return;
+                _isSelected = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSelected)));
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+    }
+
     private readonly AppSettings _settings;
     private readonly ObservableCollection<ExtensionChoice> _extensions = [];
+    private readonly ObservableCollection<MenuFormatChoice> _menuFormats = [];
 
     public SettingsWindow(AppSettings settings)
     {
@@ -57,6 +83,9 @@ public partial class SettingsWindow : Window
 
         ExtensionList.ItemsSource = _extensions;
         ExtensionList.SelectionChanged += (_, _) => UpdateExtensionButtons();
+
+        MenuFormatList.ItemsSource = _menuFormats;
+        MenuFormatList.SelectionChanged += (_, _) => UpdateMenuFormatButtons();
 
         PopulateChoices();
         LoadFromSettings();
@@ -128,7 +157,92 @@ public partial class SettingsWindow : Window
         SelectByValue(CompressionLevelCombo, _settings.CompressionLevel);
         ShowCompressDialogCheck.IsChecked = _settings.ShowCompressDialog;
 
+        LoadMenuFormats();
         LoadExtensions();
+    }
+
+    // ---------------------------------------------------------------- 右クリックメニューの形式
+
+    private void LoadMenuFormats()
+    {
+        List<CompressMenuItem> available = CompressMenuItem.BuildAll(AvailableFormats());
+
+        var selected = _settings.ContextMenuFormats
+            .Where(id => !string.IsNullOrWhiteSpace(id))
+            .ToList();
+
+        _menuFormats.Clear();
+
+        // 選ばれているものを設定どおりの順番で先に並べる。
+        // その順番がそのままメニューの並び順になるので、上下の入れ替えが意味を持つ。
+        foreach (string id in selected)
+        {
+            CompressMenuItem? item = available.FirstOrDefault(
+                i => string.Equals(i.Id, id, StringComparison.OrdinalIgnoreCase));
+
+            if (item is not null) _menuFormats.Add(new MenuFormatChoice(item, true));
+        }
+
+        foreach (CompressMenuItem item in available)
+        {
+            if (_menuFormats.Any(c => c.Item.Id == item.Id)) continue;
+            _menuFormats.Add(new MenuFormatChoice(item, false));
+        }
+
+        UpdateMenuFormatButtons();
+    }
+
+    private void UpdateMenuFormatButtons()
+    {
+        int index = MenuFormatList.SelectedIndex;
+        MenuFormatUpButton.IsEnabled = index > 0;
+        MenuFormatDownButton.IsEnabled = index >= 0 && index < _menuFormats.Count - 1;
+    }
+
+    private void OnMenuFormatItemActivated(object sender, RoutedEventArgs e)
+    {
+        if (sender is System.Windows.Controls.ListBoxItem item) item.IsSelected = true;
+    }
+
+    private void MoveSelectedMenuFormat(int offset)
+    {
+        int index = MenuFormatList.SelectedIndex;
+        int target = index + offset;
+        if (index < 0 || target < 0 || target >= _menuFormats.Count) return;
+
+        _menuFormats.Move(index, target);
+        MenuFormatList.SelectedIndex = target;
+        UpdateMenuFormatButtons();
+    }
+
+    private void OnMenuFormatMoveUpClicked(object sender, RoutedEventArgs e) => MoveSelectedMenuFormat(-1);
+
+    private void OnMenuFormatMoveDownClicked(object sender, RoutedEventArgs e) => MoveSelectedMenuFormat(1);
+
+    private void OnResetMenuFormatsClicked(object sender, RoutedEventArgs e)
+    {
+        _settings.ContextMenuFormats = [.. AppSettings.DefaultContextMenuFormats];
+        LoadMenuFormats();
+    }
+
+    /// <summary>選択されている項目を、一覧に並んでいる順で返す。</summary>
+    private List<CompressMenuItem> SelectedMenuItems()
+        => _menuFormats.Where(c => c.IsSelected).Select(c => c.Item).ToList();
+
+    private void OnHyperlinkRequestNavigate(object sender,
+        System.Windows.Navigation.RequestNavigateEventArgs e)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(
+                new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+        }
+        catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException)
+        {
+            // 既定のブラウザーが無い環境。開けないだけで、設定画面は使い続けられる。
+        }
+
+        e.Handled = true;
     }
 
     // ---------------------------------------------------------------- 拡張子の一覧
@@ -373,7 +487,7 @@ public partial class SettingsWindow : Window
         try
         {
             ShellRegistration.Register(
-                App.ExecutablePath, _settings.AssociatedExtensions, AvailableFormats(),
+                App.ExecutablePath, _settings.AssociatedExtensions, SelectedMenuItems(),
                 _settings.ExtensionChoices);
 
             UpdateRegistrationState();
@@ -439,6 +553,8 @@ public partial class SettingsWindow : Window
         _settings.DefaultFormatId = SelectedValue(DefaultFormatCombo, "zip") ?? "zip";
         _settings.CompressionLevel = SelectedValue(CompressionLevelCombo, 5);
         _settings.ShowCompressDialog = ShowCompressDialogCheck.IsChecked == true;
+
+        _settings.ContextMenuFormats = SelectedMenuItems().Select(i => i.Id).ToList();
 
         _settings.ExtensionChoices = _extensions.Select(c => c.Extension).ToList();
         _settings.AssociatedExtensions = _extensions

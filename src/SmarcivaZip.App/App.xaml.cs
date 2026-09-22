@@ -441,7 +441,11 @@ public partial class App : Application
         try { formats = OutputFormat.GetAvailable(SevenZipLibrary.Instance); }
         catch (SevenZipNotFoundException) { formats = OutputFormat.All; }
 
-        ShellRegistration.Register(ExecutablePath, _settings.AssociatedExtensions, formats);
+        List<CompressMenuItem> menuItems =
+            CompressMenuItem.Resolve(formats, _settings.ContextMenuFormats);
+
+        ShellRegistration.Register(ExecutablePath, _settings.AssociatedExtensions, menuItems,
+            _settings.ExtensionChoices);
 
         MessageBox.Show("関連付けと右クリックメニューを登録しました。", "smarcivaZIP",
             MessageBoxButton.OK, MessageBoxImage.Information);

@@ -45,7 +45,7 @@ public static class ShellRegistration
     /// 外しても関連付けが残り続けてしまう。
     /// </param>
     public static void Register(string executablePath, IReadOnlyList<string> extensions,
-        IReadOnlyList<OutputFormat> formats, IReadOnlyList<string>? knownExtensions = null)
+        IReadOnlyList<CompressMenuItem> compressMenuItems, IReadOnlyList<string>? knownExtensions = null)
     {
         RegisterProgId(executablePath);
         RegisterFileAssociations(extensions);
@@ -56,7 +56,7 @@ public static class ShellRegistration
             RemoveFileAssociations(knownExtensions.Where(e => !selected.Contains(Normalize(e))));
         }
 
-        RegisterContextMenu(executablePath, formats, extensions);
+        RegisterContextMenu(executablePath, compressMenuItems, extensions);
         NotifyShell();
     }
 
@@ -140,7 +140,8 @@ public static class ShellRegistration
     }
 
     private static void RegisterContextMenu(
-        string executablePath, IReadOnlyList<OutputFormat> formats, IReadOnlyList<string> extensions)
+        string executablePath, IReadOnlyList<CompressMenuItem> compressMenuItems,
+        IReadOnlyList<string> extensions)
     {
         foreach (string target in new[] { "*", "Directory" })
         {
@@ -159,23 +160,16 @@ public static class ShellRegistration
             // 既存の項目を消してから作り直す（形式が増減したときに残骸を残さない）。
             foreach (string existing in items.GetSubKeyNames()) items.DeleteSubKeyTree(existing);
 
+            // 並び順は設定どおり。レジストリはキー名の昇順で並ぶので、
+            // 意図した順番を保つために連番を頭に付ける。
             int order = 0;
-            foreach (OutputFormat format in formats)
+            foreach (CompressMenuItem item in compressMenuItems)
             {
                 AddVerb(items, executablePath,
-                    verb: $"{order:D2}compress-{format.Id}",
-                    label: $"{format.DisplayName} に圧縮",
-                    arguments: $"--compress {format.Id}");
+                    verb: $"{order:D2}compress-{item.Id}",
+                    label: item.Label,
+                    arguments: item.Arguments);
                 order++;
-
-                if (format.SupportsPassword)
-                {
-                    AddVerb(items, executablePath,
-                        verb: $"{order:D2}compress-{format.Id}-password",
-                        label: $"{format.DisplayName} に圧縮（パスワード）",
-                        arguments: $"--compress {format.Id} --password");
-                    order++;
-                }
             }
 
             // ファイルに対してだけ解凍系を出す。フォルダには意味が無い。
@@ -189,13 +183,15 @@ public static class ShellRegistration
                 }
             }
 
-            AddVerb(items, executablePath, "90settings", "設定...", "--settings");
+            // 設定画面は選択中のファイルと関係ないので、パスを渡さない。
+            AddVerb(items, executablePath, "90settings", "設定...", "--settings", takesPath: false);
         }
     }
 
     private static void AddVerb(
         RegistryKey parent, string executablePath,
-        string verb, string label, string arguments, string? appliesTo = null)
+        string verb, string label, string arguments,
+        string? appliesTo = null, bool takesPath = true)
     {
         using RegistryKey key = parent.CreateSubKey(verb);
         key.SetValue("MUIVerb", label);
@@ -208,7 +204,10 @@ public static class ShellRegistration
         key.SetValue("MultiSelectModel", "Document");
 
         using RegistryKey command = key.CreateSubKey("command");
-        command.SetValue(null, $"\"{executablePath}\" {arguments} \"%1\"");
+
+        command.SetValue(null, takesPath
+            ? $"\"{executablePath}\" {arguments} \"%1\""
+            : $"\"{executablePath}\" {arguments}");
     }
 
     /// <summary>
