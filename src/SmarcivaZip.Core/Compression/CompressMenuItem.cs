@@ -1,3 +1,5 @@
+using SmarcivaZip.Core.Localization;
+
 namespace SmarcivaZip.Core.Compression;
 
 /// <summary>
@@ -12,9 +14,8 @@ public sealed record CompressMenuItem(OutputFormat Format, bool WithPassword)
     /// <summary>設定ファイルに保存する識別子。</summary>
     public string Id => WithPassword ? Format.Id + "-password" : Format.Id;
 
-    public string Label => WithPassword
-        ? $"{Format.DisplayName} に圧縮（パスワード）"
-        : $"{Format.DisplayName} に圧縮";
+    public string Label => Strings.Format(
+        WithPassword ? "Menu_CompressToPassword" : "Menu_CompressTo", Format.DisplayName);
 
     /// <summary>右クリックメニューのコマンドに渡す引数。</summary>
     public string Arguments => WithPassword

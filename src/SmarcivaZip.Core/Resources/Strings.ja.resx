@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>Lhaplus の使い心地をそのままに、RAR5・Zstandard・文字化け対策・macOS 由来の書庫に対応したシンプルな圧縮解凍ソフトです。</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>圧縮エンジン</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>7-Zip の 7z.dll を使用しています。
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>対応形式</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>解凍 ({0} 種類): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>7z.dll が見つからないため、対応形式を表示できません。</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>圧縮: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>smarcivaZIP 本体は MIT License です。同梱している 7z.dll は 7-Zip (Igor Pavlov 氏) のもので LGPL-2.1 以降が適用され、RAR 展開部分には unRAR の制限が付きます。詳しくは同梱の THIRD-PARTY-NOTICES.md をご覧ください。</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>ライセンス</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>バージョン {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>すべてのファイル</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>展開先の外に書き込もうとするエントリを {0} 件ブロックしました。このアーカイブは細工されている可能性があります。</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>このアーカイブは展開すると異常に大きくなります。
+
+{0}
+
+続けますか？</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>圧縮に失敗しました</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>圧縮できません</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>圧縮エンジンが見つかりません</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　・{0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+詳細は次のファイルに記録しました。
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>解凍に失敗しました</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　ほか {0} 件のエラー</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>開けませんでした</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　・{0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>保存先</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>知らない形式です: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>{0} 個のファイルを読み取れなかったため、アーカイブに含めていません。
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>パスワードが違うため、一部を取り出せませんでした。</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>ファイルが見つかりません: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>対応していない形式か、ファイルが壊れています: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>圧縮率が {0} 倍と異常に高く、{1} が {2} に展開されます。</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>展開後のサイズが {0} になります。</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>エントリ数が {0} 個あります（上限 {1} 個）。</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>キリル (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>韓国語</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>簡体字中国語</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>繁体字中国語</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>西欧</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - シンプルな圧縮・解凍ソフト
+
+使い方:
+  SmarcivaZip.exe &lt;アーカイブ&gt;              解凍する
+  SmarcivaZip.exe --extract &lt;アーカイブ&gt;    同じ場所に解凍する
+  SmarcivaZip.exe --extract-to-folder &lt;アーカイブ&gt;
+                                            フォルダを作って解凍する
+  SmarcivaZip.exe --extract-preview &lt;アーカイブ&gt;
+                                            文字コードを確認してから解凍する
+  SmarcivaZip.exe --compress &lt;形式&gt; &lt;パス...&gt;
+                                            圧縮する (形式: zip, 7z, tar.gz など)
+  SmarcivaZip.exe --compress &lt;形式&gt; --password &lt;パス...&gt;
+                                            パスワード付きで圧縮する
+  SmarcivaZip.exe --settings                設定画面を開く
+  SmarcivaZip.exe --register                関連付けと右クリックメニューを登録する
+  SmarcivaZip.exe --unregister              登録を解除する</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>既定に戻す</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>圧縮に失敗しました (0x{0})。</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>{0} 形式は書き込みに対応していません。</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>この 7z.dll は {0} 形式での圧縮に対応していません。</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>圧縮中にエラーが発生しました。</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>圧縮できるファイルが見つかりませんでした。</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>圧縮する対象がありません。</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>既定の形式</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>圧縮率</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>強くするほど小さくなりますが時間がかかります。迷ったら標準のままで十分です。</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>変更を反映するには、「設定」タブの「登録する」を押してください。</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>右クリックメニューに出す形式</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>チェックを入れた形式が、右クリックメニューの smarcivaZIP の中に並びます。上から順に表示されます。</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>圧縮前に保存先を確認する</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>解凍前に必ず文字コードの確認画面を出す</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>off のときは、判定に自信が無い場合だけ確認画面が出ます。ダブルクリックで即解凍される使い心地を保ちたいなら off のままにしてください。</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>自動（表示言語に合わせる）</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS 対応</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>濁点の分解 (NFD) を直す</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>macOS で作られたアーカイブでは「ガ」が「カ」＋「濁点」に分解されて記録されます。off にすると Windows 上で名前が崩れて見えます。</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>優先する言語</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ZIP はファイル名の文字コードを記録していないことが多く、推測するしかありません。判定が割れたときに、どの言語を優先するかを決めます。</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>確認画面</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>CRC が一致しません（ファイルが破損している可能性があります）。</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>アーカイブの末尾に余分なデータがあります。</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>データが壊れています。</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>展開に失敗しました ({0})。</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>展開に失敗しました (0x{0})。</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>ヘッダが壊れています。</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>アーカイブとして認識できませんでした。</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>データを読み取れませんでした。</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>アーカイブが途中で終わっています。</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>この圧縮方式には対応していません。</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>パスワードが違います。</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>{0} 形式</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>この 7z.dll では未対応</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>参照...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>解凍先のフォルダを選択</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>同名ファイルがあるとき</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>上書きする</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>別名で保存する（おすすめ）</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>飛ばす</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>解凍に成功したらアーカイブをごみ箱へ送る</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>macOS のメタデータ (__MACOSX / ._* / .DS_Store) を取り除く</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Thumbs.db / desktop.ini を取り除く</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>常にアーカイブ名のフォルダを作る</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>必要なときだけフォルダを作る（おすすめ）</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>中身がひとつのフォルダにまとまっていればそのまま、ばらけていればフォルダを作ります。</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>フォルダの作り方</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>フォルダを作らない</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>インターネット由来の印 (Mark of the Web) を引き継ぐ</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>解凍したらフォルダを開く</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>決まったフォルダに解凍する</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>出力先</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>アーカイブと同じ場所に解凍する</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>ファイルの日時を復元する</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>tar.gz などは中の tar まで一度に展開する</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>最速</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>高圧縮</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>標準（おすすめ）</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>無圧縮（速い・まとめるだけ）</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>最高圧縮（遅い）</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>{0} に圧縮</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>{0} に圧縮（パスワード）</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>ここに解凍</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>文字コードを選んで解凍...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>フォルダを作って解凍</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>設定...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>上の欄にパスワード、下の欄に確認用としてもう一度入力してください。パスワードを忘れると中身を取り出せなくなります。</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>パスワードを設定</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} は暗号化されています。パスワードを入力してください。</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>パスワードが必要です</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>2 つの欄の内容が一致しません。入力し直してください。</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>パスワードを入力してください。</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>文字コード</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  ← 自動判定</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>__MACOSX / ._* / .DS_Store を取り除く</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>この内容で解凍</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> macOS で作られたアーカイブのようです。</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... ほか {0} 件</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>macOS の濁点分解 (NFD) を直す</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>{0} 形式 / {1} 個のエントリ。{2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>文字コードの確認 - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>自動判定はほぼ確実です。</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>自動判定の確信度が低めです。下の一覧を見て、正しく読めている候補を選んでください。</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>自動判定はおおむね確からしいですが、念のため確認してください。</value>
+  </data>
+  <data name="ProgId_FriendlyName" xml:space="preserve">
+    <value>アーカイブ (smarcivaZIP)</value>
+  </data>
+  <data name="ProgId_TypeName" xml:space="preserve">
+    <value>アーカイブ</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>中止しています...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>{0} 個の項目を圧縮しています</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>{0} を圧縮しています</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>{0} を解凍しています</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>準備中...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>処理中...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>smarcivaZIP の設定</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>追加...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>7z.dll が扱える拡張子をすべて追加</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>ドットは付けても付けなくても構いません（例: alz）。</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>拡張子を追加</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>ダブルクリックで開く拡張子</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>チェックを入れた拡張子を smarcivaZIP で開きます。チェックを外すと関連付けを解除します。</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>次回 smarcivaZIP を起動したときから切り替わります。</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>追加できる拡張子はありませんでした。</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>Windows の「既定のアプリ」を開く</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>登録する</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>登録できませんでした。
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>登録しました。
+
+Windows 11 では、右クリックメニューの「その他のオプションを確認」の中に smarcivaZIP が入ります。</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>登録し直す</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>右クリックメニューと関連付け</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>まだ登録されていません。登録すると、右クリックメニューに smarcivaZIP が追加されます。</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>登録済みです。エクスプローラーの右クリックメニューから使えます。</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>すべて解除</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>解除する</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>解除できませんでした。
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>登録を解除しました。</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>Windows 11 では、右クリックメニューは「その他のオプションを確認」の中に入ります。これは Windows の仕様によるものです。</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>7z.dll が見つかりませんでした。
+
+smarcivaZIP と同じフォルダに 7z.dll を置くか、7-Zip をインストールしてください。
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>圧縮</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>文字コード</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>解凍</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>設定</value>
+  </data>
+</root>

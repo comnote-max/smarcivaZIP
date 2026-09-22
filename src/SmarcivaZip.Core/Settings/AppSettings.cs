@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using SmarcivaZip.Core.Encodings;
 using SmarcivaZip.Core.Extraction;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Settings;
 
@@ -37,8 +38,13 @@ public sealed class AppSettings
 
     // ---- 文字コード ----
 
-    /// <summary>判定が割れたときに優先する言語圏。</summary>
-    public int PreferredCodePage { get; set; } = CodePageInfo.ShiftJis;
+    /// <summary>
+    /// 判定が割れたときに優先する言語圏。0 なら表示言語から決める。
+    ///
+    /// 以前は日本語で固定していたため、韓国語や中国語の利用者が
+    /// 自分の言語の書庫を開いても日本語が優先されていた。
+    /// </summary>
+    public int PreferredCodePage { get; set; }
 
     /// <summary>
     /// 文字コードの確認画面を常に出す。
@@ -68,6 +74,13 @@ public sealed class AppSettings
     [
         "zip", "zip-password", "7z", "7z-password", "tar.gz"
     ];
+
+    // ---- 表示言語 ----
+
+    /// <summary>
+    /// 画面の表示言語。空なら Windows の表示言語に従う。
+    /// </summary>
+    public string Language { get; set; } = string.Empty;
 
     // ---- 関連付け ----
 
@@ -167,5 +180,12 @@ public sealed class AppSettings
     };
 
     /// <summary>判定器へユーザーの言語設定を反映する。</summary>
-    public void ApplyToDetector() => EncodingDetector.PreferredCodePage = PreferredCodePage;
+    public void ApplyToDetector()
+        => EncodingDetector.PreferredCodePage = ResolvedPreferredCodePage;
+
+    /// <summary>実際に使う優先コードページ。0（自動）なら表示言語から決める。</summary>
+    [JsonIgnore]
+    public int ResolvedPreferredCodePage => PreferredCodePage != 0
+        ? PreferredCodePage
+        : AppLanguage.PreferredCodePageFor(System.Globalization.CultureInfo.CurrentUICulture);
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Windows;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App.Views;
 
@@ -64,7 +65,7 @@ public partial class ProgressWindow : Window
         if (now - _lastRender < RenderInterval && value.Fraction < 1.0) return;
         _lastRender = now;
 
-        DetailText.Text = string.IsNullOrEmpty(value.Text) ? "処理中..." : value.Text;
+        DetailText.Text = string.IsNullOrEmpty(value.Text) ? Strings.Get("Progress_Working") : value.Text;
         Bar.Value = value.Fraction;
         PercentText.Text = $"{value.Fraction * 100:0}%";
     }
@@ -78,7 +79,7 @@ public partial class ProgressWindow : Window
     private void OnCancelClicked(object sender, RoutedEventArgs e)
     {
         CancelButton.IsEnabled = false;
-        DetailText.Text = "中止しています...";
+        DetailText.Text = Strings.Get("Progress_Cancelling");
         _cancellation.Cancel();
     }
 

@@ -1,3 +1,5 @@
+using SmarcivaZip.Core.Localization;
+
 namespace SmarcivaZip.App;
 
 public enum AppMode
@@ -116,22 +118,6 @@ public sealed class CommandLine
         return result;
     }
 
-    public const string HelpText = """
-        smarcivaZIP - シンプルな圧縮・解凍ソフト
+    public static string HelpText => Strings.Get("CommandLine_Help");
 
-        使い方:
-          SmarcivaZip.exe <アーカイブ>              解凍する
-          SmarcivaZip.exe --extract <アーカイブ>    同じ場所に解凍する
-          SmarcivaZip.exe --extract-to-folder <アーカイブ>
-                                                    フォルダを作って解凍する
-          SmarcivaZip.exe --extract-preview <アーカイブ>
-                                                    文字コードを確認してから解凍する
-          SmarcivaZip.exe --compress <形式> <パス...>
-                                                    圧縮する (形式: zip, 7z, tar.gz など)
-          SmarcivaZip.exe --compress <形式> --password <パス...>
-                                                    パスワード付きで圧縮する
-          SmarcivaZip.exe --settings                設定画面を開く
-          SmarcivaZip.exe --register                関連付けと右クリックメニューを登録する
-          SmarcivaZip.exe --unregister              登録を解除する
-        """;
 }

@@ -1,12 +1,16 @@
 using System.Text;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Encodings;
 
 /// <summary>
 /// ファイル名の文字コード候補。UI のドロップダウンにもそのまま使う。
 /// </summary>
-public sealed record CodePageInfo(int CodePage, string DisplayName, string Language)
+public sealed record CodePageInfo(int CodePage, string DisplayName, string LanguageKey)
 {
+    /// <summary>「日本語」「簡体字中国語」など、表示言語に合わせた言語名。</summary>
+    public string Language => Strings.Get(LanguageKey);
+
     public const int Utf8 = 65001;
     public const int ShiftJis = 932;
     public const int Gbk = 936;
@@ -19,14 +23,14 @@ public sealed record CodePageInfo(int CodePage, string DisplayName, string Langu
     /// <summary>判定の対象にするコードページ。並び順は同点時の優先順位を兼ねる。</summary>
     public static readonly IReadOnlyList<CodePageInfo> Candidates =
     [
-        new(Utf8, "UTF-8", "Unicode"),
-        new(ShiftJis, "Shift_JIS (CP932)", "日本語"),
-        new(Gbk, "GBK (CP936)", "簡体字中国語"),
-        new(Big5, "Big5 (CP950)", "繁体字中国語"),
-        new(EucKr, "EUC-KR (CP949)", "韓国語"),
-        new(Cyrillic866, "CP866", "キリル (DOS)"),
-        new(Latin1252, "Windows-1252", "西欧"),
-        new(Oem437, "CP437", "OEM (DOS)")
+        new(Utf8, "UTF-8", "CodePage_Unicode"),
+        new(ShiftJis, "Shift_JIS (CP932)", "CodePage_Japanese"),
+        new(Gbk, "GBK (CP936)", "CodePage_SimplifiedChinese"),
+        new(Big5, "Big5 (CP950)", "CodePage_TraditionalChinese"),
+        new(EucKr, "EUC-KR (CP949)", "CodePage_Korean"),
+        new(Cyrillic866, "CP866", "CodePage_Cyrillic"),
+        new(Latin1252, "Windows-1252", "CodePage_WesternEuropean"),
+        new(Oem437, "CP437", "CodePage_Oem")
     ];
 
     private static bool _providerRegistered;

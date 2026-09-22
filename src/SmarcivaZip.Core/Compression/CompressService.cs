@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using SmarcivaZip.Core.Safety;
 using SmarcivaZip.Core.SevenZip;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Compression;
 
@@ -40,10 +41,10 @@ public sealed class CompressService
         IProgress<CompressProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
-        if (inputPaths.Count == 0) throw new CompressException("圧縮する対象がありません。");
+        if (inputPaths.Count == 0) throw new CompressException(Strings.Get("CompressError_NoInput"));
 
         List<CompressItem> items = CompressItemCollector.Collect(inputPaths, cancellationToken);
-        if (items.Count == 0) throw new CompressException("圧縮できるファイルが見つかりませんでした。");
+        if (items.Count == 0) throw new CompressException(Strings.Get("CompressError_NoFiles"));
 
         string outputPath = ResolveOutputPath(inputPaths, options);
 
@@ -142,10 +143,10 @@ public sealed class CompressService
 
         HandlerInfo handler = library.FindHandler(handlerName)
             ?? throw new CompressException(
-                $"この 7z.dll は {handlerName} 形式での圧縮に対応していません。");
+                Strings.Format("CompressError_FormatUnsupported", handlerName));
 
         if (!handler.CanUpdate)
-            throw new CompressException($"{handler.Name} 形式は書き込みに対応していません。");
+            throw new CompressException(Strings.Format("CompressError_FormatReadOnly", handler.Name));
 
         IOutArchive archive = library.CreateOutArchive(handler.ClassId);
 
@@ -166,7 +167,8 @@ public sealed class CompressService
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 throw new CompressException(
-                    Marshal.GetExceptionForHR(hr)?.Message ?? $"圧縮に失敗しました (0x{hr:X8})。");
+                    Marshal.GetExceptionForHR(hr)?.Message
+                        ?? Strings.Format("CompressError_Failed", hr.ToString("X8")));
             }
 
             failedItems = callback.FailedItems;
@@ -179,7 +181,7 @@ public sealed class CompressService
         catch (COMException ex)
         {
             TryDeletePartialOutput(outputPath);
-            throw new CompressException("圧縮中にエラーが発生しました。", ex);
+            throw new CompressException(Strings.Get("CompressError_Generic"), ex);
         }
         finally
         {

@@ -72,6 +72,32 @@ DMG（HFS+ / 一部 APFS）もそのまま開けます。
 
 ---
 
+## 表示言語
+
+日本語と英語に対応しています。既定では Windows の表示言語に合わせ、
+対応していない言語のときは英語になります。設定画面の「設定」タブで固定もできます。
+
+表示言語は文字コードの判定にも効きます。ZIP のファイル名は判定が割れることがあり、
+そのときは利用者の言語圏を優先するのが最も当たるためです
+（韓国語環境なら CP949、簡体字中国語環境なら CP936 が優先されます）。
+
+### 翻訳を追加したい方へ
+
+`src/SmarcivaZip.Core/Resources/Strings.resx`（英語・既定）をコピーして
+`Strings.<言語コード>.resx` を作り、`<value>` を訳してください。
+キーは変更しないでください。
+
+訳を追加したら `src/SmarcivaZip.Core/Localization/AppLanguage.cs` の
+`Available` に 1 行足せば、設定画面の一覧に出ます。
+
+テストがキーの過不足と書式指定子（`{0}` など）のずれを検出するので、
+`dotnet test` が通れば取り込みの準備はできています。
+
+一覧に載せるのは訳が揃った言語だけにしています。選べるのに中身が未翻訳、
+という状態が利用者にとって一番困るためです。
+
+---
+
 ## 対応形式
 
 実際に使える形式は同梱している `7z.dll` の対応状況で決まります。
@@ -191,6 +217,8 @@ python tools/make-icon.py assets/icon-source.webp src/SmarcivaZip.App/Assets/sma
 src/
   SmarcivaZip.Core/     7z.dll の相互運用、文字コード判定、安全性、展開・圧縮
     SevenZip/           COM インターフェイスと専用ワーカースレッド
+    Localization/       表示言語と文字列リソース
+    Resources/          Strings.resx（英語）/ Strings.ja.resx（日本語）
     Encodings/          コードページ判定、ZIP セントラルディレクトリ解析、NFC 正規化
     Safety/             パスのサニタイズ、Zip Bomb 検出、Mark of the Web
     Extraction/         展開

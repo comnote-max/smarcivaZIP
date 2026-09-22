@@ -1,6 +1,7 @@
 <Window x:Class="SmarcivaZip.App.Views.TextInputWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:SmarcivaZip.App.Localization"
         Title="smarcivaZIP"
         Icon="/Assets/smarcivazip.ico"
         Width="380" SizeToContent="Height"
@@ -23,8 +24,8 @@
              BorderBrush="{StaticResource Border}" />
 
     <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
-      <Button Content="キャンセル" Click="OnCancelClicked" Margin="0,0,8,0" IsCancel="True" />
-      <Button Content="OK" Style="{StaticResource PrimaryButton}" Click="OnOkClicked" IsDefault="True" />
+      <Button Content="{loc:L Common_Cancel}" Click="OnCancelClicked" Margin="0,0,8,0" IsCancel="True" />
+      <Button Content="{loc:L Common_OK}" Style="{StaticResource PrimaryButton}" Click="OnOkClicked" IsDefault="True" />
     </StackPanel>
   </Grid>
 </Window>

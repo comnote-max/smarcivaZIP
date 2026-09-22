@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using SmarcivaZip.Core.Compression;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Shell;
 
@@ -21,11 +22,11 @@ public static class ShellRegistration
     private const string ClassesRoot = @"Software\Classes";
 
     /// <summary>メニューに出す解凍の動作。</summary>
-    private static readonly (string Verb, string Label, string Argument)[] ExtractVerbs =
+    private static readonly (string Verb, string LabelKey, string Argument)[] ExtractVerbs =
     [
-        ("10extract-auto", "ここに解凍", "--extract"),
-        ("11extract-folder", "フォルダを作って解凍", "--extract-to-folder"),
-        ("12extract-preview", "文字コードを選んで解凍...", "--extract-preview")
+        ("10extract-auto", "Menu_ExtractHere", "--extract"),
+        ("11extract-folder", "Menu_ExtractToFolder", "--extract-to-folder"),
+        ("12extract-preview", "Menu_ExtractPreview", "--extract-preview")
     ];
 
     public static bool IsRegistered()
@@ -103,8 +104,8 @@ public static class ShellRegistration
     private static void RegisterProgId(string executablePath)
     {
         using RegistryKey progId = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\{ProgId}");
-        progId.SetValue(null, "アーカイブ");
-        progId.SetValue("FriendlyTypeName", "アーカイブ (smarcivaZIP)");
+        progId.SetValue(null, Strings.Get("ProgId_TypeName"));
+        progId.SetValue("FriendlyTypeName", Strings.Get("ProgId_FriendlyName"));
 
         using (RegistryKey icon = progId.CreateSubKey("DefaultIcon"))
         {
@@ -177,14 +178,15 @@ public static class ShellRegistration
             {
                 string appliesTo = BuildAppliesToQuery(extensions);
 
-                foreach ((string verb, string label, string argument) in ExtractVerbs)
+                foreach ((string verb, string labelKey, string argument) in ExtractVerbs)
                 {
-                    AddVerb(items, executablePath, verb, label, argument, appliesTo);
+                    AddVerb(items, executablePath, verb, Strings.Get(labelKey), argument, appliesTo);
                 }
             }
 
             // 設定画面は選択中のファイルと関係ないので、パスを渡さない。
-            AddVerb(items, executablePath, "90settings", "設定...", "--settings", takesPath: false);
+            AddVerb(items, executablePath, "90settings", Strings.Get("Menu_Settings"),
+                "--settings", takesPath: false);
         }
     }
 

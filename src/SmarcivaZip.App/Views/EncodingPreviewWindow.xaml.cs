@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using SmarcivaZip.Core.Encodings;
 using SmarcivaZip.Core.Extraction;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App.Views;
 
@@ -54,18 +55,17 @@ public partial class EncodingPreviewWindow : Window
         string formatName = _reader.Handler.Name.ToUpperInvariant();
         double confidence = _reader.CodePageConfidence;
 
-        string assessment = confidence switch
+        string assessment = Strings.Get(confidence switch
         {
-            >= 0.9 => "自動判定はほぼ確実です。",
-            >= 0.7 => "自動判定はおおむね確からしいですが、念のため確認してください。",
-            _ => "自動判定の確信度が低めです。下の一覧を見て、正しく読めている候補を選んでください。"
-        };
+            >= 0.9 => "Preview_VerdictHigh",
+            >= 0.7 => "Preview_VerdictMedium",
+            _ => "Preview_VerdictLow"
+        });
 
-        string macNote = _reader.IsMacArchive
-            ? " macOS で作られたアーカイブのようです。"
-            : string.Empty;
+        string macNote = _reader.IsMacArchive ? Strings.Get("Preview_MacNote") : string.Empty;
 
-        VerdictText.Text = $"{formatName} 形式 / {_reader.Entries.Count:N0} 個のエントリ。{assessment}{macNote}";
+        VerdictText.Text = Strings.Format("Preview_Summary",
+            formatName, _reader.Entries.Count.ToString("N0"), assessment, macNote);
     }
 
     private void BuildCodePageList()
@@ -86,7 +86,7 @@ public partial class EncodingPreviewWindow : Window
         foreach (CodePageInfo info in ordered)
         {
             bool isDetected = info.CodePage == SelectedCodePage;
-            string label = isDetected ? $"{info}  ← 自動判定" : info.ToString();
+            string label = isDetected ? Strings.Format("Preview_Detected", info) : info.ToString();
 
             var choice = new CodePageChoice(info, label);
             CodePageCombo.Items.Add(choice);
@@ -118,7 +118,8 @@ public partial class EncodingPreviewWindow : Window
 
         if (_reader.Entries.Count > names.Count)
         {
-            NameList.Items.Add($"... ほか {_reader.Entries.Count - names.Count:N0} 件");
+            NameList.Items.Add(Strings.Format("Preview_More",
+                (_reader.Entries.Count - names.Count).ToString("N0")));
         }
     }
 

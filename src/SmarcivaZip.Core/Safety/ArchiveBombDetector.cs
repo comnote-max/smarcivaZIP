@@ -1,3 +1,5 @@
+using SmarcivaZip.Core.Localization;
+
 namespace SmarcivaZip.Core.Safety;
 
 public sealed record BombAssessment(
@@ -35,22 +37,22 @@ public static class ArchiveBombDetector
         if (entryCount > MaxEntryCount)
         {
             return new BombAssessment(true,
-                $"エントリ数が {entryCount:N0} 個あります（上限 {MaxEntryCount:N0} 個）。",
+                Strings.Format("Bomb_TooManyEntries", entryCount, MaxEntryCount),
                 totalUncompressedSize, archiveSize, ratio, entryCount);
         }
 
         if (totalUncompressedSize > MaxTotalUncompressedSize)
         {
             return new BombAssessment(true,
-                $"展開後のサイズが {FormatSize(totalUncompressedSize)} になります。",
+                Strings.Format("Bomb_TooLarge", FormatSize(totalUncompressedSize)),
                 totalUncompressedSize, archiveSize, ratio, entryCount);
         }
 
         if (archiveSize >= RatioCheckMinimumArchiveSize && ratio > MaxCompressionRatio)
         {
             return new BombAssessment(true,
-                $"圧縮率が {ratio:N0} 倍と異常に高く、" +
-                $"{FormatSize(archiveSize)} が {FormatSize(totalUncompressedSize)} に展開されます。",
+                Strings.Format("Bomb_RatioTooHigh",
+                    ratio.ToString("N0"), FormatSize(archiveSize), FormatSize(totalUncompressedSize)),
                 totalUncompressedSize, archiveSize, ratio, entryCount);
         }
 

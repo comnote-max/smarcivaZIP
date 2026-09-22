@@ -8,6 +8,7 @@ using SmarcivaZip.Core.Safety;
 using SmarcivaZip.Core.SevenZip;
 using SmarcivaZip.Core.Settings;
 using SmarcivaZip.Core.Shell;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App;
 
@@ -35,6 +36,10 @@ public partial class App : Application
         base.OnStartup(e);
 
         _settings = AppSettings.Load();
+
+        // ウィンドウが作られる前に表示言語を決める。
+        // XAML のリソース参照は生成時に解決されるため、後から変えても反映されない。
+        AppLanguage.Apply(_settings.Language);
         _settings.ApplyToDetector();
 
         CommandLine command = CommandLine.Parse(e.Args);
@@ -47,12 +52,13 @@ public partial class App : Application
         catch (SevenZipNotFoundException ex)
         {
             Diagnostics.Error("startup", ex);
-            ShowError(ex.Message, "圧縮エンジンが見つかりません");
+            ShowError(ex.Message, "App_EngineMissingTitle");
         }
         catch (Exception ex)
         {
             Diagnostics.Error("startup", ex);
-            ShowError($"{ex.Message}\n\n詳細は次のファイルに記録しました。\n{Diagnostics.LogPath}", "エラー");
+            ShowError(Strings.Format("App_ErrorWithLog", ex.Message, Diagnostics.LogPath),
+                "App_ErrorTitle");
         }
         finally
         {
@@ -66,7 +72,7 @@ public partial class App : Application
         switch (command.Mode)
         {
             case AppMode.Help:
-                MessageBox.Show(CommandLine.HelpText, "smarcivaZIP",
+                MessageBox.Show(CommandLine.HelpText, Strings.Get("Common_AppName"),
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 break;
 
@@ -76,7 +82,7 @@ public partial class App : Application
 
             case AppMode.Unregister:
                 ShellRegistration.Unregister(_settings.AssociatedExtensions);
-                MessageBox.Show("登録を解除しました。", "smarcivaZIP",
+                MessageBox.Show(Strings.Get("Setup_UnregisteredMessage"), Strings.Get("Common_AppName"),
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 break;
 
@@ -196,7 +202,8 @@ public partial class App : Application
 
         ExtractResult? result = null;
 
-        var window = new ProgressWindow($"{Path.GetFileName(archivePath)} を解凍しています");
+        var window = new ProgressWindow(
+            Strings.Format("Progress_ExtractHeading", Path.GetFileName(archivePath)));
 
         window.Run((progress, cancellationToken) =>
         {
@@ -217,7 +224,7 @@ public partial class App : Application
         if (window.Error is not null)
         {
             Diagnostics.Error("extract", window.Error);
-            ShowError(window.Error.Message, "解凍に失敗しました");
+            ShowError(window.Error.Message, "App_ExtractFailedTitle");
             return new ExtractOutcome(null, Cancelled: false);
         }
 
@@ -240,37 +247,36 @@ public partial class App : Application
     {
         var lines = new List<string>();
 
-        if (result.WrongPassword) lines.Add("パスワードが違うため、一部を取り出せませんでした。");
+        if (result.WrongPassword) lines.Add(Strings.Get("App_WrongPassword"));
 
         if (result.RejectedEntries.Count > 0)
         {
-            lines.Add(
-                $"展開先の外に書き込もうとするエントリを {result.RejectedEntries.Count} 件ブロックしました。" +
-                "このアーカイブは細工されている可能性があります。");
+            lines.Add(Strings.Format("App_BlockedEntries", result.RejectedEntries.Count));
 
             foreach (PlannedEntry rejected in result.RejectedEntries.Take(5))
-                lines.Add($"　・{rejected.Entry.Path}");
+                lines.Add(Strings.Format("App_PathBullet", rejected.Entry.Path));
         }
 
         foreach (ExtractError error in result.Errors.Take(5))
-            lines.Add($"　・{error.EntryPath}: {error.Message}");
+            lines.Add(Strings.Format("App_ErrorBullet", error.EntryPath, error.Message));
 
         if (result.Errors.Count > 5)
-            lines.Add($"　ほか {result.Errors.Count - 5} 件のエラー");
+            lines.Add(Strings.Format("App_MoreErrors", result.Errors.Count - 5));
 
         if (lines.Count == 0) return;
 
         MessageBox.Show(
             $"{Path.GetFileName(archivePath)}\n\n{string.Join('\n', lines)}",
-            "smarcivaZIP", MessageBoxButton.OK,
+            Strings.Get("Common_AppName"), MessageBoxButton.OK,
             result.RejectedEntries.Count > 0 ? MessageBoxImage.Warning : MessageBoxImage.Information);
     }
 
     private bool ConfirmSuspiciousArchive(BombAssessment assessment)
     {
         return Dispatcher.Invoke(() => MessageBox.Show(
-            $"このアーカイブは展開すると異常に大きくなります。\n\n{assessment.Reason}\n\n続けますか？",
-            "smarcivaZIP", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
+            Strings.Format("App_BombWarning", assessment.Reason),
+            Strings.Get("Common_AppName"),
+            MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
     }
 
     private ArchiveReader? TryOpen(string archivePath, ArchiveOpenOptions options)
@@ -293,7 +299,7 @@ public partial class App : Application
             }
             catch (ArchiveOpenException ex)
             {
-                ShowError(ex.Message, "開けませんでした");
+                ShowError(ex.Message, "App_OpenFailedTitle");
                 return null;
             }
         }
@@ -315,7 +321,7 @@ public partial class App : Application
 
         if (format is null)
         {
-            ShowError($"知らない形式です: {formatId}", "圧縮できません");
+            ShowError(Strings.Format("App_UnknownFormat", formatId), "App_CompressNotPossible");
             return;
         }
 
@@ -351,10 +357,10 @@ public partial class App : Application
 
         var dialog = new SaveFileDialog
         {
-            Title = "保存先",
+            Title = Strings.Get("App_SaveDialogTitle"),
             FileName = suggested,
             InitialDirectory = directory,
-            Filter = $"{format.DisplayName}|*{format.Extension}|すべてのファイル|*.*",
+            Filter = $"{format.DisplayName}|*{format.Extension}|{Strings.Get("App_AllFiles")}|*.*",
             OverwritePrompt = true
         };
 
@@ -372,8 +378,9 @@ public partial class App : Application
         CompressResult? result = null;
 
         string heading = inputs.Count == 1
-            ? $"{Path.GetFileName(inputs[0].TrimEnd(Path.DirectorySeparatorChar))} を圧縮しています"
-            : $"{inputs.Count} 個の項目を圧縮しています";
+            ? Strings.Format("Progress_CompressOne",
+                Path.GetFileName(inputs[0].TrimEnd(Path.DirectorySeparatorChar)))
+            : Strings.Format("Progress_CompressMany", inputs.Count);
 
         var window = new ProgressWindow(heading);
 
@@ -395,7 +402,7 @@ public partial class App : Application
         if (window.Error is not null)
         {
             Diagnostics.Error("compress", window.Error);
-            ShowError(window.Error.Message, "圧縮に失敗しました");
+            ShowError(window.Error.Message, "App_CompressFailedTitle");
             return;
         }
 
@@ -404,9 +411,10 @@ public partial class App : Application
         if (result.FailedItems.Count > 0)
         {
             MessageBox.Show(
-                $"{result.FailedItems.Count} 個のファイルを読み取れなかったため、アーカイブに含めていません。\n\n" +
-                string.Join('\n', result.FailedItems.Take(5).Select(f => "　・" + f)),
-                "smarcivaZIP", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Strings.Format("App_UnreadableItems", result.FailedItems.Count,
+                    string.Join('\n', result.FailedItems.Take(5)
+                        .Select(f => Strings.Format("App_PathBullet", f)))),
+                Strings.Get("Common_AppName"), MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         NativeShell.RevealInExplorer(result.ArchivePath);
@@ -447,11 +455,11 @@ public partial class App : Application
         ShellRegistration.Register(ExecutablePath, _settings.AssociatedExtensions, menuItems,
             _settings.ExtensionChoices);
 
-        MessageBox.Show("関連付けと右クリックメニューを登録しました。", "smarcivaZIP",
+        MessageBox.Show(Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
             MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
-    private static void ShowError(string message, string title)
-        => MessageBox.Show(message, $"smarcivaZIP - {title}",
+    private static void ShowError(string message, string titleKey)
+        => MessageBox.Show(message, $"smarcivaZIP - {Strings.Get(titleKey)}",
             MessageBoxButton.OK, MessageBoxImage.Error);
 }

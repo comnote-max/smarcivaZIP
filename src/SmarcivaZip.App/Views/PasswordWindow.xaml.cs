@@ -1,4 +1,5 @@
 using System.Windows;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App.Views;
 
@@ -30,29 +31,28 @@ public partial class PasswordWindow : Window
 
     /// <summary>暗号化されたアーカイブを開くとき。</summary>
     public static PasswordWindow ForExtraction(string archiveName) =>
-        new("パスワードが必要です",
-            $"{archiveName} は暗号化されています。パスワードを入力してください。",
+        new(Strings.Get("Password_ExtractHeading"),
+            Strings.Format("Password_ExtractDetail", archiveName),
             requireConfirmation: false);
 
     /// <summary>パスワード付きで圧縮するとき。</summary>
     public static PasswordWindow ForCompression() =>
-        new("パスワードを設定",
-            "上の欄にパスワード、下の欄に確認用としてもう一度入力してください。" +
-            "パスワードを忘れると中身を取り出せなくなります。",
+        new(Strings.Get("Password_CompressHeading"),
+            Strings.Get("Password_CompressDetail"),
             requireConfirmation: true);
 
     private void OnOkClicked(object sender, RoutedEventArgs e)
     {
         if (PasswordInput.Password.Length == 0)
         {
-            DetailText.Text = "パスワードを入力してください。";
+            DetailText.Text = Strings.Get("Password_Required");
             DetailText.Foreground = (System.Windows.Media.Brush)FindResource("Danger");
             return;
         }
 
         if (_requireConfirmation && PasswordInput.Password != ConfirmInput.Password)
         {
-            DetailText.Text = "2 つの欄の内容が一致しません。入力し直してください。";
+            DetailText.Text = Strings.Get("Password_Mismatch");
             DetailText.Foreground = (System.Windows.Media.Brush)FindResource("Danger");
             ConfirmInput.Clear();
             ConfirmInput.Focus();

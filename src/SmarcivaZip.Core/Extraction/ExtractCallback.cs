@@ -1,5 +1,6 @@
 using SmarcivaZip.Core.Safety;
 using SmarcivaZip.Core.SevenZip;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Extraction;
 
@@ -156,7 +157,7 @@ internal sealed class ExtractCallback : IArchiveExtractCallback, ICryptoGetTextP
 
             case OperationResult.WrongPassword:
                 WrongPassword = true;
-                Errors.Add(new ExtractError(entry.Entry.Path, "パスワードが違います。"));
+                Errors.Add(new ExtractError(entry.Entry.Path, Strings.Get("Error_WrongPassword")));
                 break;
 
             default:
@@ -171,15 +172,15 @@ internal sealed class ExtractCallback : IArchiveExtractCallback, ICryptoGetTextP
 
     private static string DescribeFailure(OperationResult result) => result switch
     {
-        OperationResult.UnsupportedMethod => "この圧縮方式には対応していません。",
-        OperationResult.DataError => "データが壊れています。",
-        OperationResult.CrcError => "CRC が一致しません（ファイルが破損している可能性があります）。",
-        OperationResult.Unavailable => "データを読み取れませんでした。",
-        OperationResult.UnexpectedEnd => "アーカイブが途中で終わっています。",
-        OperationResult.DataAfterEnd => "アーカイブの末尾に余分なデータがあります。",
-        OperationResult.IsNotArc => "アーカイブとして認識できませんでした。",
-        OperationResult.HeadersError => "ヘッダが壊れています。",
-        _ => $"展開に失敗しました ({result})。"
+        OperationResult.UnsupportedMethod => Strings.Get("Error_UnsupportedMethod"),
+        OperationResult.DataError => Strings.Get("Error_DataError"),
+        OperationResult.CrcError => Strings.Get("Error_CrcError"),
+        OperationResult.Unavailable => Strings.Get("Error_Unavailable"),
+        OperationResult.UnexpectedEnd => Strings.Get("Error_UnexpectedEnd"),
+        OperationResult.DataAfterEnd => Strings.Get("Error_DataAfterEnd"),
+        OperationResult.IsNotArc => Strings.Get("Error_IsNotArc"),
+        OperationResult.HeadersError => Strings.Get("Error_HeadersError"),
+        _ => Strings.Format("Error_ExtractFailed", result)
     };
 
     private void ApplyMetadata(string path, ArchiveEntry entry)

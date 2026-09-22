@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.SevenZip;
 
@@ -42,7 +43,8 @@ public sealed class SevenZipLibrary : IDisposable
     private T GetExport<T>(string name) where T : Delegate
     {
         if (!NativeLibrary.TryGetExport(_module, name, out IntPtr address))
-            throw new EntryPointNotFoundException("7z.dll に " + name + " が見つかりません。");
+            throw new EntryPointNotFoundException(
+                $"7z.dll does not export {name}. Is this really a 7-Zip library?");
         return Marshal.GetDelegateForFunctionPointer<T>(address);
     }
 
@@ -62,10 +64,7 @@ public sealed class SevenZipLibrary : IDisposable
             }
         }
 
-        throw new SevenZipNotFoundException(
-            "7z.dll が見つかりませんでした。" + Environment.NewLine + Environment.NewLine +
-            "smarcivaZIP と同じフォルダに 7z.dll を置くか、7-Zip をインストールしてください。" +
-            Environment.NewLine + "https://www.7-zip.org/");
+        throw new SevenZipNotFoundException(Strings.Get("SevenZip_NotFound"));
     }
 
     private static IEnumerable<string> EnumerateCandidatePaths()
@@ -230,7 +229,7 @@ public sealed class SevenZipLibrary : IDisposable
         int hr = _createObject(in classId, in interfaceId, out IntPtr raw);
 
         if (hr != 0) Marshal.ThrowExceptionForHR(hr);
-        if (raw == IntPtr.Zero) throw new InvalidOperationException("7z.dll がハンドラを生成できませんでした。");
+        if (raw == IntPtr.Zero) throw new InvalidOperationException("7z.dll returned no object for the requested handler.");
 
         try { return (T)Marshal.GetTypedObjectForIUnknown(raw, typeof(T)); }
         finally { Marshal.Release(raw); }

@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using SmarcivaZip.Core.Encodings;
 using SmarcivaZip.Core.SevenZip;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Extraction;
 
@@ -82,7 +83,7 @@ public sealed class ArchiveReader : IDisposable
         CodePageInfo.EnsureEncodingProviderRegistered();
 
         if (!File.Exists(archivePath))
-            throw new ArchiveOpenException($"ファイルが見つかりません: {archivePath}");
+            throw new ArchiveOpenException(Strings.Format("Archive_FileNotFound", archivePath));
 
         // ZIP なら先にセントラルディレクトリを読んで、文字コードを推定しておく。
         ZipCentralDirectory? centralDirectory = ZipCentralDirectory.TryRead(archivePath);
@@ -141,7 +142,7 @@ public sealed class ArchiveReader : IDisposable
         }
 
         throw new ArchiveOpenException(
-            $"対応していない形式か、ファイルが壊れています: {Path.GetFileName(archivePath)}");
+            Strings.Format("Archive_Unsupported", Path.GetFileName(archivePath)));
     }
 
     /// <summary>

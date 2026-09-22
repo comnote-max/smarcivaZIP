@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using SmarcivaZip.Core.Safety;
 using SmarcivaZip.Core.SevenZip;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.Core.Extraction;
 
@@ -54,7 +55,8 @@ public sealed class ExtractService
             {
                 callback.Errors.Add(new ExtractError(
                     Path.GetFileName(reader.ArchivePath),
-                    Marshal.GetExceptionForHR(hr)?.Message ?? $"展開に失敗しました (0x{hr:X8})。"));
+                    Marshal.GetExceptionForHR(hr)?.Message
+                        ?? Strings.Format("Error_ExtractFailedHr", hr.ToString("X8"))));
             }
         }
 

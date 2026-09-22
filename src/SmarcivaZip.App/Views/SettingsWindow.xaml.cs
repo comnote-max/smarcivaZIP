@@ -11,6 +11,7 @@ using SmarcivaZip.Core.Extraction;
 using SmarcivaZip.Core.SevenZip;
 using SmarcivaZip.Core.Settings;
 using SmarcivaZip.Core.Shell;
+using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App.Views;
 
@@ -95,29 +96,37 @@ public partial class SettingsWindow : Window
 
     private void PopulateChoices()
     {
-        foreach (CodePageInfo info in CodePageInfo.Candidates)
-        {
-            PreferredCodePageCombo.Items.Add(new Choice<int>(info.CodePage, info.ToString()));
-        }
-
         foreach (OutputFormat format in AvailableFormats())
         {
             DefaultFormatCombo.Items.Add(new Choice<string>(format.Id, format.DisplayName));
         }
 
-        (int Level, string Label)[] levels =
+        foreach (CodePageInfo info in CodePageInfo.Candidates)
+        {
+            PreferredCodePageCombo.Items.Add(new Choice<int>(info.CodePage, info.ToString()));
+        }
+
+        (int Level, string Key)[] levels =
         [
-            (0, "無圧縮（速い・まとめるだけ）"),
-            (1, "最速"),
-            (5, "標準（おすすめ）"),
-            (7, "高圧縮"),
-            (9, "最高圧縮（遅い）")
+            (0, "Level_Store"),
+            (1, "Level_Fastest"),
+            (5, "Level_Normal"),
+            (7, "Level_Maximum"),
+            (9, "Level_Ultra")
         ];
 
-        foreach ((int level, string label) in levels)
+        foreach ((int level, string key) in levels)
         {
-            CompressionLevelCombo.Items.Add(new Choice<int>(level, label));
+            CompressionLevelCombo.Items.Add(new Choice<int>(level, Strings.Get(key)));
         }
+
+        foreach (AppLanguage language in AppLanguage.Available)
+        {
+            LanguageCombo.Items.Add(new Choice<string>(language.Code, language.DisplayName));
+        }
+
+        // 「自動」を先頭に置く。既定はこれで、表示言語からコードページを決める。
+        PreferredCodePageCombo.Items.Add(new Choice<int>(0, Strings.Get("Encoding_Auto")));
     }
 
     private static IReadOnlyList<OutputFormat> AvailableFormats()
@@ -149,6 +158,7 @@ public partial class SettingsWindow : Window
         UnwrapTarCheck.IsChecked = _settings.UnwrapNestedTar;
         DeleteArchiveCheck.IsChecked = _settings.DeleteArchiveAfterExtract;
 
+        SelectByValue(LanguageCombo, _settings.Language);
         SelectByValue(PreferredCodePageCombo, _settings.PreferredCodePage);
         AlwaysPreviewCheck.IsChecked = _settings.AlwaysShowEncodingPreview;
         NormalizeMacCheck.IsChecked = _settings.NormalizeMacNames;
@@ -259,7 +269,8 @@ public partial class SettingsWindow : Window
                 foreach (string extension in handler.Extensions)
                 {
                     if (!map.ContainsKey(extension))
-                        map[extension] = handler.Name.ToUpperInvariant() + " 形式";
+                        map[extension] = Strings.Format("Extension_FormatSuffix",
+                            handler.Name.ToUpperInvariant());
                 }
             }
         }
@@ -294,7 +305,7 @@ public partial class SettingsWindow : Window
             _extensions.Add(new ExtensionChoice(
                 extension,
                 selected.Contains(extension),
-                descriptions.GetValueOrDefault(extension, "この 7z.dll では未対応")));
+                descriptions.GetValueOrDefault(extension, Strings.Get("Extension_Unsupported"))));
         }
 
         UpdateExtensionButtons();
@@ -318,8 +329,8 @@ public partial class SettingsWindow : Window
     private void OnAddExtensionClicked(object sender, RoutedEventArgs e)
     {
         var dialog = new TextInputWindow(
-            "拡張子を追加",
-            "ドットは付けても付けなくても構いません（例: alz）。")
+            Strings.Get("Setup_AddExtHeading"),
+            Strings.Get("Setup_AddExtDetail"))
         {
             Owner = this
         };
@@ -340,7 +351,7 @@ public partial class SettingsWindow : Window
         }
 
         var added = new ExtensionChoice(extension, true,
-            BuildExtensionDescriptions().GetValueOrDefault(extension, "この 7z.dll では未対応"));
+            BuildExtensionDescriptions().GetValueOrDefault(extension, Strings.Get("Extension_Unsupported")));
 
         _extensions.Add(added);
         ExtensionList.SelectedItem = added;
@@ -389,7 +400,7 @@ public partial class SettingsWindow : Window
 
         if (added == 0)
         {
-            MessageBox.Show(this, "追加できる拡張子はありませんでした。", "smarcivaZIP",
+            MessageBox.Show(this, Strings.Get("Setup_NothingToAdd"), Strings.Get("Common_AppName"),
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
@@ -420,13 +431,13 @@ public partial class SettingsWindow : Window
 
     private void ShowEngineInformation()
     {
-        VersionText.Text = "バージョン " +
-            (Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "1.0.0");
+        VersionText.Text = Strings.Format("About_Version",
+            Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "1.0.0");
 
         try
         {
             SevenZipLibrary library = SevenZipLibrary.Instance;
-            EngineText.Text = $"7-Zip の 7z.dll を使用しています。\n{library.LibraryPath}";
+            EngineText.Text = Strings.Format("About_EngineUsing", library.LibraryPath);
 
             var readable = library.Handlers
                 .SelectMany(h => h.Extensions)
@@ -441,14 +452,15 @@ public partial class SettingsWindow : Window
                 .ToList();
 
             FormatsText.Text =
-                $"解凍 ({readable.Count} 種類): {string.Join(", ", readable)}\n\n" +
-                $"圧縮: {string.Join(", ", writable)}";
+                Strings.Format("About_FormatsRead", readable.Count, string.Join(", ", readable)) +
+                "\n\n" +
+                Strings.Format("About_FormatsWrite", string.Join(", ", writable));
         }
         catch (SevenZipNotFoundException ex)
         {
             EngineText.Text = ex.Message;
             EngineText.Foreground = (System.Windows.Media.Brush)FindResource("Danger");
-            FormatsText.Text = "7z.dll が見つからないため、対応形式を表示できません。";
+            FormatsText.Text = Strings.Get("About_FormatsUnavailable");
         }
     }
 
@@ -456,11 +468,10 @@ public partial class SettingsWindow : Window
     {
         bool registered = ShellRegistration.IsRegistered();
 
-        RegistrationStateText.Text = registered
-            ? "登録済みです。エクスプローラーの右クリックメニューから使えます。"
-            : "まだ登録されていません。登録すると、右クリックメニューに smarcivaZIP が追加されます。";
+        RegistrationStateText.Text = Strings.Get(
+            registered ? "Setup_StateRegistered" : "Setup_StateNotRegistered");
 
-        RegisterButton.Content = registered ? "登録し直す" : "登録する";
+        RegisterButton.Content = Strings.Get(registered ? "Setup_Reregister" : "Setup_Register");
         UnregisterButton.IsEnabled = registered;
     }
 
@@ -468,7 +479,7 @@ public partial class SettingsWindow : Window
     {
         var dialog = new OpenFolderDialog
         {
-            Title = "解凍先のフォルダを選択",
+            Title = Strings.Get("Extract_BrowseTitle"),
             InitialDirectory = Directory.Exists(FixedFolderBox.Text) ? FixedFolderBox.Text : null
         };
 
@@ -491,14 +502,13 @@ public partial class SettingsWindow : Window
                 _settings.ExtensionChoices);
 
             UpdateRegistrationState();
-            MessageBox.Show(this,
-                "登録しました。\n\nWindows 11 では、右クリックメニューの「その他のオプションを確認」の中に smarcivaZIP が入ります。",
-                "smarcivaZIP", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(this, Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (UnauthorizedAccessException ex)
         {
-            MessageBox.Show(this, $"登録できませんでした。\n\n{ex.Message}",
-                "smarcivaZIP", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(this, Strings.Format("Setup_RegisterFailed", ex.Message),
+                Strings.Get("Common_AppName"), MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
@@ -509,13 +519,13 @@ public partial class SettingsWindow : Window
             ShellRegistration.Unregister(
                 _settings.ExtensionChoices.Concat(_settings.AssociatedExtensions).Distinct().ToList());
             UpdateRegistrationState();
-            MessageBox.Show(this, "登録を解除しました。", "smarcivaZIP",
+            MessageBox.Show(this, Strings.Get("Setup_UnregisteredMessage"), Strings.Get("Common_AppName"),
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (UnauthorizedAccessException ex)
         {
-            MessageBox.Show(this, $"解除できませんでした。\n\n{ex.Message}",
-                "smarcivaZIP", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(this, Strings.Format("Setup_UnregisterFailed", ex.Message),
+                Strings.Get("Common_AppName"), MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
@@ -546,7 +556,8 @@ public partial class SettingsWindow : Window
         _settings.UnwrapNestedTar = UnwrapTarCheck.IsChecked == true;
         _settings.DeleteArchiveAfterExtract = DeleteArchiveCheck.IsChecked == true;
 
-        _settings.PreferredCodePage = SelectedValue(PreferredCodePageCombo, CodePageInfo.ShiftJis);
+        _settings.Language = SelectedValue(LanguageCombo, string.Empty) ?? string.Empty;
+        _settings.PreferredCodePage = SelectedValue(PreferredCodePageCombo, 0);
         _settings.AlwaysShowEncodingPreview = AlwaysPreviewCheck.IsChecked == true;
         _settings.NormalizeMacNames = NormalizeMacCheck.IsChecked == true;
 

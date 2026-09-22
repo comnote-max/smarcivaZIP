@@ -1,7 +1,8 @@
 <Window x:Class="SmarcivaZip.App.Views.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="smarcivaZIP の設定"
+        xmlns:loc="clr-namespace:SmarcivaZip.App.Localization"
+        Title="{loc:L Settings_Title}"
         Icon="/Assets/smarcivazip.ico"
         Width="580" Height="660"
         MinWidth="520" MinHeight="520"
@@ -14,27 +15,33 @@
 
     <TabControl Grid.Row="0" BorderBrush="{StaticResource Border}" Background="Transparent">
 
-      <TabItem Header="設定">
+      <TabItem Header="{loc:L Tab_Setup}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
 
-            <TextBlock Text="右クリックメニューと関連付け" Style="{StaticResource Heading}" />
+            <TextBlock Text="{loc:L Setup_LanguageHeading}" Style="{StaticResource Heading}" />
+            <ComboBox x:Name="LanguageCombo" Margin="0,8,0,0" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
+                       Text="{loc:L Setup_LanguageHelp}" />
+
+            <TextBlock Text="{loc:L Setup_ShellHeading}" Style="{StaticResource Heading}"
+                       Margin="0,20,0,0" />
             <TextBlock x:Name="RegistrationStateText" Style="{StaticResource Caption}"
                        Margin="0,6,0,0" TextWrapping="Wrap" />
 
             <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-              <Button x:Name="RegisterButton" Content="登録する" Style="{StaticResource PrimaryButton}"
+              <Button x:Name="RegisterButton" Content="{loc:L Setup_Register}" Style="{StaticResource PrimaryButton}"
                       Click="OnRegisterClicked" />
-              <Button x:Name="UnregisterButton" Content="解除する" Margin="8,0,0,0"
+              <Button x:Name="UnregisterButton" Content="{loc:L Setup_Unregister}" Margin="8,0,0,0"
                       Click="OnUnregisterClicked" />
             </StackPanel>
 
             <TextBlock Style="{StaticResource Caption}" Margin="0,14,0,0" TextWrapping="Wrap"
-                       Text="Windows 11 では、右クリックメニューは「その他のオプションを確認」の中に入ります。これは Windows の仕様によるものです。" />
+                       Text="{loc:L Setup_Win11Note}" />
 
-            <TextBlock Text="ダブルクリックで開く拡張子" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Setup_ExtHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="チェックを入れた拡張子を smarcivaZIP で開きます。チェックを外すと関連付けを解除します。" />
+                       Text="{loc:L Setup_ExtHelp}" />
 
             <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
                     BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
@@ -68,38 +75,39 @@
             </Border>
 
             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="追加..." MinWidth="76" Click="OnAddExtensionClicked" />
-              <Button x:Name="RemoveExtensionButton" Content="削除" MinWidth="76" Margin="8,0,0,0"
+              <Button Content="{loc:L Setup_Add}" MinWidth="76" Click="OnAddExtensionClicked" />
+              <Button x:Name="RemoveExtensionButton" Content="{loc:L Setup_Remove}" MinWidth="76" Margin="8,0,0,0"
                       Click="OnRemoveExtensionClicked" />
-              <Button Content="すべて選択" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
-              <Button Content="すべて解除" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
+              <Button Content="{loc:L Setup_CheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
+              <Button Content="{loc:L Setup_UncheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="7z.dll が扱える拡張子をすべて追加" MinWidth="240"
+              <Button Content="{loc:L Setup_AddAllSupported}" MinWidth="240"
                       Click="OnAddAllSupportedClicked" />
-              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0" Click="OnResetExtensionsClicked" />
+              <Button Content="{loc:L Common_ResetDefaults}" MinWidth="96" Margin="8,0,0,0"
+                      Click="OnResetExtensionsClicked" />
             </StackPanel>
 
             <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
-                       Text="変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。" />
+                       Text="{loc:L Setup_ExtApplyNote}" />
 
-            <Button Content="Windows の「既定のアプリ」を開く" Margin="0,10,0,0"
+            <Button Content="{loc:L Setup_OpenDefaultApps}" Margin="0,10,0,0"
                     HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
 
           </StackPanel>
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="解凍">
+      <TabItem Header="{loc:L Tab_Extract}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
 
-            <TextBlock Text="出力先" Style="{StaticResource Heading}" />
+            <TextBlock Text="{loc:L Extract_OutputHeading}" Style="{StaticResource Heading}" />
             <RadioButton x:Name="OutputSameFolder" GroupName="Output" Margin="0,8,0,0"
-                         Content="アーカイブと同じ場所に解凍する" />
+                         Content="{loc:L Extract_OutputSame}" />
             <RadioButton x:Name="OutputFixedFolder" GroupName="Output" Margin="0,6,0,0"
-                         Content="決まったフォルダに解凍する" />
+                         Content="{loc:L Extract_OutputFixed}" />
             <Grid Margin="22,6,0,0">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -107,56 +115,56 @@
               </Grid.ColumnDefinitions>
               <TextBox x:Name="FixedFolderBox" Grid.Column="0" Padding="6,4"
                        BorderBrush="{StaticResource Border}" VerticalContentAlignment="Center" />
-              <Button Grid.Column="1" Content="参照..." Margin="8,0,0,0" MinWidth="72"
+              <Button Grid.Column="1" Content="{loc:L Extract_Browse}" Margin="8,0,0,0" MinWidth="72"
                       Click="OnBrowseOutputFolder" />
             </Grid>
 
-            <TextBlock Text="フォルダの作り方" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Extract_FolderHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <RadioButton x:Name="FolderAuto" GroupName="Folder" Margin="0,8,0,0"
-                         Content="必要なときだけフォルダを作る（おすすめ）" />
+                         Content="{loc:L Extract_FolderAuto}" />
             <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
-                       Text="中身がひとつのフォルダにまとまっていればそのまま、ばらけていればフォルダを作ります。" />
+                       Text="{loc:L Extract_FolderAutoHelp}" />
             <RadioButton x:Name="FolderAlways" GroupName="Folder" Margin="0,8,0,0"
-                         Content="常にアーカイブ名のフォルダを作る" />
+                         Content="{loc:L Extract_FolderAlways}" />
             <RadioButton x:Name="FolderNever" GroupName="Folder" Margin="0,6,0,0"
-                         Content="フォルダを作らない" />
+                         Content="{loc:L Extract_FolderNever}" />
 
-            <TextBlock Text="同名ファイルがあるとき" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Extract_ConflictHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <RadioButton x:Name="OverwriteRename" GroupName="Overwrite" Margin="0,8,0,0"
-                         Content="別名で保存する（おすすめ）" />
+                         Content="{loc:L Extract_ConflictRename}" />
             <RadioButton x:Name="OverwriteReplace" GroupName="Overwrite" Margin="0,6,0,0"
-                         Content="上書きする" />
+                         Content="{loc:L Extract_ConflictOverwrite}" />
             <RadioButton x:Name="OverwriteSkip" GroupName="Overwrite" Margin="0,6,0,0"
-                         Content="飛ばす" />
+                         Content="{loc:L Extract_ConflictSkip}" />
 
-            <TextBlock Text="その他" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <CheckBox x:Name="ExcludeMacCheck" Content="macOS のメタデータ (__MACOSX / ._* / .DS_Store) を取り除く" />
-            <CheckBox x:Name="ExcludeWindowsCheck" Content="Thumbs.db / desktop.ini を取り除く" />
-            <CheckBox x:Name="TimestampsCheck" Content="ファイルの日時を復元する" />
-            <CheckBox x:Name="MotwCheck" Content="インターネット由来の印 (Mark of the Web) を引き継ぐ" />
-            <CheckBox x:Name="OpenFolderCheck" Content="解凍したらフォルダを開く" />
-            <CheckBox x:Name="UnwrapTarCheck" Content="tar.gz などは中の tar まで一度に展開する" />
-            <CheckBox x:Name="DeleteArchiveCheck" Content="解凍に成功したらアーカイブをごみ箱へ送る" />
+            <TextBlock Text="{loc:L Common_Other}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <CheckBox x:Name="ExcludeMacCheck" Content="{loc:L Extract_ExcludeMac}" />
+            <CheckBox x:Name="ExcludeWindowsCheck" Content="{loc:L Extract_ExcludeWindows}" />
+            <CheckBox x:Name="TimestampsCheck" Content="{loc:L Extract_Timestamps}" />
+            <CheckBox x:Name="MotwCheck" Content="{loc:L Extract_Motw}" />
+            <CheckBox x:Name="OpenFolderCheck" Content="{loc:L Extract_OpenFolder}" />
+            <CheckBox x:Name="UnwrapTarCheck" Content="{loc:L Extract_UnwrapTar}" />
+            <CheckBox x:Name="DeleteArchiveCheck" Content="{loc:L Extract_DeleteArchive}" />
 
           </StackPanel>
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="圧縮">
+      <TabItem Header="{loc:L Tab_Compress}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
 
-            <TextBlock Text="既定の形式" Style="{StaticResource Heading}" />
+            <TextBlock Text="{loc:L Compress_DefaultFormatHeading}" Style="{StaticResource Heading}" />
             <ComboBox x:Name="DefaultFormatCombo" Margin="0,8,0,0" />
 
-            <TextBlock Text="圧縮率" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Compress_LevelHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <ComboBox x:Name="CompressionLevelCombo" Margin="0,8,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
-                       Text="強くするほど小さくなりますが時間がかかります。迷ったら標準のままで十分です。" />
+                       Text="{loc:L Compress_LevelHelp}" />
 
-            <TextBlock Text="右クリックメニューに出す形式" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Compress_MenuHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="チェックを入れた形式が、右クリックメニューの smarcivaZIP の中に並びます。上から順に表示されます。" />
+                       Text="{loc:L Compress_MenuHelp}" />
 
             <Border Margin="0,8,0,0" Height="168" BorderBrush="{StaticResource Border}"
                     BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
@@ -184,57 +192,57 @@
             </Border>
 
             <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button x:Name="MenuFormatUpButton" Content="上へ" MinWidth="72"
+              <Button x:Name="MenuFormatUpButton" Content="{loc:L Compress_MoveUp}" MinWidth="72"
                       Click="OnMenuFormatMoveUpClicked" />
-              <Button x:Name="MenuFormatDownButton" Content="下へ" MinWidth="72" Margin="8,0,0,0"
+              <Button x:Name="MenuFormatDownButton" Content="{loc:L Compress_MoveDown}" MinWidth="72" Margin="8,0,0,0"
                       Click="OnMenuFormatMoveDownClicked" />
-              <Button Content="既定に戻す" MinWidth="96" Margin="8,0,0,0"
+              <Button Content="{loc:L Common_ResetDefaults}" MinWidth="96" Margin="8,0,0,0"
                       Click="OnResetMenuFormatsClicked" />
             </StackPanel>
 
             <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
-                       Text="変更を反映するには、「設定」タブの「登録する」を押してください。" />
+                       Text="{loc:L Compress_MenuApplyNote}" />
 
-            <TextBlock Text="その他" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Common_Other}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <CheckBox x:Name="ShowCompressDialogCheck"
-                      Content="圧縮前に保存先を確認する" />
+                      Content="{loc:L Compress_ShowDialog}" />
 
           </StackPanel>
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="文字コード">
+      <TabItem Header="{loc:L Tab_Encoding}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
 
-            <TextBlock Text="優先する言語" Style="{StaticResource Heading}" />
+            <TextBlock Text="{loc:L Encoding_PreferredHeading}" Style="{StaticResource Heading}" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="ZIP はファイル名の文字コードを記録していないことが多く、推測するしかありません。判定が割れたときに、どの言語を優先するかを決めます。" />
+                       Text="{loc:L Encoding_PreferredHelp}" />
             <ComboBox x:Name="PreferredCodePageCombo" Margin="0,10,0,0" />
 
-            <TextBlock Text="確認画面" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Encoding_PreviewHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <CheckBox x:Name="AlwaysPreviewCheck"
-                      Content="解凍前に必ず文字コードの確認画面を出す" />
+                      Content="{loc:L Encoding_AlwaysPreview}" />
             <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
-                       Text="off のときは、判定に自信が無い場合だけ確認画面が出ます。ダブルクリックで即解凍される使い心地を保ちたいなら off のままにしてください。" />
+                       Text="{loc:L Encoding_AlwaysPreviewHelp}" />
 
-            <TextBlock Text="macOS 対応" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L Encoding_MacHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <CheckBox x:Name="NormalizeMacCheck"
-                      Content="濁点の分解 (NFD) を直す" />
+                      Content="{loc:L Encoding_NormalizeNfd}" />
             <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
-                       Text="macOS で作られたアーカイブでは「ガ」が「カ」＋「濁点」に分解されて記録されます。off にすると Windows 上で名前が崩れて見えます。" />
+                       Text="{loc:L Encoding_NormalizeNfdHelp}" />
 
           </StackPanel>
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="情報">
+      <TabItem Header="{loc:L Tab_About}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
             <TextBlock Text="smarcivaZIP" Style="{StaticResource Heading}" />
             <TextBlock x:Name="VersionText" Style="{StaticResource Caption}" Margin="0,4,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,12,0,0" TextWrapping="Wrap"
-                       Text="Lhaplus の使い心地をそのままに、RAR5・Zstandard・文字化け対策・macOS 由来の書庫に対応したシンプルな圧縮解凍ソフトです。" />
+                       Text="{loc:L About_Description}" />
 
             <TextBlock Margin="0,12,0,0">
               <Hyperlink NavigateUri="https://smarciva.com/" RequestNavigate="OnHyperlinkRequestNavigate">
@@ -248,15 +256,15 @@
               </Hyperlink>
             </TextBlock>
 
-            <TextBlock Text="圧縮エンジン" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L About_EngineHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock x:Name="EngineText" Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap" />
 
-            <TextBlock Text="対応形式" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L About_FormatsHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock x:Name="FormatsText" Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap" />
 
-            <TextBlock Text="ライセンス" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <TextBlock Text="{loc:L About_LicenseHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
-                       Text="smarcivaZIP 本体は MIT License です。同梱している 7z.dll は 7-Zip (Igor Pavlov 氏) のもので LGPL-2.1 以降が適用され、RAR 展開部分には unRAR の制限が付きます。詳しくは同梱の THIRD-PARTY-NOTICES.md をご覧ください。" />
+                       Text="{loc:L About_License}" />
           </StackPanel>
         </ScrollViewer>
       </TabItem>
@@ -264,8 +272,9 @@
     </TabControl>
 
     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
-      <Button Content="キャンセル" Click="OnCancelClicked" Margin="0,0,8,0" IsCancel="True" />
-      <Button Content="保存" Style="{StaticResource PrimaryButton}" Click="OnSaveClicked" IsDefault="True" />
+      <Button Content="{loc:L Common_Cancel}" Click="OnCancelClicked" Margin="0,0,8,0" IsCancel="True" />
+      <Button Content="{loc:L Common_Save}" Style="{StaticResource PrimaryButton}"
+              Click="OnSaveClicked" IsDefault="True" />
     </StackPanel>
   </Grid>
 </Window>
