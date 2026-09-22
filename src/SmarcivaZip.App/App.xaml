@@ -11,8 +11,13 @@
       <SolidColorBrush x:Key="Border" Color="#D8DCE3" />
       <SolidColorBrush x:Key="Text" Color="#1B1F24" />
       <SolidColorBrush x:Key="TextMuted" Color="#5A6472" />
-      <SolidColorBrush x:Key="Accent" Color="#2C6BED" />
-      <SolidColorBrush x:Key="AccentHover" Color="#1F58D0" />
+      <!--
+        白文字を載せる前提の青。#2C6BED では白とのコントラストが 4.74:1 しかなく、
+        WCAG の下限 4.5 をかろうじて超えているだけで、字画の細い日本語では読みにくい。
+        アイコンの ZIP 色と同じ #1C5CC4 にして 6.22:1 まで上げてある。
+      -->
+      <SolidColorBrush x:Key="Accent" Color="#1C5CC4" />
+      <SolidColorBrush x:Key="AccentHover" Color="#154A9E" />
       <SolidColorBrush x:Key="Warning" Color="#B7791F" />
       <SolidColorBrush x:Key="Danger" Color="#C0392B" />
 
@@ -83,6 +88,8 @@
         <Setter Property="Background" Value="{StaticResource Accent}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+        <!-- 太らせると、地色との差以上に読みやすくなる。漢字や仮名は線が細いため。 -->
+        <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Template">
           <Setter.Value>
             <ControlTemplate TargetType="Button">
