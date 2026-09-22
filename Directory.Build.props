@@ -7,6 +7,7 @@
     <Authors>smarcivaZIP contributors</Authors>
     <Product>smarcivaZIP</Product>
     <Company>smarcivaZIP</Company>
+    <Description>Lhaplus の使い心地のまま、RAR5・Zstandard・文字化け対策・macOS 由来の書庫に対応した圧縮解凍ソフト</Description>
     <Copyright>Copyright (c) 2026 smarcivaZIP contributors</Copyright>
     <Version>1.0.0</Version>
     <RepositoryUrl>https://github.com/comnote-max/smarcivaZIP</RepositoryUrl>

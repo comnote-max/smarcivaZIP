@@ -4,6 +4,12 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>SmarcivaZip</AssemblyName>
+    <!--
+      Windows が「プログラムから開く」やタスクマネージャーに出す名前は
+      FileDescription で、これは AssemblyTitle から来る。
+      アセンブリ名は大文字始まりの規約に従うので、表示名だけ別に指定する。
+    -->
+    <AssemblyTitle>smarcivaZIP</AssemblyTitle>
     <RootNamespace>SmarcivaZip.App</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets/smarcivazip.ico</ApplicationIcon>
