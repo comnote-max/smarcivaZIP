@@ -8,4 +8,6 @@ native/
 TestResults/
 *.7z
 *.zip
-!tests/**/*.zip
+
+# テスト用の書庫はコミットする（RAR は自前で作れないため）
+!src/SmarcivaZip.Tests/Fixtures/*

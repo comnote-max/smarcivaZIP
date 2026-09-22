@@ -11,6 +11,14 @@
   <ItemGroup>
     <ProjectReference Include="../SmarcivaZip.Core/SmarcivaZip.Core.csproj" />
   </ItemGroup>
+  <!--
+    RAR は作成できない（unRAR ライセンス）ので、テスト用の書庫はコミットしておく。
+    WinRAR で作った本物の RAR5 で、日本語と韓国語のファイル名を含む。
+  -->
+  <ItemGroup>
+    <Content Include="Fixtures/*.rar" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
   <!-- 結合テストは実物の 7z.dll を読み込む。tools/fetch-7zip.ps1 で先に取得しておくこと。 -->
   <ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)../../native/win-x64/7z.dll')">
     <None Include="../../native/win-x64/7z.dll" Link="7z.dll" CopyToOutputDirectory="PreserveNewest" />
