@@ -252,7 +252,7 @@ Usage:
     <value>Stronger settings produce smaller archives but take longer. Normal is fine unless you have a reason.</value>
   </data>
   <data name="Compress_MenuApplyNote" xml:space="preserve">
-    <value>Press Register on the Setup tab to apply.</value>
+    <value>Saving applies this to the context menu.</value>
   </data>
   <data name="Compress_MenuHeading" xml:space="preserve">
     <value>Formats shown in the context menu</value>
@@ -528,7 +528,7 @@ Usage:
     <value>Check all</value>
   </data>
   <data name="Setup_ExtApplyNote" xml:space="preserve">
-    <value>Press Register above to apply. Extensions another application already owns, such as .zip, have to be changed from Windows Default apps.</value>
+    <value>Saving applies these choices. Extensions another application already owns, such as .zip, still have to be changed from Windows Default apps.</value>
   </data>
   <data name="Setup_ExtHeading" xml:space="preserve">
     <value>File types opened on double-click</value>
@@ -548,6 +548,20 @@ Usage:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Open Windows Default apps</value>
   </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>Registered.
+
+These file types are still opened by another application on double-click, because Windows lets only the user change that:
+
+{0}
+
+The context menu works regardless. To change what double-click does, open Windows Default apps, or right-click a file and use "Open with" -&gt; "Choose another app" -&gt; "Always use this app".
+
+Open Default apps now?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>  {0}  (currently: {1})</value>
+  </data>
   <data name="Setup_Register" xml:space="preserve">
     <value>Register</value>
   </data>
@@ -555,6 +569,11 @@ Usage:
     <value>Could not register.
 
 {0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>The context menu and file associations are not registered yet.
+
+Register now? Without it, smarcivaZIP cannot be used from Explorer.</value>
   </data>
   <data name="Setup_RegisteredMessage" xml:space="preserve">
     <value>Registered.

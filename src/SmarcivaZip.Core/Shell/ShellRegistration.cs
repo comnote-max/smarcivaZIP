@@ -63,6 +63,61 @@ public static class ShellRegistration
 
     private static string Normalize(string extension) => extension.TrimStart('.').ToLowerInvariant();
 
+    /// <summary>
+    /// 関連付けたつもりでも、実際にはダブルクリックで別のアプリが開く拡張子を返す。
+    ///
+    /// どのアプリを既定にするかは UserChoice というハッシュで保護された領域が握っており、
+    /// アプリ側からは変更できない（変更すべきでもない）。
+    /// 黙って効かないままにすると「登録したのに開かない」と受け取られるので、
+    /// どの拡張子が誰に取られているかを名指しで返す。
+    /// </summary>
+    public static IReadOnlyList<(string Extension, string Owner)> FindExtensionsOwnedByOthers(
+        IReadOnlyList<string> extensions)
+    {
+        var owned = new List<(string, string)>();
+
+        foreach (string extension in extensions)
+        {
+            string normalized = Normalize(extension);
+            if (normalized.Length == 0) continue;
+
+            string? owner = ResolveCurrentOwner(normalized);
+            if (owner is not null && owner != ProgId) owned.Add((normalized, owner));
+        }
+
+        return owned;
+    }
+
+    /// <summary>
+    /// その拡張子を今どのアプリが開くか。
+    /// UserChoice があればそれが最優先で、無ければ HKCU / HKCR の既定値を見る。
+    /// </summary>
+    private static string? ResolveCurrentOwner(string extension)
+    {
+        try
+        {
+            using (RegistryKey? choice = Registry.CurrentUser.OpenSubKey(
+                $@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.{extension}\UserChoice"))
+            {
+                if (choice?.GetValue("ProgId") is string chosen && chosen.Length > 0) return chosen;
+            }
+
+            using (RegistryKey? user = Registry.CurrentUser.OpenSubKey($@"{ClassesRoot}\.{extension}"))
+            {
+                if (user?.GetValue(null) is string userDefault && userDefault.Length > 0) return userDefault;
+            }
+
+            using RegistryKey? machine = Registry.ClassesRoot.OpenSubKey($".{extension}");
+            if (machine?.GetValue(null) is string machineDefault && machineDefault.Length > 0)
+                return machineDefault;
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException)
+        {
+        }
+
+        return null;
+    }
+
     public static void Unregister(IReadOnlyList<string> extensions)
     {
         using (RegistryKey? classes = Registry.CurrentUser.OpenSubKey(ClassesRoot, writable: true))

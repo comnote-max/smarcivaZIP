@@ -252,7 +252,7 @@
     <value>強くするほど小さくなりますが時間がかかります。迷ったら標準のままで十分です。</value>
   </data>
   <data name="Compress_MenuApplyNote" xml:space="preserve">
-    <value>変更を反映するには、「設定」タブの「登録する」を押してください。</value>
+    <value>「保存」を押すと、右クリックメニューに反映されます。</value>
   </data>
   <data name="Compress_MenuHeading" xml:space="preserve">
     <value>右クリックメニューに出す形式</value>
@@ -528,7 +528,7 @@
     <value>すべて選択</value>
   </data>
   <data name="Setup_ExtApplyNote" xml:space="preserve">
-    <value>変更を反映するには、上の「登録する」を押してください。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。</value>
+    <value>「保存」を押すと、この内容で登録されます。.zip のように既に他のアプリが握っている拡張子は、Windows の「既定のアプリ」で選び直す必要があります。</value>
   </data>
   <data name="Setup_ExtHeading" xml:space="preserve">
     <value>ダブルクリックで開く拡張子</value>
@@ -548,6 +548,20 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Windows の「既定のアプリ」を開く</value>
   </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>登録しました。
+
+ただし次の拡張子は、ダブルクリックすると今も別のアプリが開きます。どのアプリを既定にするかは利用者しか変更できない決まりのためです。
+
+{0}
+
+右クリックメニューはこのままでも使えます。ダブルクリックも変えたい場合は、Windows の「既定のアプリ」を開くか、ファイルを右クリックして「プログラムから開く」→「別のプログラムを選択」→「常にこのアプリを使う」を選んでください。
+
+「既定のアプリ」を開きますか？</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  （現在: {1}）</value>
+  </data>
   <data name="Setup_Register" xml:space="preserve">
     <value>登録する</value>
   </data>
@@ -555,6 +569,11 @@
     <value>登録できませんでした。
 
 {0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>右クリックメニューと関連付けがまだ登録されていません。
+
+今すぐ登録しますか？ 登録しないと、エクスプローラーからは使えません。</value>
   </data>
   <data name="Setup_RegisteredMessage" xml:space="preserve">
     <value>登録しました。

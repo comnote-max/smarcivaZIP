@@ -494,22 +494,7 @@ public partial class SettingsWindow : Window
     {
         ApplyToSettings();
         _settings.Save();
-
-        try
-        {
-            ShellRegistration.Register(
-                App.ExecutablePath, _settings.AssociatedExtensions, SelectedMenuItems(),
-                _settings.ExtensionChoices);
-
-            UpdateRegistrationState();
-            MessageBox.Show(this, Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
-                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            MessageBox.Show(this, Strings.Format("Setup_RegisterFailed", ex.Message),
-                Strings.Get("Common_AppName"), MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
+        TryRegister(showConfirmation: true);
     }
 
     private void OnUnregisterClicked(object sender, RoutedEventArgs e)
@@ -579,7 +564,76 @@ public partial class SettingsWindow : Window
         ApplyToSettings();
         _settings.Save();
         _settings.ApplyToDetector();
+
+        // 設定を書いただけでは、拡張子も右クリックメニューも何も変わらない。
+        // 「保存」を押した人はそれで反映されたつもりでいるので、ここで登録まで済ませる。
+        if (ShellRegistration.IsRegistered())
+        {
+            TryRegister(showConfirmation: false);
+        }
+        else if (AskToRegister())
+        {
+            TryRegister(showConfirmation: true);
+        }
+
         DialogResult = true;
+    }
+
+    /// <summary>
+    /// 登録の結果を伝える。別のアプリが既定を握っている拡張子があれば、
+    /// 「登録したのにダブルクリックで開かない」の理由をその場で説明する。
+    /// </summary>
+    private void ReportRegistrationOutcome()
+    {
+        IReadOnlyList<(string Extension, string Owner)> owned =
+            ShellRegistration.FindExtensionsOwnedByOthers(_settings.AssociatedExtensions);
+
+        if (owned.Count == 0)
+        {
+            MessageBox.Show(this, Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            return;
+        }
+
+        string list = string.Join(Environment.NewLine, owned.Select(
+            o => Strings.Format("Setup_OwnedByOthersItem", "." + o.Extension, o.Owner)));
+
+        MessageBoxResult answer = MessageBox.Show(this,
+            Strings.Format("Setup_OwnedByOthers", list), Strings.Get("Common_AppName"),
+            MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+        if (answer == MessageBoxResult.Yes) NativeShell.OpenDefaultAppsSettings();
+    }
+
+    private bool AskToRegister()
+        => MessageBox.Show(this, Strings.Get("Setup_RegisterOnSavePrompt"), Strings.Get("Common_AppName"),
+            MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+
+    /// <summary>
+    /// 関連付けと右クリックメニューを登録する。
+    /// 既に登録済みのものを設定変更に合わせて上書きするだけのときは、
+    /// いちいち完了ダイアログを出さない。
+    /// </summary>
+    private bool TryRegister(bool showConfirmation)
+    {
+        try
+        {
+            ShellRegistration.Register(
+                App.ExecutablePath, _settings.AssociatedExtensions, SelectedMenuItems(),
+                _settings.ExtensionChoices);
+
+            UpdateRegistrationState();
+
+            if (showConfirmation) ReportRegistrationOutcome();
+
+            return true;
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            MessageBox.Show(this, Strings.Format("Setup_RegisterFailed", ex.Message),
+                Strings.Get("Common_AppName"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            return false;
+        }
     }
 
     private void OnCancelClicked(object sender, RoutedEventArgs e) => DialogResult = false;
