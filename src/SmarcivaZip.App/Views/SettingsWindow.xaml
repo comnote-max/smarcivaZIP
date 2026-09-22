@@ -14,7 +14,7 @@
 
     <TabControl Grid.Row="0" BorderBrush="{StaticResource Border}" Background="Transparent">
 
-      <TabItem Header="関連付け">
+      <TabItem Header="設定">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
 
@@ -142,31 +142,6 @@
         </ScrollViewer>
       </TabItem>
 
-      <TabItem Header="文字コード">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-          <StackPanel Margin="16,14,16,14">
-
-            <TextBlock Text="優先する言語" Style="{StaticResource Heading}" />
-            <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="ZIP はファイル名の文字コードを記録していないことが多く、推測するしかありません。判定が割れたときに、どの言語を優先するかを決めます。" />
-            <ComboBox x:Name="PreferredCodePageCombo" Margin="0,10,0,0" />
-
-            <TextBlock Text="確認画面" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <CheckBox x:Name="AlwaysPreviewCheck"
-                      Content="解凍前に必ず文字コードの確認画面を出す" />
-            <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
-                       Text="off のときは、判定に自信が無い場合だけ確認画面が出ます。ダブルクリックで即解凍される使い心地を保ちたいなら off のままにしてください。" />
-
-            <TextBlock Text="macOS 対応" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <CheckBox x:Name="NormalizeMacCheck"
-                      Content="濁点の分解 (NFD) を直す" />
-            <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
-                       Text="macOS で作られたアーカイブでは「ガ」が「カ」＋「濁点」に分解されて記録されます。off にすると Windows 上で名前が崩れて見えます。" />
-
-          </StackPanel>
-        </ScrollViewer>
-      </TabItem>
-
       <TabItem Header="圧縮">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
           <StackPanel Margin="16,14,16,14">
@@ -218,11 +193,36 @@
             </StackPanel>
 
             <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
-                       Text="変更を反映するには、「関連付け」タブの「登録する」を押してください。" />
+                       Text="変更を反映するには、「設定」タブの「登録する」を押してください。" />
 
             <TextBlock Text="その他" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <CheckBox x:Name="ShowCompressDialogCheck"
                       Content="圧縮前に保存先を確認する" />
+
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="文字コード">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+          <StackPanel Margin="16,14,16,14">
+
+            <TextBlock Text="優先する言語" Style="{StaticResource Heading}" />
+            <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
+                       Text="ZIP はファイル名の文字コードを記録していないことが多く、推測するしかありません。判定が割れたときに、どの言語を優先するかを決めます。" />
+            <ComboBox x:Name="PreferredCodePageCombo" Margin="0,10,0,0" />
+
+            <TextBlock Text="確認画面" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <CheckBox x:Name="AlwaysPreviewCheck"
+                      Content="解凍前に必ず文字コードの確認画面を出す" />
+            <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
+                       Text="off のときは、判定に自信が無い場合だけ確認画面が出ます。ダブルクリックで即解凍される使い心地を保ちたいなら off のままにしてください。" />
+
+            <TextBlock Text="macOS 対応" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+            <CheckBox x:Name="NormalizeMacCheck"
+                      Content="濁点の分解 (NFD) を直す" />
+            <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
+                       Text="macOS で作られたアーカイブでは「ガ」が「カ」＋「濁点」に分解されて記録されます。off にすると Windows 上で名前が崩れて見えます。" />
 
           </StackPanel>
         </ScrollViewer>
