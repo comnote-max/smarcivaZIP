@@ -37,20 +37,21 @@ public static class SelectionCoalescer
     {
         string id = BuildIdentifier(operationKey, firstPath);
         string pipeName = $"smarcivazip-{id}";
-        string mutexName = $"Local\\smarcivazip-leader-{id}";
+        string lockName = $"Local\\smarcivazip-leader-{id}";
 
-        using var leaderMutex = new Mutex(initiallyOwned: false, mutexName, out _);
+        // Mutex ではなく Semaphore を使う。
+        //
+        // Mutex は取得したスレッドでしか解放できない。ここは await を挟むので、
+        // 同期コンテキストが無い環境では別スレッドに戻り、解放時に
+        // 「同期されていないブロックから呼ばれた」で落ちる。
+        // WPF の UI スレッドからだと元のスレッドに戻るため表面化しないが、
+        // 依存してよい性質ではない。
+        //
+        // Semaphore はスレッドに紐づかず、同じスレッドからの再入も許さないので、
+        // 「最初のひとりだけが先頭になる」という意図をそのまま表せる。
+        using var leaderLock = new Semaphore(1, 1, lockName, out _);
 
-        bool isLeader;
-        try
-        {
-            isLeader = leaderMutex.WaitOne(TimeSpan.Zero);
-        }
-        catch (AbandonedMutexException)
-        {
-            // 前回の先頭プロセスが異常終了していた。自分が引き継ぐ。
-            isLeader = true;
-        }
+        bool isLeader = leaderLock.WaitOne(TimeSpan.Zero);
 
         if (!isLeader)
         {
@@ -67,7 +68,9 @@ public static class SelectionCoalescer
         }
         finally
         {
-            leaderMutex.ReleaseMutex();
+            // 先頭プロセスが落ちた場合は解放されないが、ハンドルが全部閉じれば
+            // カーネルオブジェクトごと消えるので、次の操作は新品から始まる。
+            leaderLock.Release();
         }
     }
 
