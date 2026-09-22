@@ -211,6 +211,19 @@ SmarcivaZip.exe --register / --unregister         関連付けの登録・解除
 python tools/make-icon.py assets/icon-source.webp src/SmarcivaZip.App/Assets/smarcivazip.ico
 ```
 
+### テスト用の書庫について
+
+RAR は unRAR のライセンス上こちらで作れないため、WinRAR で作った小さな書庫を
+`src/SmarcivaZip.Tests/Fixtures/` にコミットしてあります。
+
+LZH は作れるツールが手元に無いので、仕様どおりにバイト列を組む
+`tools/make-lzh-fixture.py` で生成しています。ヘッダのチェックサムと
+データの CRC-16 を 7-Zip が検証するため、読めた時点で構造は正しいと言えます。
+
+```powershell
+python tools/make-lzh-fixture.py src/SmarcivaZip.Tests/Fixtures/lzh-cp932.lzh
+```
+
 ### 構成
 
 ```

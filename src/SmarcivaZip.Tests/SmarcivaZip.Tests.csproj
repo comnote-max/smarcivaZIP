@@ -17,6 +17,7 @@
   -->
   <ItemGroup>
     <Content Include="Fixtures/*.rar" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Fixtures/*.lzh" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <!-- 結合テストは実物の 7z.dll を読み込む。tools/fetch-7zip.ps1 で先に取得しておくこと。 -->
