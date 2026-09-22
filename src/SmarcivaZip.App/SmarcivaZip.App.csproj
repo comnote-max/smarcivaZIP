@@ -6,6 +6,7 @@
     <AssemblyName>SmarcivaZip</AssemblyName>
     <RootNamespace>SmarcivaZip.App</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets/smarcivazip.ico</ApplicationIcon>
     <SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <!--
@@ -17,6 +18,14 @@
 
   <ItemGroup>
     <ProjectReference Include="../SmarcivaZip.Core/SmarcivaZip.Core.csproj" />
+  </ItemGroup>
+
+  <!--
+    exe 自体のアイコン (ApplicationIcon) とは別に、WPF のウィンドウが
+    タイトルバーに表示するためのリソースとしても埋め込む。
+  -->
+  <ItemGroup>
+    <Resource Include="Assets/smarcivazip.ico" />
   </ItemGroup>
 
   <!--

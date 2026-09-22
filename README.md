@@ -1,3 +1,5 @@
+<img src="src/SmarcivaZip.App/Assets/smarcivazip.png" width="120" align="right" alt="smarcivaZIP" />
+
 # smarcivaZIP
 
 **Lhaplus の使い心地のまま、2026 年の書庫に対応した圧縮・解凍ソフト。**
@@ -176,6 +178,13 @@ SmarcivaZip.exe --register / --unregister         関連付けの登録・解除
 
 開発中は普通に `dotnet build` / `dotnet test` で動きます。
 
+アイコンの元絵を差し替えたときは、`.ico` を作り直してください
+（Pillow が必要です。ふだんのビルドでは実行されません）。
+
+```powershell
+python tools/make-icon.py assets/icon-source.webp src/SmarcivaZip.App/Assets/smarcivazip.ico
+```
+
 ### 構成
 
 ```
@@ -189,6 +198,7 @@ src/
     Shell/              関連付け、右クリックメニュー、複数選択の集約
     Settings/           設定、ログ
   SmarcivaZip.App/      WPF の画面
+    Assets/             アイコン（.ico は tools/make-icon.py で生成）
   SmarcivaZip.Tests/    テスト
 ```
 
