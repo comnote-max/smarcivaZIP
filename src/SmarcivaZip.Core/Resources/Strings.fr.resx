@@ -577,6 +577,9 @@ Le menu contextuel fonctionne malgré tout. Pour changer ce que fait le double-c
 
 Ouvrir les applications par défaut maintenant ?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Dans la version Microsoft Store, Windows gère les associations de fichiers et le menu contextuel. Sous Windows 11, smarcivaZIP apparaît directement dans le premier menu contextuel. Pour choisir l'application qui ouvre un type de fichier par double-clic, utilisez les applications par défaut de Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (actuellement : {1})</value>
   </data>

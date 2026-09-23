@@ -577,6 +577,9 @@ Het contextmenu werkt wel gewoon. Wil je veranderen wat dubbelklikken doet, open
 
 Nu de standaard-apps openen?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>In de Microsoft Store-versie beheert Windows de bestandskoppelingen en het contextmenu. Op Windows 11 verschijnt smarcivaZIP direct in het eerste contextmenu. Kies in de standaard-apps van Windows welke app een bestandstype opent bij dubbelklikken.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (nu: {1})</value>
   </data>

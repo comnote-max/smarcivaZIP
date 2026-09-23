@@ -577,6 +577,9 @@ Menu podręczne mimo to działa. Aby zmienić działanie podwójnego kliknięcia
 
 Otworzyć teraz aplikacje domyślne?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>W wersji z Microsoft Store skojarzeniami plików i menu podręcznym zarządza Windows. W Windows 11 smarcivaZIP pojawia się bezpośrednio w pierwszym menu podręcznym. Aby wybrać, która aplikacja otwiera dany typ pliku po dwukrotnym kliknięciu, użyj aplikacji domyślnych Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (obecnie: {1})</value>
   </data>

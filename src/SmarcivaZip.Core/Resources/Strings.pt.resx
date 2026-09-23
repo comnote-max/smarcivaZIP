@@ -577,6 +577,9 @@ O menu de contexto funciona de qualquer forma. Para mudar o que o duplo clique f
 
 Abrir agora os aplicativos padrão?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Na versão da Microsoft Store, o Windows gerencia as associações de arquivos e o menu de contexto. No Windows 11, o smarcivaZIP aparece diretamente no primeiro menu de contexto. Para escolher qual aplicativo abre cada tipo de arquivo com clique duplo, use os aplicativos padrão do Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (no momento: {1})</value>
   </data>

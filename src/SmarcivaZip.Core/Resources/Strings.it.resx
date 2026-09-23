@@ -577,6 +577,9 @@ Il menu contestuale funziona lo stesso. Per cambiare il comportamento del doppio
 
 Vuoi aprire ora le app predefinite?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Nella versione di Microsoft Store, le associazioni dei file e il menu contestuale sono gestiti da Windows. In Windows 11 smarcivaZIP compare direttamente nel primo menu contestuale. Per scegliere quale app apre un tipo di file con un doppio clic, usa le app predefinite di Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (attualmente: {1})</value>
   </data>

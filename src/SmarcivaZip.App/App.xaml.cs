@@ -43,6 +43,11 @@ public partial class App : Application
         ApplyTextDirection();
         _settings.ApplyToDetector();
 
+        // ストア版では、右クリックメニューの中身を今の設定と表示言語で書き直しておく。
+        // メニューの部品はこのファイルを読んで項目を並べるだけなので、言語を切り替えた後も
+        // アプリを一度起動すれば追従する。
+        RefreshModernMenu(_settings);
+
         CommandLine command = CommandLine.Parse(e.Args);
         Diagnostics.Trace($"start mode={command.Mode} paths={string.Join(" | ", command.Paths)}");
 
@@ -99,7 +104,9 @@ public partial class App : Application
                 break;
 
             case AppMode.Register:
-                RegisterShell(command.Quiet);
+                // ストア版の関連付けとメニューはパッケージの定義で Windows が管理する。
+                // レジストリに書いてもパッケージの中では見えないので、書かない。
+                if (!PackageContext.IsPackaged) RegisterShell(command.Quiet);
                 break;
 
             case AppMode.Unregister:
@@ -136,7 +143,7 @@ public partial class App : Application
             return;
         }
 
-        IReadOnlyList<string> archives = await CoalesceAsync("extract", command.Paths);
+        IReadOnlyList<string> archives = await CoalesceAsync("extract", command);
         string? lastDestination = null;
 
         foreach (string archive in archives)
@@ -351,7 +358,7 @@ public partial class App : Application
         }
 
         string operationKey = $"compress:{format.Id}:{command.AskPassword}";
-        IReadOnlyList<string> inputs = await CoalesceAsync(operationKey, command.Paths);
+        IReadOnlyList<string> inputs = await CoalesceAsync(operationKey, command);
         if (inputs.Count == 0) return;
 
         string? password = null;
@@ -451,9 +458,12 @@ public partial class App : Application
     /// エクスプローラーの複数選択は「1 ファイルにつき 1 プロセス」で飛んでくる。
     /// 先頭のプロセスだけが処理を続け、残りはここで静かに終了する。
     /// </summary>
-    private async Task<IReadOnlyList<string>> CoalesceAsync(string operationKey, List<string> paths)
+    private async Task<IReadOnlyList<string>> CoalesceAsync(string operationKey, CommandLine command)
     {
-        if (paths.Count != 1) return paths;
+        List<string> paths = command.Paths;
+
+        // ストア版のメニューは選択を全部まとめて渡してくる（--paths-from）。待つ相手がいない。
+        if (command.PathsComplete || paths.Count != 1) return paths;
 
         CoalescedSelection selection = await SelectionCoalescer.CollectAsync(operationKey, paths[0]);
         Diagnostics.Trace($"coalesce leader={selection.IsLeader} count={selection.Paths.Count}");
@@ -466,6 +476,30 @@ public partial class App : Application
     {
         var window = new SettingsWindow(_settings);
         window.ShowDialog();
+    }
+
+    /// <summary>
+    /// ストア版なら、右クリックメニューの中身（<see cref="ModernMenuFile"/>）を書き出す。
+    /// ストア版でなければ何もしない。失敗してもアプリ本来の動作は止めない。
+    /// </summary>
+    internal static void RefreshModernMenu(AppSettings settings)
+    {
+        string? directory = PackageContext.LocalStatePath;
+        if (directory is null) return;
+
+        try
+        {
+            IReadOnlyList<OutputFormat> formats;
+            try { formats = OutputFormat.GetAvailable(SevenZipLibrary.Instance); }
+            catch (SevenZipNotFoundException) { formats = OutputFormat.All; }
+
+            List<CompressMenuItem> items = CompressMenuItem.Resolve(formats, settings.ContextMenuFormats);
+            ModernMenuFile.Write(directory, ModernMenuFile.Build(items), settings.AssociatedExtensions);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Diagnostics.Error("modern-menu", ex);
+        }
     }
 
     private void RegisterShell(bool quiet)

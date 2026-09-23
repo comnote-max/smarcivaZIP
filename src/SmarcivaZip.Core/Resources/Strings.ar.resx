@@ -582,6 +582,9 @@
 
 هل تفتح التطبيقات الافتراضية الآن؟</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>في إصدار Microsoft Store، يتولى Windows إدارة اقترانات الملفات وقائمة السياق. في Windows 11 يظهر smarcivaZIP مباشرةً في قائمة السياق الأولى. لاختيار التطبيق الذي يفتح كل نوع من الملفات عند النقر المزدوج، استخدم التطبيقات الافتراضية في Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>  {0}  (حاليًا: {1})</value>
   </data>

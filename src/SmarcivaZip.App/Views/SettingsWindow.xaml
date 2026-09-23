@@ -24,76 +24,92 @@
             <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap"
                        Text="{loc:L Setup_LanguageHelp}" />
 
-            <TextBlock Text="{loc:L Setup_ShellHeading}" Style="{StaticResource Heading}"
-                       Margin="0,20,0,0" />
-            <TextBlock x:Name="RegistrationStateText" Style="{StaticResource Caption}"
-                       Margin="0,6,0,0" TextWrapping="Wrap" />
+            <!-- レジストリに自分で登録する従来の版。ストア版では隠す。 -->
+            <StackPanel x:Name="ShellSection">
+              <TextBlock Text="{loc:L Setup_ShellHeading}" Style="{StaticResource Heading}"
+                         Margin="0,20,0,0" />
+              <TextBlock x:Name="RegistrationStateText" Style="{StaticResource Caption}"
+                         Margin="0,6,0,0" TextWrapping="Wrap" />
 
-            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-              <Button x:Name="RegisterButton" Content="{loc:L Setup_Register}" Style="{StaticResource PrimaryButton}"
-                      Click="OnRegisterClicked" />
-              <Button x:Name="UnregisterButton" Content="{loc:L Setup_Unregister}" Margin="8,0,0,0"
-                      Click="OnUnregisterClicked" />
+              <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                <Button x:Name="RegisterButton" Content="{loc:L Setup_Register}" Style="{StaticResource PrimaryButton}"
+                        Click="OnRegisterClicked" />
+                <Button x:Name="UnregisterButton" Content="{loc:L Setup_Unregister}" Margin="8,0,0,0"
+                        Click="OnUnregisterClicked" />
+              </StackPanel>
+
+              <TextBlock Style="{StaticResource Caption}" Margin="0,14,0,0" TextWrapping="Wrap"
+                         Text="{loc:L Setup_Win11Note}" />
+
+              <TextBlock Text="{loc:L Setup_ExtHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+              <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
+                         Text="{loc:L Setup_ExtHelp}" />
+
+              <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
+                      BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
+                <ListBox x:Name="ExtensionList" BorderThickness="0" Padding="6"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <UniformGrid Columns="4" />
+                    </ItemsPanelTemplate>
+                  </ListBox.ItemsPanel>
+                  <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                      <Setter Property="Padding" Value="2" />
+                      <!-- チェックボックスに触れたら、その行も選択状態にする。
+                           こうしないと「削除」ボタンがどの項目を指しているか分からない。
+                           IsKeyboardFocusWithin のトリガーでやると、削除ボタンへ
+                           フォーカスが移った瞬間に選択が外れてしまうので、
+                           イベントで明示的に立てる。 -->
+                      <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnExtensionItemActivated" />
+                      <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnExtensionItemActivated" />
+                    </Style>
+                  </ListBox.ItemContainerStyle>
+                  <ListBox.ItemTemplate>
+                    <DataTemplate>
+                      <CheckBox Content="{Binding Extension}" IsChecked="{Binding IsSelected}"
+                                Margin="2,3,8,3" ToolTip="{Binding Description}" />
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </Border>
+
+              <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                <Button Content="{loc:L Setup_Add}" MinWidth="76" Click="OnAddExtensionClicked" />
+                <Button x:Name="RemoveExtensionButton" Content="{loc:L Setup_Remove}" MinWidth="76" Margin="8,0,0,0"
+                        Click="OnRemoveExtensionClicked" />
+                <Button Content="{loc:L Setup_CheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
+                <Button Content="{loc:L Setup_UncheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
+              </StackPanel>
+
+              <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                <Button Content="{loc:L Setup_AddAllSupported}" MinWidth="240"
+                        Click="OnAddAllSupportedClicked" />
+                <Button Content="{loc:L Common_ResetDefaults}" MinWidth="96" Margin="8,0,0,0"
+                        Click="OnResetExtensionsClicked" />
+              </StackPanel>
+
+              <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
+                         Text="{loc:L Setup_ExtApplyNote}" />
+
+              <Button Content="{loc:L Setup_OpenDefaultApps}" Margin="0,10,0,0"
+                      HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
             </StackPanel>
 
-            <TextBlock Style="{StaticResource Caption}" Margin="0,14,0,0" TextWrapping="Wrap"
-                       Text="{loc:L Setup_Win11Note}" />
-
-            <TextBlock Text="{loc:L Setup_ExtHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
-            <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
-                       Text="{loc:L Setup_ExtHelp}" />
-
-            <Border Margin="0,8,0,0" Height="184" BorderBrush="{StaticResource Border}"
-                    BorderThickness="1" CornerRadius="4" Background="{StaticResource Surface}">
-              <ListBox x:Name="ExtensionList" BorderThickness="0" Padding="6"
-                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListBox.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <UniformGrid Columns="4" />
-                  </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                  <Style TargetType="ListBoxItem">
-                    <Setter Property="Padding" Value="2" />
-                    <!-- チェックボックスに触れたら、その行も選択状態にする。
-                         こうしないと「削除」ボタンがどの項目を指しているか分からない。
-                         IsKeyboardFocusWithin のトリガーでやると、削除ボタンへ
-                         フォーカスが移った瞬間に選択が外れてしまうので、
-                         イベントで明示的に立てる。 -->
-                    <EventSetter Event="PreviewGotKeyboardFocus" Handler="OnExtensionItemActivated" />
-                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnExtensionItemActivated" />
-                  </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                  <DataTemplate>
-                    <CheckBox Content="{Binding Extension}" IsChecked="{Binding IsSelected}"
-                              Margin="2,3,8,3" ToolTip="{Binding Description}" />
-                  </DataTemplate>
-                </ListBox.ItemTemplate>
-              </ListBox>
-            </Border>
-
-            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="{loc:L Setup_Add}" MinWidth="76" Click="OnAddExtensionClicked" />
-              <Button x:Name="RemoveExtensionButton" Content="{loc:L Setup_Remove}" MinWidth="76" Margin="8,0,0,0"
-                      Click="OnRemoveExtensionClicked" />
-              <Button Content="{loc:L Setup_CheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnCheckAllClicked" />
-              <Button Content="{loc:L Setup_UncheckAll}" MinWidth="88" Margin="8,0,0,0" Click="OnUncheckAllClicked" />
+            <!--
+              ストア版（MSIX）。関連付けと右クリックメニューはパッケージの定義で Windows が管理するので、
+              ここでは登録も拡張子の選択もできない。どこで変えるのかだけを案内する。
+            -->
+            <StackPanel x:Name="PackagedShellSection" Visibility="Collapsed">
+              <TextBlock Text="{loc:L Setup_ShellHeading}" Style="{StaticResource Heading}"
+                         Margin="0,20,0,0" />
+              <TextBlock Style="{StaticResource Caption}" Margin="0,6,0,0" TextWrapping="Wrap"
+                         Text="{loc:L Setup_PackagedNote}" />
+              <Button Content="{loc:L Setup_OpenDefaultApps}" Margin="0,10,0,0"
+                      HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-              <Button Content="{loc:L Setup_AddAllSupported}" MinWidth="240"
-                      Click="OnAddAllSupportedClicked" />
-              <Button Content="{loc:L Common_ResetDefaults}" MinWidth="96" Margin="8,0,0,0"
-                      Click="OnResetExtensionsClicked" />
-            </StackPanel>
-
-            <TextBlock Style="{StaticResource Caption}" Margin="0,8,0,0" TextWrapping="Wrap"
-                       Text="{loc:L Setup_ExtApplyNote}" />
-
-            <Button Content="{loc:L Setup_OpenDefaultApps}" Margin="0,10,0,0"
-                    HorizontalAlignment="Left" MinWidth="220" Click="OnOpenDefaultAppsClicked" />
 
           </StackPanel>
         </ScrollViewer>

@@ -577,6 +577,9 @@ Bağlam menüsü yine de çalışır. Çift tıklamanın davranışını değiş
 
 Varsayılan uygulamalar şimdi açılsın mı?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Microsoft Store sürümünde dosya ilişkilendirmelerini ve bağlam menüsünü Windows yönetir. Windows 11'de smarcivaZIP doğrudan ilk bağlam menüsünde görünür. Bir dosya türünü çift tıklamada hangi uygulamanın açacağını seçmek için Windows'un varsayılan uygulamalarını kullanın.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (şu anda: {1})</value>
   </data>

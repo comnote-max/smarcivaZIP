@@ -1,3 +1,4 @@
+using System.IO;
 using SmarcivaZip.Core.Localization;
 
 namespace SmarcivaZip.App;
@@ -43,6 +44,15 @@ public sealed class CommandLine
     /// </summary>
     public bool Quiet { get; private init; }
 
+    /// <summary>
+    /// パスの一覧をファイルで受け取った（--paths-from）。
+    ///
+    /// ストア版の右クリックメニューは、選ばれた全ファイルを一度に渡してくる。
+    /// 数百個を選ぶとコマンドラインの長さ（32767 文字）を超えるので、一覧はファイルで受け取る。
+    /// この場合は選択がすでに揃っているので、他のプロセスを待って束ねる必要が無い。
+    /// </summary>
+    public bool PathsComplete { get; private init; }
+
     public static CommandLine Parse(string[] args)
     {
         AppMode mode = AppMode.Settings;
@@ -50,6 +60,7 @@ public sealed class CommandLine
         bool askPassword = false;
         bool forceFolder = false;
         bool quiet = false;
+        bool pathsComplete = false;
         var paths = new List<string>();
         bool modeSpecified = false;
 
@@ -104,6 +115,14 @@ public sealed class CommandLine
                     quiet = true;
                     break;
 
+                case "--paths-from":
+                    if (i + 1 < args.Length)
+                    {
+                        paths.AddRange(ReadPathList(args[++i]));
+                        pathsComplete = true;
+                    }
+                    break;
+
                 case "--help" or "-h" or "/?":
                     mode = AppMode.Help;
                     modeSpecified = true;
@@ -124,11 +143,34 @@ public sealed class CommandLine
             FormatId = formatId,
             AskPassword = askPassword,
             ForceOutputFolder = forceFolder,
-            Quiet = quiet
+            Quiet = quiet,
+            PathsComplete = pathsComplete
         };
 
         result.Paths.AddRange(paths);
         return result;
+    }
+
+    /// <summary>
+    /// 1 行 1 パスの UTF-8 ファイルを読み、読み終えたら消す。
+    /// 一時フォルダに作られた使い捨てのファイルなので、残しておく理由が無い。
+    /// </summary>
+    private static IEnumerable<string> ReadPathList(string listPath)
+    {
+        string[] lines;
+        try
+        {
+            lines = File.ReadAllLines(listPath, System.Text.Encoding.UTF8);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            return [];
+        }
+
+        try { File.Delete(listPath); }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { /* 残っても害は無い */ }
+
+        return lines.Select(line => line.Trim()).Where(line => line.Length > 0).ToList();
     }
 
     public static string HelpText => Strings.Get("CommandLine_Help");

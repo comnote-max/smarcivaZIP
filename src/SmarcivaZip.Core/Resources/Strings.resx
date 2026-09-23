@@ -577,6 +577,9 @@ The context menu works regardless. To change what double-click does, open Window
 
 Open Default apps now?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>In the Microsoft Store version, Windows manages file associations and the context menu. On Windows 11, smarcivaZIP appears directly in the first context menu. To choose which app opens a file type on double-click, use Windows' Default apps.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>  {0}  (currently: {1})</value>
   </data>

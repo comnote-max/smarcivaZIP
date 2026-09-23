@@ -582,6 +582,9 @@
 
 จะเปิดแอปเริ่มต้นตอนนี้เลยไหม</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>ในเวอร์ชัน Microsoft Store นั้น Windows เป็นผู้จัดการการเชื่อมโยงไฟล์และเมนูคลิกขวา บน Windows 11 smarcivaZIP จะแสดงในเมนูคลิกขวาชั้นแรกโดยตรง หากต้องการเลือกว่าแอปใดจะเปิดไฟล์แต่ละชนิดเมื่อดับเบิลคลิก ให้ตั้งค่าที่แอปเริ่มต้นของ Windows</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (ตอนนี้: {1})</value>
   </data>

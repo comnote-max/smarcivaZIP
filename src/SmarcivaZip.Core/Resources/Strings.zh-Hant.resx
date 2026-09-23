@@ -577,6 +577,9 @@
 
 現在要開啟「預設應用程式」嗎？</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>在 Microsoft Store 版本中，檔案關聯與右鍵選單由 Windows 管理。在 Windows 11 中，smarcivaZIP 會直接顯示在第一層右鍵選單中。若要選擇按兩下時用哪個應用程式開啟，請在 Windows 的「預設應用程式」中設定。</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  （目前：{1}）</value>
   </data>

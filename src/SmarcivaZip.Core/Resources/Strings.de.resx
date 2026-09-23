@@ -577,6 +577,9 @@ Das Kontextmenü funktioniert trotzdem. Um zu ändern, was der Doppelklick tut, 
 
 Sollen die Standard-Apps jetzt geöffnet werden?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>In der Microsoft-Store-Version verwaltet Windows die Dateiverknüpfungen und das Kontextmenü. Unter Windows 11 erscheint smarcivaZIP direkt im ersten Kontextmenü. Welche App einen Dateityp per Doppelklick öffnet, legen Sie in den Standard-Apps von Windows fest.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (derzeit: {1})</value>
   </data>

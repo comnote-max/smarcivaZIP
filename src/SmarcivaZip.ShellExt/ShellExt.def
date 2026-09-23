@@ -1,0 +1,4 @@
+LIBRARY "SmarcivaZip.ShellExt.dll"
+EXPORTS
+    DllGetClassObject PRIVATE
+    DllCanUnloadNow PRIVATE

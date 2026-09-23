@@ -11,3 +11,6 @@ TestResults/
 
 # テスト用の書庫はコミットする（RAR は自前で作れないため）
 !src/SmarcivaZip.Tests/Fixtures/*
+
+# Cloudflare の wrangler が作業フォルダに作る一時ファイル
+.wrangler/

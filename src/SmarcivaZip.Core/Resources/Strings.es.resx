@@ -577,6 +577,9 @@ El menú contextual funciona igualmente. Para cambiar lo que hace el doble clic,
 
 ¿Abrir ahora las aplicaciones predeterminadas?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>En la versión de Microsoft Store, Windows gestiona las asociaciones de archivos y el menú contextual. En Windows 11, smarcivaZIP aparece directamente en el primer menú contextual. Para elegir qué aplicación abre cada tipo de archivo con doble clic, use las aplicaciones predeterminadas de Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (actualmente: {1})</value>
   </data>

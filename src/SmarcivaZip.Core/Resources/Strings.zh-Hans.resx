@@ -577,6 +577,9 @@
 
 现在打开“默认应用”吗？</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>在 Microsoft Store 版本中，文件关联和右键菜单由 Windows 管理。在 Windows 11 中，smarcivaZIP 会直接显示在第一层右键菜单中。要选择双击时用哪个应用打开，请在 Windows 的“默认应用”中设置。</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  （当前：{1}）</value>
   </data>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  smarcivaZIP のストア版（MSIX）の定義。tools/build-msix.ps1 が ${...} を置き換えて使う。
+
+  - 関連付けは uap:FileTypeAssociation で Windows に任せる。既定のアプリにするかどうかは
+    利用者が Windows の設定で選ぶ（アプリ側から既定にする方法は無いし、すべきでもない）。
+  - 右クリックメニューは SmarcivaZip.ShellExt.dll（IExplorerCommand）。com:SurrogateServer なので
+    エクスプローラーとは別の dllhost.exe で動く。CLSID は ShellExt.cpp の CLSID_SmarcivaZipMenu と同じ。
+  - 種類名（FileType_*）とアプリの説明は、アプリの翻訳（Strings.*.resx）から作った resources.pri を引く。
+-->
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap3 desktop desktop4 desktop5 com rescap">
+
+  <Identity
+    Name="${IdentityName}"
+    Publisher="${Publisher}"
+    Version="${Version}"
+    ProcessorArchitecture="${Architecture}" />
+
+  <Properties>
+    <DisplayName>smarcivaZIP</DisplayName>
+    <PublisherDisplayName>${PublisherDisplayName}</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.19041.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+${ResourceLanguages}
+  </Resources>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+  <Applications>
+    <Application Id="smarcivaZIP" Executable="SmarcivaZip.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="smarcivaZIP"
+        Description="ms-resource:About_Description"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <!-- コマンドプロンプトや PowerShell から smarcivazip で呼べるようにする。 -->
+        <uap3:Extension Category="windows.appExecutionAlias">
+          <uap3:AppExecutionAlias>
+            <desktop:ExecutionAlias Alias="smarcivazip.exe" />
+          </uap3:AppExecutionAlias>
+        </uap3:Extension>
+
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="zip">
+            <uap:DisplayName>ms-resource:FileType_Zip</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\zip.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.zip</uap:FileType>
+              <uap:FileType>.zipx</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sevenzip">
+            <uap:DisplayName>ms-resource:FileType_SevenZip</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\sevenzip.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.7z</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="rar">
+            <uap:DisplayName>ms-resource:FileType_Rar</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\rar.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rar</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="tar">
+            <uap:DisplayName>ms-resource:FileType_Tar</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\tar.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.tar</uap:FileType>
+              <uap:FileType>.tgz</uap:FileType>
+              <uap:FileType>.tbz</uap:FileType>
+              <uap:FileType>.txz</uap:FileType>
+              <uap:FileType>.tzst</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="compressed">
+            <uap:DisplayName>ms-resource:FileType_Compressed</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\compressed.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.gz</uap:FileType>
+              <uap:FileType>.bz2</uap:FileType>
+              <uap:FileType>.xz</uap:FileType>
+              <uap:FileType>.zst</uap:FileType>
+              <uap:FileType>.lzma</uap:FileType>
+              <uap:FileType>.z</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="lzh">
+            <uap:DisplayName>ms-resource:FileType_Lzh</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\lzh.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.lzh</uap:FileType>
+              <uap:FileType>.lha</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="archive">
+            <uap:DisplayName>ms-resource:FileType_Archive</uap:DisplayName>
+            <uap:Logo>Assets\FileTypes\archive.png</uap:Logo>
+            <uap:SupportedFileTypes>
+              <uap:FileType>.cab</uap:FileType>
+              <uap:FileType>.arj</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+
+        <!-- Windows 11 の最初の右クリックメニュー。ファイルとフォルダの両方に出す。 -->
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="*">
+              <desktop5:Verb Id="smarcivaZIP" Clsid="F25B0869-E77F-4627-AAA1-A00B930517F8" />
+            </desktop5:ItemType>
+            <desktop5:ItemType Type="Directory">
+              <desktop5:Verb Id="smarcivaZIP" Clsid="F25B0869-E77F-4627-AAA1-A00B930517F8" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="smarcivaZIP context menu">
+              <com:Class Id="F25B0869-E77F-4627-AAA1-A00B930517F8" Path="SmarcivaZip.ShellExt.dll" ThreadingModel="STA" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>

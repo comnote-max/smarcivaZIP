@@ -577,6 +577,9 @@ Trình đơn chuột phải thì vẫn chạy bình thường. Muốn đổi vi�
 
 Mở phần ứng dụng mặc định ngay bây giờ chứ?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Ở phiên bản Microsoft Store, Windows quản lý liên kết tệp và trình đơn chuột phải. Trên Windows 11, smarcivaZIP hiện ngay trong trình đơn chuột phải đầu tiên. Để chọn ứng dụng mở một loại tệp khi nháy đúp, hãy dùng phần ứng dụng mặc định của Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (hiện tại: {1})</value>
   </data>

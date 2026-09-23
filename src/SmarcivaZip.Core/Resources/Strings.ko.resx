@@ -577,6 +577,9 @@
 
 "기본 앱"을 열까요?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Microsoft Store 버전에서는 파일 연결과 오른쪽 클릭 메뉴를 Windows가 관리합니다. Windows 11에서는 smarcivaZIP이 첫 번째 오른쪽 클릭 메뉴에 바로 표시됩니다. 두 번 클릭했을 때 어떤 앱으로 열지는 Windows의 '기본 앱'에서 선택하세요.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (현재: {1})</value>
   </data>

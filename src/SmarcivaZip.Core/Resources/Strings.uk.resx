@@ -577,6 +577,9 @@
 
 Відкрити типові застосунки зараз?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>У версії з Microsoft Store зв'язками з файлами та контекстним меню керує Windows. У Windows 11 smarcivaZIP з'являється одразу в першому контекстному меню. Щоб вибрати, який застосунок відкриває файли подвійним клацанням, скористайтеся типовими застосунками Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (зараз: {1})</value>
   </data>

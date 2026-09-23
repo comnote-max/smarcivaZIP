@@ -582,6 +582,9 @@
 
 क्या अभी तयशुदा ऐप्स खोलें?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Microsoft Store संस्करण में फ़ाइल-संबद्धता और दायाँ-क्लिक मेन्यू Windows सँभालता है। Windows 11 में smarcivaZIP सीधे पहले दायाँ-क्लिक मेन्यू में दिखता है। दोहरे क्लिक पर कौन-सा ऐप फ़ाइल खोले, यह Windows की तयशुदा ऐप्स में चुनें।</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (अभी: {1})</value>
   </data>

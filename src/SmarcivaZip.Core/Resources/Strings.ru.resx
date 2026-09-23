@@ -577,6 +577,9 @@
 
 Открыть приложения по умолчанию сейчас?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>В версии из Microsoft Store связями с файлами и контекстным меню управляет Windows. В Windows 11 smarcivaZIP появляется прямо в первом контекстном меню. Чтобы выбрать, какое приложение открывает файлы по двойному щелчку, используйте приложения по умолчанию Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (сейчас: {1})</value>
   </data>

@@ -577,6 +577,9 @@
 
 「既定のアプリ」を開きますか？</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>ストア版では、関連付けと右クリックメニューを Windows が管理します。Windows 11 では、右クリックして最初に出るメニューに smarcivaZIP が表示されます。ダブルクリックでどのアプリが開くかは、Windows の「既定のアプリ」で選んでください。</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  （現在: {1}）</value>
   </data>

@@ -26,8 +26,8 @@ public static class ShellRegistration
     /// <summary>アイコンを置くフォルダ名（実行ファイルからの相対）。</summary>
     private const string IconDirectoryName = "Icons";
 
-    /// <summary>メニューに出す解凍の動作。</summary>
-    private static readonly (string Verb, string LabelKey, string Argument)[] ExtractVerbs =
+    /// <summary>メニューに出す解凍の動作。ストア版のメニュー（ModernMenuFile）も同じものを使う。</summary>
+    internal static readonly (string Verb, string LabelKey, string Argument)[] ExtractVerbs =
     [
         ("10extract-auto", "Menu_ExtractHere", "--extract"),
         ("11extract-folder", "Menu_ExtractToFolder", "--extract-to-folder"),

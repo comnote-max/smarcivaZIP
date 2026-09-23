@@ -577,6 +577,9 @@ Menu klik kanan tetap berfungsi. Untuk mengubah perilaku klik ganda, bukalah apl
 
 Buka aplikasi bawaan sekarang?</value>
   </data>
+  <data name="Setup_PackagedNote" xml:space="preserve">
+    <value>Pada versi Microsoft Store, Windows mengelola pengaitan berkas dan menu klik kanan. Di Windows 11, smarcivaZIP langsung muncul di menu klik kanan pertama. Untuk memilih aplikasi yang membuka suatu jenis berkas saat diklik ganda, gunakan aplikasi bawaan Windows.</value>
+  </data>
   <data name="Setup_OwnedByOthersItem" xml:space="preserve">
     <value>　{0}  (saat ini: {1})</value>
   </data>

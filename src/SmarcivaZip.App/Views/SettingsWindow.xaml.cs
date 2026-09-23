@@ -91,7 +91,16 @@ public partial class SettingsWindow : Window
         PopulateChoices();
         LoadFromSettings();
         ShowEngineInformation();
-        UpdateRegistrationState();
+
+        if (PackageContext.IsPackaged)
+        {
+            ShellSection.Visibility = Visibility.Collapsed;
+            PackagedShellSection.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            UpdateRegistrationState();
+        }
     }
 
     private void PopulateChoices()
@@ -563,6 +572,14 @@ public partial class SettingsWindow : Window
         ApplyToSettings();
         _settings.Save();
         _settings.ApplyToDetector();
+
+        // ストア版では、右クリックメニューの中身を書き直すだけでよい（関連付けは Windows が管理する）。
+        if (PackageContext.IsPackaged)
+        {
+            App.RefreshModernMenu(_settings);
+            DialogResult = true;
+            return;
+        }
 
         // 設定を書いただけでは、拡張子も右クリックメニューも何も変わらない。
         // 「保存」を押した人はそれで反映されたつもりでいるので、ここで登録まで済ませる。
