@@ -66,6 +66,10 @@ function Find-SdkTool([string]$name) {
     return $found
 }
 
+# 7z.dll はリポジトリに含めていない。無ければ build.ps1 と同じく取ってくる。
+$missing = $Architectures | Where-Object { -not (Test-Path (Join-Path $repoRoot "native/win-$_/7z.dll")) }
+if ($missing) { & (Join-Path $PSScriptRoot 'fetch-7zip.ps1') -Architectures $missing }
+
 $makeappx = Find-SdkTool 'makeappx.exe'
 $makepri = Find-SdkTool 'makepri.exe'
 
