@@ -9,6 +9,16 @@
       <SolidColorBrush x:Key="Surface" Color="#FFFFFF" />
       <SolidColorBrush x:Key="SurfaceAlt" Color="#F5F6F8" />
       <SolidColorBrush x:Key="Border" Color="#D8DCE3" />
+      <!--
+        ボタンの枠線だけは、囲みや区切り線より濃くする。
+        #D8DCE3 は白地に対して 1.38:1 しかなく、字は読めてもボタンの輪郭が見えない。
+        「押せる物がそこにある」と分かるには、WCAG 1.4.11 の言う 3:1 が要る。
+        #8A94A4 で 3.06:1。地の色ではなく輪郭を直すのは、
+        薄い灰色で塗り潰すと今度は無効なボタンと見分けが付かなくなるため。
+      -->
+      <SolidColorBrush x:Key="ButtonBorder" Color="#8A94A4" />
+      <SolidColorBrush x:Key="ButtonBorderDisabled" Color="#C9CFD8" />
+      <SolidColorBrush x:Key="TextDisabled" Color="#767F8C" />
       <SolidColorBrush x:Key="Text" Color="#1B1F24" />
       <SolidColorBrush x:Key="TextMuted" Color="#5A6472" />
       <!--
@@ -62,7 +72,7 @@
         <Setter Property="MinWidth" Value="88" />
         <Setter Property="Background" Value="{StaticResource SurfaceAlt}" />
         <Setter Property="Foreground" Value="{StaticResource Text}" />
-        <Setter Property="BorderBrush" Value="{StaticResource Border}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorder}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
@@ -78,10 +88,20 @@
               </Border>
               <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                  <Setter TargetName="Shell" Property="Background" Value="#EBEEF3" />
+                  <Setter TargetName="Shell" Property="Background" Value="#E6EAF0" />
                 </Trigger>
+                <!-- 押した瞬間に色が動かないと、反応したのかどうかが分からない。 -->
+                <Trigger Property="IsPressed" Value="True">
+                  <Setter TargetName="Shell" Property="Background" Value="#D5DBE4" />
+                </Trigger>
+                <!--
+                  無効のときに Opacity を下げると、元から薄い枠線が完全に消えて
+                  ボタンがあること自体が見えなくなる。色を明示して薄めるだけにする。
+                -->
                 <Trigger Property="IsEnabled" Value="False">
-                  <Setter Property="Opacity" Value="0.5" />
+                  <Setter TargetName="Shell" Property="Background" Value="{StaticResource SurfaceAlt}" />
+                  <Setter TargetName="Shell" Property="BorderBrush" Value="{StaticResource ButtonBorderDisabled}" />
+                  <Setter Property="Foreground" Value="{StaticResource TextDisabled}" />
                   <Setter Property="Cursor" Value="Arrow" />
                 </Trigger>
               </ControlTemplate.Triggers>
@@ -107,8 +127,17 @@
                 <Trigger Property="IsMouseOver" Value="True">
                   <Setter TargetName="Shell" Property="Background" Value="{StaticResource AccentHover}" />
                 </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                  <Setter TargetName="Shell" Property="Background" Value="#113C82" />
+                </Trigger>
+                <!--
+                  ここも Opacity では薄い青地に白文字が残って読めなくなる。
+                  無効なら青である必要も無いので、灰色に置き換える。
+                -->
                 <Trigger Property="IsEnabled" Value="False">
-                  <Setter Property="Opacity" Value="0.5" />
+                  <Setter TargetName="Shell" Property="Background" Value="{StaticResource SurfaceAlt}" />
+                  <Setter Property="Foreground" Value="{StaticResource TextDisabled}" />
+                  <Setter Property="Cursor" Value="Arrow" />
                 </Trigger>
               </ControlTemplate.Triggers>
             </ControlTemplate>
