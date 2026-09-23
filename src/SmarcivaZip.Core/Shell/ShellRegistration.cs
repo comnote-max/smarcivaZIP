@@ -144,7 +144,14 @@ public static class ShellRegistration
         return null;
     }
 
-    public static void Unregister(IReadOnlyList<string> extensions)
+    /// <summary>
+    /// smarcivaZIP が書いたものを残らず取り除く。アンインストール時にも呼ばれる。
+    ///
+    /// 関連付けた拡張子は設定ファイルの一覧に頼らず、レジストリを総当たりして探す。
+    /// 設定から外したあとの拡張子や、設定ファイルが消えた後の状態でも取り残さないためで、
+    /// アンインストーラが「一覧に載っていた分だけ消す」では、きれいに消えたことにならない。
+    /// </summary>
+    public static void Unregister()
     {
         using (RegistryKey? classes = Registry.CurrentUser.OpenSubKey(ClassesRoot, writable: true))
         {
@@ -159,7 +166,11 @@ public static class ShellRegistration
             DeleteSubKeyTreeIfExists(classes, $@"*\shell\{MenuKeyName}");
             DeleteSubKeyTreeIfExists(classes, $@"Directory\shell\{MenuKeyName}");
 
-            RemoveFileAssociations(extensions);
+            // 「プログラムから開く」で実行ファイルを直接選ぶと Windows が作る登録。
+            // 本体を消したあとに残ると、一覧に開けない smarcivaZIP が出続ける。
+            DeleteSubKeyTreeIfExists(classes, @"Applications\SmarcivaZip.exe");
+
+            RemoveFileAssociations(classes.GetSubKeyNames().Where(name => name.StartsWith('.')));
         }
 
         NotifyShell();
@@ -173,28 +184,60 @@ public static class ShellRegistration
             string normalized = Normalize(extension);
             if (normalized.Length == 0) continue;
 
-            using RegistryKey? key = Registry.CurrentUser.OpenSubKey(
-                $@"{ClassesRoot}\.{normalized}", writable: true);
-            if (key is null) continue;
+            string keyPath = $@"{ClassesRoot}\.{normalized}";
+            bool touched = false;
 
-            using (RegistryKey? progIds = key.OpenSubKey("OpenWithProgids", writable: true))
+            using (RegistryKey? key = Registry.CurrentUser.OpenSubKey(keyPath, writable: true))
             {
-                if (progIds is not null)
+                if (key is null) continue;
+
+                using (RegistryKey? progIds = key.OpenSubKey("OpenWithProgids", writable: true))
                 {
-                    foreach (string name in progIds.GetValueNames())
+                    if (progIds is not null)
                     {
-                        if (name.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+                        foreach (string name in progIds.GetValueNames())
+                        {
+                            if (!name.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase)) continue;
                             progIds.DeleteValue(name, throwOnMissingValue: false);
+                            touched = true;
+                        }
                     }
+                }
+
+                // 既定として自分を書いていた場合だけ消す。他のアプリの設定は触らない。
+                if (key.GetValue(null) is string current
+                    && current.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    key.DeleteValue(string.Empty, throwOnMissingValue: false);
+                    touched = true;
                 }
             }
 
-            // 既定として自分を書いていた場合だけ消す。他のアプリの設定は触らない。
-            if (key.GetValue(null) is string current
-                && current.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
+            // 自分が作った空の入れ物も片付ける。ただし自分が触った拡張子に限り、
+            // 中身が本当に空のときだけにする。他のアプリが何か置いていれば残る。
+            if (touched)
             {
-                key.DeleteValue(string.Empty, throwOnMissingValue: false);
+                DeleteKeyIfEmpty($@"{keyPath}\OpenWithProgids");
+                DeleteKeyIfEmpty(keyPath);
             }
+        }
+    }
+
+    /// <summary>値もサブキーも無いキーだけを消す。</summary>
+    private static void DeleteKeyIfEmpty(string path)
+    {
+        try
+        {
+            using (RegistryKey? key = Registry.CurrentUser.OpenSubKey(path))
+            {
+                if (key is null || key.ValueCount > 0 || key.SubKeyCount > 0) return;
+            }
+
+            Registry.CurrentUser.DeleteSubKey(path, throwOnMissingSubKey: false);
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or InvalidOperationException)
+        {
+            // 消せなくても害は無い。空のキーが残るだけ。
         }
     }
 

@@ -501,8 +501,7 @@ public partial class SettingsWindow : Window
     {
         try
         {
-            ShellRegistration.Unregister(
-                _settings.ExtensionChoices.Concat(_settings.AssociatedExtensions).Distinct().ToList());
+            ShellRegistration.Unregister();
             UpdateRegistrationState();
             MessageBox.Show(this, Strings.Get("Setup_UnregisteredMessage"), Strings.Get("Common_AppName"),
                 MessageBoxButton.OK, MessageBoxImage.Information);

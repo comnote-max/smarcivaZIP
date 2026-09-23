@@ -46,25 +46,33 @@ public partial class App : Application
         CommandLine command = CommandLine.Parse(e.Args);
         Diagnostics.Trace($"start mode={command.Mode} paths={string.Join(" | ", command.Paths)}");
 
+        // 失敗したことを呼び出し元（インストーラなど）が知る手段は終了コードしかない。
+        int exitCode = 0;
+
         try
         {
             await RunAsync(command);
         }
         catch (SevenZipNotFoundException ex)
         {
+            exitCode = 1;
             Diagnostics.Error("startup", ex);
-            ShowError(ex.Message, "App_EngineMissingTitle");
+            if (!command.Quiet) ShowError(ex.Message, "App_EngineMissingTitle");
         }
         catch (Exception ex)
         {
+            exitCode = 1;
             Diagnostics.Error("startup", ex);
-            ShowError(Strings.Format("App_ErrorWithLog", ex.Message, Diagnostics.LogPath),
-                "App_ErrorTitle");
+            if (!command.Quiet)
+            {
+                ShowError(Strings.Format("App_ErrorWithLog", ex.Message, Diagnostics.LogPath),
+                    "App_ErrorTitle");
+            }
         }
         finally
         {
             _archiveWorker.Dispose();
-            Shutdown();
+            Shutdown(exitCode);
         }
     }
 
@@ -91,13 +99,16 @@ public partial class App : Application
                 break;
 
             case AppMode.Register:
-                RegisterShell();
+                RegisterShell(command.Quiet);
                 break;
 
             case AppMode.Unregister:
-                ShellRegistration.Unregister(_settings.AssociatedExtensions);
-                MessageBox.Show(Strings.Get("Setup_UnregisteredMessage"), Strings.Get("Common_AppName"),
-                    MessageBoxButton.OK, MessageBoxImage.Information);
+                ShellRegistration.Unregister();
+                if (!command.Quiet)
+                {
+                    MessageBox.Show(Strings.Get("Setup_UnregisteredMessage"), Strings.Get("Common_AppName"),
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
                 break;
 
             case AppMode.Extract:
@@ -457,7 +468,7 @@ public partial class App : Application
         window.ShowDialog();
     }
 
-    private void RegisterShell()
+    private void RegisterShell(bool quiet)
     {
         IReadOnlyList<OutputFormat> formats;
         try { formats = OutputFormat.GetAvailable(SevenZipLibrary.Instance); }
@@ -468,6 +479,8 @@ public partial class App : Application
 
         ShellRegistration.Register(ExecutablePath, _settings.AssociatedExtensions, menuItems,
             _settings.ExtensionChoices);
+
+        if (quiet) return;
 
         MessageBox.Show(Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
             MessageBoxButton.OK, MessageBoxImage.Information);

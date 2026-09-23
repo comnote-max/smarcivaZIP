@@ -172,31 +172,64 @@ ProgID を分けています（`smarcivaZIP.Zip` など）。
 
 ## インストール
 
-[Releases](https://github.com/comnote-max/smarcivaZIP/releases) から
-好きな場所に展開するだけです。インストーラーはありません。
+[Releases](https://github.com/comnote-max/smarcivaZIP/releases) から、
+どちらかの形でどうぞ。
 
-| ファイル | サイズ | 必要なもの |
+| ファイル | サイズ | 向いている人 |
 |---|---|---|
-| `smarcivaZIP-<ver>-win-x64.zip` | 約 53 MB | なし（ランタイム同梱） |
-| `smarcivaZIP-<ver>-win-x64-runtime-required.zip` | 約 1 MB | [.NET 9 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/9.0) |
+| `smarcivaZIP-<ver>-setup-x64.exe` | 約 54 MB | ふつうはこれ。インストーラ |
+| `smarcivaZIP-<ver>-win-x64.zip` | 約 53 MB | 好きな場所に置いて使いたい（ポータブル） |
+| `smarcivaZIP-<ver>-win-x64-runtime-required.zip` | 約 2 MB | [.NET 9 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/9.0) を入れてある |
 
-ARM 版の Windows では `win-arm64` の方を使ってください。
-迷ったら同梱版で構いません。
+ARM 版の Windows では `arm64` の付いた方を使ってください。
 
-右クリックメニューと関連付けを使うには、`SmarcivaZip.exe` を起動して
-「関連付け」タブの **登録する** を押してください。管理者権限は不要です。
+### インストーラ
 
-> **Windows 11 での注意**
-> 右クリックメニューは「その他のオプションを確認」の中に入ります。
-> 第一階層に出すには MSIX パッケージ化とコード署名証明書が必要なため、v2 の課題としています。
+使用許諾に同意して「次へ」を押していくだけです。**管理者権限は要りません**
+（`%LOCALAPPDATA%\Programs\smarcivaZIP` に、使っている人の分だけ入ります）。
+右クリックメニューと関連付けはインストールの最後に登録されます。
+途中の「右クリックメニューと関連付けを登録する」を外せば、登録せずに入れることもできます。
+
+入れ直すと上書き更新になり、設定はそのまま引き継がれます。
+
+> **「Windows によって PC が保護されました」と出たら**
+> コード署名をしていないため、SmartScreen が警告を出します。
+> 「詳細情報」→「実行」で進めます。心配な場合は、Releases の `SHA256SUMS.txt` と
+> ダウンロードしたファイルのハッシュが一致するか確かめてください。
+
+サイレントインストールもできます（配布や自動化向け）。
+
+```
+smarcivaZIP-<ver>-setup-x64.exe /VERYSILENT /SUPPRESSMSGBOXES
+smarcivaZIP-<ver>-setup-x64.exe /VERYSILENT /MERGETASKS="!shellintegration"   ← 右クリックメニューを登録しない
+```
+
+### ポータブル版（ZIP）
+
+好きな場所に展開して `SmarcivaZip.exe` を起動し、
+「設定」タブの **登録する** を押してください。管理者権限は不要です。
+
+### Windows 11 での注意
+
+右クリックメニューは「その他のオプションを確認」の中に入ります。
+第一階層に出すには MSIX パッケージ化とコード署名証明書が必要なため、v2 の課題としています。
 
 `.zip` のように既に他のアプリが握っている拡張子は、
 Windows の「既定のアプリ」で選び直す必要があります（設定画面にボタンがあります）。
 
 ### アンインストール
 
-設定画面の「関連付け」タブで **解除する** を押してから、フォルダごと削除してください。
-レジストリは `HKEY_CURRENT_USER\Software\Classes` の下しか触りません。
+**インストーラで入れた場合**：Windows の「設定」→「アプリ」→「インストールされているアプリ」から
+smarcivaZIP をアンインストールしてください。右クリックメニューと関連付けも消えます。
+最後に「設定も削除しますか？」と聞かれます（既定は残す）。
+
+関連付けは、設定画面に載っている拡張子だけでなく、smarcivaZIP を指している登録を
+レジストリから総当たりで探して消します。途中でチェックを外した拡張子も取り残しません。
+他のアプリの関連付け（Lhaplus や Windows 標準の ZIP など）には触りません。
+
+**ポータブル版の場合**：設定画面の **解除する** を押してから、フォルダごと削除してください。
+
+どちらの場合も、レジストリは `HKEY_CURRENT_USER\Software\Classes` の下しか触りません。
 設定ファイルは `%APPDATA%\smarcivaZIP\` にあります。
 
 ---
@@ -227,6 +260,7 @@ SmarcivaZip.exe --compress zip <パス...>          ZIP に圧縮する
 SmarcivaZip.exe --compress 7z --password <パス...> パスワード付きで圧縮する
 SmarcivaZip.exe --settings                        設定画面を開く
 SmarcivaZip.exe --register / --unregister         関連付けの登録・解除
+                          --quiet を付けると、完了のダイアログを出さず終了コードだけで返す
 ```
 
 ---
@@ -239,9 +273,14 @@ SmarcivaZip.exe --register / --unregister         関連付けの登録・解除
 # 7z.dll を 7-zip.org から取得する（native/ に置かれる。リポジトリには含まれない）
 ./tools/fetch-7zip.ps1
 
-# テストを回して配布用の ZIP を作る
+# テストを回して、配布用の ZIP とインストーラを作る
 ./tools/build.ps1
 ```
+
+インストーラの作成には [Inno Setup 6](https://jrsoftware.org/isinfo.php) が要ります
+（`winget install JRSoftware.InnoSetup`）。無ければ警告を出して ZIP だけ作ります。
+定義は `installer/smarcivaZIP.iss`、インストール時に表示する使用許諾は
+`installer/license/` にあります。
 
 開発中は普通に `dotnet build` / `dotnet test` で動きます。
 
@@ -282,6 +321,8 @@ src/
   SmarcivaZip.App/      WPF の画面
     Assets/             アイコン（.ico は tools/make-icon.py で生成）
   SmarcivaZip.Tests/    テスト
+installer/              インストーラ（Inno Setup）と、表示する使用許諾
+tools/                  ビルド、7z.dll の取得、アイコン生成
 ```
 
 詳しい仕様は [docs/SPEC.md](docs/SPEC.md) にあります。
@@ -298,6 +339,8 @@ src/
 ## ライセンス
 
 smarcivaZIP 本体は [MIT License](LICENSE) です。
+**無保証**で提供され、使用によって生じた損害について作者は責任を負いません
+（インストール時にも同じ内容を表示し、同意を得ています）。
 
 同梱している `7z.dll` は 7-Zip（Igor Pavlov 氏）のもので、**LGPL-2.1 以降**が適用されます。
 動的リンクで利用しているだけなので、利用者は同じフォルダの `7z.dll` を

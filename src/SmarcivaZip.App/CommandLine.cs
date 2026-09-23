@@ -36,12 +36,20 @@ public sealed class CommandLine
     /// <summary>展開先フォルダを必ず作る（--extract-to-folder）。</summary>
     public bool ForceOutputFolder { get; private init; }
 
+    /// <summary>
+    /// 完了や失敗をダイアログで知らせず、終了コードだけで返す（--quiet）。
+    /// インストーラとアンインストーラが登録・解除に使う。サイレントインストールの途中で
+    /// 「登録しました」の OK 待ちになると、そこで止まって先に進まなくなるため。
+    /// </summary>
+    public bool Quiet { get; private init; }
+
     public static CommandLine Parse(string[] args)
     {
         AppMode mode = AppMode.Settings;
         string? formatId = null;
         bool askPassword = false;
         bool forceFolder = false;
+        bool quiet = false;
         var paths = new List<string>();
         bool modeSpecified = false;
 
@@ -92,6 +100,10 @@ public sealed class CommandLine
                     modeSpecified = true;
                     break;
 
+                case "--quiet" or "-q":
+                    quiet = true;
+                    break;
+
                 case "--help" or "-h" or "/?":
                     mode = AppMode.Help;
                     modeSpecified = true;
@@ -111,7 +123,8 @@ public sealed class CommandLine
             Mode = mode,
             FormatId = formatId,
             AskPassword = askPassword,
-            ForceOutputFolder = forceFolder
+            ForceOutputFolder = forceFolder,
+            Quiet = quiet
         };
 
         result.Paths.AddRange(paths);

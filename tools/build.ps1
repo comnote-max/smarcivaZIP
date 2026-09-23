@@ -1,7 +1,7 @@
 ﻿#requires -Version 5.1
 <#
 .SYNOPSIS
-    smarcivaZIP を配布用に発行し、ポータブル ZIP を作る。
+    smarcivaZIP を配布用に発行し、ポータブル ZIP とインストーラを作る。
 
 .DESCRIPTION
     ランタイム同梱の単一 exe として発行する。Lhaplus のように
@@ -14,6 +14,7 @@
 .EXAMPLE
     ./tools/build.ps1
     ./tools/build.ps1 -Runtimes win-x64 -Configuration Debug
+    ./tools/build.ps1 -SkipInstaller          # Inno Setup が無い環境
 #>
 [CmdletBinding()]
 param(
@@ -27,7 +28,14 @@ param(
     # 同梱版は 57 MB 前後あり、Lhaplus の後継としては重い。
     [switch]$SkipFrameworkDependent,
 
-    [switch]$SkipTests
+    [switch]$SkipTests,
+
+    # インストーラを作らない。Inno Setup が無い環境で ZIP だけ欲しいとき用。
+    [switch]$SkipInstaller,
+
+    # Inno Setup が見つからなければ失敗させる。CI とリリースで使う。
+    # 手元では、無ければ警告して ZIP だけ作る。
+    [switch]$RequireInstaller
 )
 
 $ErrorActionPreference = 'Stop'
@@ -94,9 +102,46 @@ function Publish-Variant {
     Write-Host "  -> $(Split-Path -Leaf $archive) ($sizeMb MB)"
 }
 
+function Find-InnoCompiler {
+    $candidates = @(
+        $env:ISCC,
+        (Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'),
+        (Join-Path $env:ProgramFiles 'Inno Setup 6\ISCC.exe'),
+        (Join-Path $env:LOCALAPPDATA 'Programs\Inno Setup 6\ISCC.exe')
+    )
+    $candidates | Where-Object { $_ -and (Test-Path $_) } | Select-Object -First 1
+}
+
+# インストーラはランタイム同梱版だけから作る。インストーラで入れる人に
+# 「.NET を別に入れてください」と言うのは、入れる手順を一つ増やすだけなので。
+function Build-Installer {
+    param([string]$Runtime)
+
+    $iscc = Find-InnoCompiler
+    if (-not $iscc) {
+        if ($RequireInstaller) { throw 'Inno Setup 6 (ISCC.exe) was not found.' }
+        Write-Warning 'Inno Setup 6 was not found; skipping the installer. Install it with: winget install JRSoftware.InnoSetup'
+        return
+    }
+
+    $arch = $Runtime -replace '^win-', ''
+    $script = Join-Path $repoRoot 'installer/smarcivaZIP.iss'
+    & $iscc '/Q' "/DAppVersion=$version" "/DArch=$arch" $script
+    if ($LASTEXITCODE -ne 0) { throw "Installer build failed for $Runtime." }
+
+    $setup = Join-Path $distRoot "smarcivaZIP-$version-setup-$arch.exe"
+    $sizeMb = [math]::Round((Get-Item $setup).Length / 1MB, 1)
+    Write-Host "  -> $(Split-Path -Leaf $setup) ($sizeMb MB)"
+}
+
 foreach ($runtime in $Runtimes) {
     Write-Host "=== Publishing $runtime (self-contained) ==="
     Publish-Variant -Runtime $runtime -SelfContained $true -Suffix ''
+
+    if (-not $SkipInstaller) {
+        Write-Host "=== Building installer for $runtime ==="
+        Build-Installer -Runtime $runtime
+    }
 
     if (-not $SkipFrameworkDependent) {
         Write-Host "=== Publishing $runtime (requires .NET Desktop Runtime) ==="

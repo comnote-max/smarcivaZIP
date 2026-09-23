@@ -52,12 +52,26 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Build portable archives
+      # ランナーのイメージに入っていないこともあるので、無ければ入れる。
+      - name: Ensure Inno Setup
         shell: pwsh
-        run: ./tools/build.ps1 -SkipTests
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) {
+            choco install innosetup -y --no-progress
+          }
+
+      - name: Build portable archives and installers
+        shell: pwsh
+        run: ./tools/build.ps1 -SkipTests -RequireInstaller
 
       - uses: actions/upload-artifact@v4
         with:
           name: smarcivazip-portable
           path: dist/*.zip
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smarcivazip-installer
+          path: dist/*-setup-*.exe
           if-no-files-found: error

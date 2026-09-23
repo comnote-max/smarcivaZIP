@@ -1,0 +1,7 @@
+
+# Inno Setup の定義と、インストーラで表示する使用許諾。
+# Windows の表示部品は LF だけの改行を改行と見なさないことがあるので、CRLF に固定する。
+# BOM も付けてある（無いと Inno Setup が UTF-8 と見なさず文字化けする）。
+installer/*.iss         text eol=crlf
+installer/license/*.txt text eol=crlf
+installer/images/*.bmp  binary
