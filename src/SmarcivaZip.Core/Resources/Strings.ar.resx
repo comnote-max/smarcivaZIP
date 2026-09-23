@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>برنامج ضغط بسيط يُستعمل بالطريقة نفسها التي اعتدتها في Lhaplus، لكنه يتعامل مع RAR5 وZstandard وأسماء الملفات المشوّهة والأرشيفات المُنشأة على macOS.</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>محرّك الأرشفة</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>يستعمل الملف 7z.dll من 7-Zip.
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>الصيغ المدعومة</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>فك الضغط ({0} نوعًا): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>لم يُعثر على الملف 7z.dll، لذا لا يمكن عرض قائمة الصيغ.</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>الضغط: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>برنامج smarcivaZIP نفسه يخضع لرخصة MIT. أما الملف 7z.dll المرفق فمأخوذ من 7-Zip (إيغور بافلوف) ويخضع لرخصة LGPL-2.1 أو أحدث، كما يخضع الجزء الخاص بفك ضغط RAR لقيد unRAR. التفاصيل في الملف المرفق THIRD-PARTY-NOTICES.md.</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>الرخصة</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>الإصدار {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>كل الملفات</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>حُجب {0} من المدخلات التي حاولت الكتابة خارج مجلد الوجهة. قد يكون هذا الأرشيف مُعدًّا بسوء نية.</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>يتضخم هذا الأرشيف إلى حجم غير معتاد عند فك ضغطه.
+
+{0}
+
+هل تريد المتابعة؟</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>تعذّر الضغط</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>الضغط غير ممكن</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>لم يُعثر على محرّك الأرشفة</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>  - {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+حُفظت التفاصيل في:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>تعذّر فك الضغط</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>  و{0} من الأخطاء الأخرى</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>تعذّر الفتح</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>  - {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>حفظ باسم</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>صيغة غير معروفة: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>تعذّرت قراءة {0} من الملفات، فلم تُدرَج في الأرشيف.
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>تعذّر فك ضغط جزء من المحتوى لأن كلمة السر غير صحيحة.</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>لم يُعثر على الملف: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>صيغة غير مدعومة أو ملف تالف: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>نسبة الضغط تبلغ {0} ضعفًا، وهي نسبة مرتفعة على غير العادة: {1} تصبح {2}.</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>يصبح حجمه بعد فك الضغط {0}.</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>يحتوي الأرشيف على {0} مدخلة (الحد: {1}).</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>السيريلية (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>اليابانية</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>الكورية</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>الصينية المبسطة</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>الصينية التقليدية</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>يونيكود</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>أوروبية غربية</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - برنامج ضغط بسيط
+
+طريقة الاستعمال:
+  SmarcivaZip.exe &lt;أرشيف&gt;
+      فك ضغطه
+  SmarcivaZip.exe --extract &lt;أرشيف&gt;
+      فك الضغط بجوار الأرشيف
+  SmarcivaZip.exe --extract-to-folder &lt;أرشيف&gt;
+      فك الضغط في مجلد جديد
+  SmarcivaZip.exe --extract-preview &lt;أرشيف&gt;
+      مراجعة الترميز ثم فك الضغط
+  SmarcivaZip.exe --compress &lt;صيغة&gt; &lt;مسار...&gt;
+      الضغط (الصيغ: zip و7z وtar.gz وغيرها)
+  SmarcivaZip.exe --compress &lt;صيغة&gt; --password &lt;مسار...&gt;
+      الضغط مع كلمة سر
+  SmarcivaZip.exe --settings
+      فتح نافذة الإعدادات
+  SmarcivaZip.exe --register
+      تسجيل الاقترانات وقائمة السياق
+  SmarcivaZip.exe --unregister
+      إلغاء التسجيل</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>أخرى</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>استعادة الإعدادات الافتراضية</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>تعذّر الضغط (0x{0}).</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>لا يمكن الكتابة بصيغة {0}.</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>هذا الملف 7z.dll لا يستطيع إنشاء أرشيفات {0}.</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>حدث خطأ أثناء الضغط.</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>لم يُعثر على ملفات لضغطها.</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>لا يوجد ما يُضغط.</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>الصيغة الافتراضية</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>مستوى الضغط</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>كلما ارتفع المستوى صغر حجم الأرشيف وطال الوقت. ما لم يكن لديك سبب خاص، يكفي المستوى العادي.</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>زر الحفظ يطبّق هذا على قائمة السياق.</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>الصيغ الظاهرة في قائمة السياق</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>تظهر الصيغ المؤشَّرة داخل smarcivaZIP في قائمة السياق، بترتيب هذه القائمة.</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>إلى الأسفل</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>إلى الأعلى</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>السؤال عن مكان الحفظ قبل الضغط</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>إظهار تأكيد الترميز دائمًا قبل فك الضغط</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>عند إيقافه لا يظهر التأكيد إلا حين يكون الاستنتاج غير مؤكد. اتركه متوقفًا كي يفك النقر المزدوج الضغط فورًا.</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>تلقائي (حسب لغة الواجهة)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>إعادة تركيب الحروف المفكّكة (NFD)</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>الأرشيفات المُنشأة على macOS تحفظ حرفًا مثل «غ» على هيئة «ع» مع علامة منفصلة. وبدون هذا الخيار تبدو تلك الأسماء مكسورة على Windows.</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>اللغة المفضَّلة</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ملفات ZIP لا تذكر عادةً ترميز أسماء ملفاتها، فلا بد من تخمينه. هنا تحدّد أي لغة تفوز حين يكون الفارق ضئيلًا.</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>التأكيد</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>قيمة CRC غير متطابقة؛ قد يكون الملف تالفًا.</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>توجد بيانات زائدة بعد نهاية الأرشيف.</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>البيانات تالفة.</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>تعذّر فك الضغط ({0}).</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>تعذّر فك الضغط (0x{0}).</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>الترويسات تالفة.</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>لم يُتعرَّف على هذا الملف كأرشيف.</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>تعذّرت قراءة البيانات.</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>ينتهي الأرشيف قبل أوانه.</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>طريقة الضغط هذه غير مدعومة.</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>كلمة السر غير صحيحة.</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>صيغة {0}</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>غير مدعومة في هذا الملف 7z.dll</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>استعراض...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>اختر مجلد الوجهة</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>إذا وُجد ملف بالاسم نفسه</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>الاستبدال</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>الحفظ باسم آخر (مستحسن)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>التخطي</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>نقل الأرشيف إلى سلة المحذوفات عند النجاح</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>إزالة بيانات macOS الإضافية (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>إزالة Thumbs.db وdesktop.ini</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>إنشاء مجلد باسم الأرشيف دائمًا</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>عند الحاجة فقط (مستحسن)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>إن كان المحتوى كله داخل مجلد واحد أصلًا فسيُفك كما هو، وإلا أُنشئ مجلد.</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>إنشاء المجلد</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>عدم إنشاء مجلد أبدًا</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>الإبقاء على علامة «جاء من الإنترنت» (Mark of the Web)</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>فتح المجلد بعد الانتهاء</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>في مجلد ثابت دائمًا</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>مكان فك الضغط</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>بجوار الأرشيف</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>استعادة تاريخ الملفات ووقتها</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>في مثل tar.gz، فك ملف tar الداخلي في الخطوة نفسها</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>أرشيف</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>ملف مضغوط</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>أرشيف LZH</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>أرشيف RAR</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>أرشيف 7z</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>أرشيف TAR</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>أرشيف ZIP</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>الأسرع</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>الأقصى</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>عادي (مستحسن)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>بدون ضغط (سريع)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>فائق (بطيء)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>الضغط إلى {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>الضغط إلى {0} (بكلمة سر)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>فك الضغط هنا</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>فك الضغط مع اختيار الترميز...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>فك الضغط في مجلد جديد</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>الإعدادات...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>اكتب كلمة السر في الحقل الأول، ثم اكتبها مرة أخرى في الحقل الثاني للتأكيد. إن نسيتها تعذّر الوصول إلى المحتوى.</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>تعيين كلمة سر</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>الملف {0} مشفَّر. اكتب كلمة السر الخاصة به.</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>كلمة السر مطلوبة</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>ما كتبته في الحقلين غير متطابق. أعد الكتابة.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>اكتب كلمة سر.</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>الترميز</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  — المُكتشَف</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>إزالة __MACOSX / ._* / .DS_Store</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>فك الضغط بهذه الإعدادات</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> يبدو أن هذا الأرشيف أُنشئ على macOS.</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... و{0} غيرها</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>تصحيح الحروف المفكّكة (NFD) القادمة من macOS</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>صيغة {0}، {1} مدخلة. {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>مراجعة الترميز - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>الترميز المُكتشَف صحيح على الأرجح التام.</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>الاكتشاف غير مؤكد. انظر إلى القائمة أدناه واختر الترميز الذي تبدو معه الأسماء مقروءة.</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>الترميز المُكتشَف صحيح على الأغلب، لكن ألقِ نظرة على كل حال.</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>جارٍ الإلغاء...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>ضغط {0} من العناصر</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>ضغط {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>فك ضغط {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>جارٍ التحضير...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>جارٍ العمل...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>إعدادات smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>إضافة...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>إضافة كل الامتدادات التي يستطيع 7z.dll فتحها</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>النقطة في البداية غير لازمة (مثال: alz).</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>إضافة امتداد</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>تأشير الكل</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>زر الحفظ يطبّق هذه التأشيرات. أما الامتدادات التي يملكها تطبيق آخر، مثل ‎.zip، فيلزم تغييرها أيضًا من التطبيقات الافتراضية في Windows.</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>الامتدادات التي يفتحها النقر المزدوج</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>الامتدادات المؤشَّرة تُفتح بواسطة smarcivaZIP. وإزالة التأشير تُلغي الاقتران.</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>يسري عند تشغيل smarcivaZIP في المرة القادمة.</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>لم يبقَ شيء لإضافته.</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>فتح التطبيقات الافتراضية في Windows</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>تم التسجيل.
+
+هذه الأنواع من الملفات ما زال يفتحها تطبيق آخر عند النقر المزدوج، لأن Windows يترك هذا الاختيار للمستخدم:
+
+{0}
+
+ومع ذلك تعمل قائمة السياق. ولتغيير ما يفعله النقر المزدوج، افتح التطبيقات الافتراضية في Windows، أو انقر على ملف بالزر الأيمن واختر «فتح باستخدام» ثم «اختيار تطبيق آخر» ثم «استخدام هذا التطبيق دائمًا».
+
+هل تفتح التطبيقات الافتراضية الآن؟</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>  {0}  (حاليًا: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>فشل التسجيل.
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>لم تُسجَّل بعدُ قائمة السياق ولا اقترانات الملفات.
+
+هل تسجّلها الآن؟ بدونها لا يمكن استعمال smarcivaZIP من مستكشف الملفات.</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>تم التسجيل.
+
+على Windows 11 يظهر smarcivaZIP ضمن «إظهار المزيد من الخيارات» في قائمة السياق.</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>إعادة التسجيل</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>قائمة السياق واقترانات الملفات</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>لم يُسجَّل بعد. التسجيل يضيف smarcivaZIP إلى قائمة السياق.</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>مُسجَّل. يمكن استعمال smarcivaZIP من قائمة سياق مستكشف الملفات.</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>إزالة تأشير الكل</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>إلغاء التسجيل</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>فشل إلغاء التسجيل.
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>أُلغي التسجيل.</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>على Windows 11 يقع عنصر قائمة السياق داخل «إظهار المزيد من الخيارات». هكذا صُمم Windows نفسه.</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>لم يُعثر على الملف 7z.dll.
+
+ضع 7z.dll بجوار smarcivaZIP، أو ثبّت 7-Zip.
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>الضغط</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>الترميز</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>فك الضغط</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+</root>

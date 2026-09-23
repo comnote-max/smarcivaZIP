@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>Een eenvoudig archiefprogramma dat je net zo bedient als Lhaplus, maar dat wel overweg kan met RAR5, Zstandard, verhaspelde bestandsnamen en archieven die op macOS zijn gemaakt.</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>Archiefmotor</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>Gebruikt 7z.dll van 7-Zip.
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>Ondersteunde indelingen</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>Uitpakken ({0} soorten): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>7z.dll is niet gevonden, dus de lijst met indelingen kan niet worden getoond.</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>Inpakken: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>smarcivaZIP zelf valt onder de MIT-licentie. De meegeleverde 7z.dll komt uit 7-Zip (Igor Pavlov) en valt onder LGPL-2.1 of nieuwer; de code die RAR uitpakt valt daarnaast onder de unRAR-beperking. De details staan in het bijgeleverde THIRD-PARTY-NOTICES.md.</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>Licentie</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>Versie {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>Alle bestanden</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>Er zijn {0} onderdelen geblokkeerd die buiten de doelmap wilden schrijven. Dit archief is mogelijk met opzet zo gemaakt.</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>Uitgepakt wordt dit archief ongewoon groot.
+
+{0}
+
+Toch doorgaan?</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>Inpakken mislukt</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>Inpakken niet mogelijk</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>Archiefmotor niet gevonden</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+De details zijn bewaard in:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>Uitpakken mislukt</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　en nog {0} fouten</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>Openen lukt niet</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>Opslaan als</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>Onbekende indeling: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>{0} bestanden konden niet worden gelezen en zijn buiten het archief gebleven.
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>Een deel van de inhoud kon niet worden uitgepakt, omdat het wachtwoord niet klopt.</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>Bestand niet gevonden: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>Niet-ondersteunde indeling of beschadigd bestand: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>De compressieverhouding is {0}x en daarmee ongewoon hoog: {1} wordt {2}.</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>Uitgepakt wordt dat {0}.</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>Het archief bevat {0} onderdelen (grens: {1}).</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>Cyrillisch (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>Japans</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>Koreaans</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>Vereenvoudigd Chinees</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>Traditioneel Chinees</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>West-Europees</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - een eenvoudig archiefprogramma
+
+Gebruik:
+  SmarcivaZip.exe &lt;archief&gt;                   uitpakken
+  SmarcivaZip.exe --extract &lt;archief&gt;         naast het archief uitpakken
+  SmarcivaZip.exe --extract-to-folder &lt;archief&gt;
+                                              in een nieuwe map uitpakken
+  SmarcivaZip.exe --extract-preview &lt;archief&gt;
+                                              tekencodering nakijken en uitpakken
+  SmarcivaZip.exe --compress &lt;indeling&gt; &lt;pad...&gt;
+                                              inpakken (indelingen: zip, 7z, tar.gz...)
+  SmarcivaZip.exe --compress &lt;indeling&gt; --password &lt;pad...&gt;
+                                              met wachtwoord inpakken
+  SmarcivaZip.exe --settings                  het instellingenvenster openen
+  SmarcivaZip.exe --register                  koppelingen en contextmenu aanmelden
+  SmarcivaZip.exe --unregister                die weer verwijderen</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>Overig</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>Standaardwaarden herstellen</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>Opslaan</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>Inpakken mislukt (0x{0}).</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>De indeling {0} kan niet worden geschreven.</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>Deze 7z.dll kan geen {0}-archieven maken.</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>Er is een fout opgetreden tijdens het inpakken.</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>Er zijn geen bestanden gevonden om in te pakken.</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>Er valt niets in te pakken.</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>Standaardindeling</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>Compressieniveau</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>Hoe hoger het niveau, hoe kleiner het archief, maar hoe langer het duurt. Zonder bijzondere reden volstaat het normale niveau.</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>Opslaan past dit toe op het contextmenu.</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>Indelingen in het contextmenu</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>Aangevinkte indelingen verschijnen in het contextmenu onder smarcivaZIP, in de volgorde van deze lijst.</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>Omlaag</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>Omhoog</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>Voor het inpakken vragen waar het opgeslagen moet worden</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>Voor het uitpakken altijd de bevestiging van de tekencodering tonen</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>Uitgeschakeld verschijnt de bevestiging alleen wanneer de herkenning onzeker is. Laat hem uit, zodat dubbelklikken meteen uitpakt.</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>Automatisch (volgens de taal van het programma)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>Ontlede tekens (NFD) weer samenvoegen</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>Archieven die op macOS zijn gemaakt bewaren een naam als «ë» als «e» plus een los teken. Zonder deze optie zien zulke namen er op Windows kapot uit.</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>Voorkeurstaal</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ZIP-bestanden vermelden meestal niet in welke tekencodering hun bestandsnamen staan; die moet worden geraden. Hiermee bepaal je welke taal wint als het erom spant.</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>Bevestiging</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>De CRC-controle klopt niet; het bestand is mogelijk beschadigd.</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>Na het einde van het archief staan overtollige gegevens.</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>De gegevens zijn beschadigd.</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>Uitpakken mislukt ({0}).</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>Uitpakken mislukt (0x{0}).</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>De kopgegevens zijn beschadigd.</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>Dit bestand wordt niet herkend als archief.</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>De gegevens konden niet worden gelezen.</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>Het archief houdt te vroeg op.</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>Deze compressiemethode wordt niet ondersteund.</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>Het wachtwoord klopt niet.</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>{0}-indeling</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>Niet ondersteund door deze 7z.dll</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>Bladeren...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>Kies de doelmap</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>Als er al een bestand met dezelfde naam bestaat</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>Overschrijven</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>Onder een andere naam opslaan (aanbevolen)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>Overslaan</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>Het archief bij succes naar de prullenbak verplaatsen</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>Hulpbestanden van macOS weglaten (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Thumbs.db en desktop.ini weglaten</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>Altijd een map met de naam van het archief maken</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>Alleen wanneer het nodig is (aanbevolen)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>Zit de hele inhoud al in één map, dan wordt die zo uitgepakt; anders wordt er een map gemaakt.</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>Map maken</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>Nooit een map maken</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>De markering «afkomstig van internet» (Mark of the Web) behouden</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>De map daarna openen</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>Altijd in een vaste map</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>Waar wordt uitgepakt</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>Naast het archief</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>Datum en tijd van de bestanden herstellen</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>Bij tar.gz en dergelijke de tar erbinnen in één keer meenemen</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>Archief</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>Ingepakt bestand</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>LZH-archief</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>RAR-archief</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>7z-archief</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>TAR-archief</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>ZIP-archief</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>Snelst</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>Maximaal</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>Normaal (aanbevolen)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>Zonder compressie (snel)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>Ultra (traag)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>Inpakken als {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>Inpakken als {0} (met wachtwoord)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>Hier uitpakken</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>Uitpakken met gekozen tekencodering...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>In een nieuwe map uitpakken</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Instellingen...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>Typ het wachtwoord in het bovenste veld en typ het ter bevestiging nog eens in het onderste. Vergeet je het, dan is de inhoud niet meer te bereiken.</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>Wachtwoord instellen</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} is versleuteld. Typ het bijbehorende wachtwoord.</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>Wachtwoord nodig</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>De twee velden komen niet overeen. Typ het opnieuw.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Typ een wachtwoord.</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>Tekencodering</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- herkend</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>__MACOSX / ._* / .DS_Store weglaten</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>Met deze instellingen uitpakken</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> Dit archief lijkt op macOS gemaakt te zijn.</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... en nog {0}</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>Ontlede tekens (NFD) uit macOS rechtzetten</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>{0}-indeling, {1} onderdelen. {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>Tekencodering nakijken - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>De herkende tekencodering is vrijwel zeker de juiste.</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>De herkenning is onzeker. Bekijk de lijst hieronder en kies degene waarbij de namen leesbaar zijn.</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>De herkende tekencodering is waarschijnlijk de juiste, maar kijk toch even.</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>Bezig met annuleren...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>{0} onderdelen inpakken</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>{0} inpakken</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>{0} uitpakken</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>Voorbereiden...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Bezig...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Instellingen van smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>Toevoegen...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>Alle extensies toevoegen die 7z.dll kan openen</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>De punt vooraan hoeft niet (bijvoorbeeld: alz).</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>Extensie toevoegen</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>Alles aanvinken</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>Opslaan past deze vinkjes toe. Extensies die al van een ander programma zijn, zoals .zip, moet je daarnaast omzetten in de standaard-apps van Windows.</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>Extensies die met dubbelklikken worden geopend</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>Aangevinkte extensies gaan open met smarcivaZIP. Haal je het vinkje weg, dan vervalt de koppeling.</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>Gaat in bij de volgende start van smarcivaZIP.</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>Er viel niets meer toe te voegen.</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>De standaard-apps van Windows openen</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>Aangemeld.
+
+Deze bestandssoorten worden bij dubbelklikken nog steeds door een ander programma geopend, omdat Windows die keuze aan de gebruiker laat:
+
+{0}
+
+Het contextmenu werkt wel gewoon. Wil je veranderen wat dubbelklikken doet, open dan de standaard-apps van Windows, of klik met de rechtermuisknop op een bestand en kies «Openen met» → «Een andere app kiezen» → «Altijd deze app gebruiken».
+
+Nu de standaard-apps openen?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (nu: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>Aanmelden</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>Aanmelden is mislukt.
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>Het contextmenu en de bestandskoppelingen zijn nog niet aangemeld.
+
+Nu aanmelden? Zonder die aanmelding is smarcivaZIP niet vanuit Verkenner te gebruiken.</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>Aangemeld.
+
+Op Windows 11 verschijnt smarcivaZIP in het contextmenu onder «Meer opties weergeven».</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>Opnieuw aanmelden</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>Contextmenu en bestandskoppelingen</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>Nog niet aangemeld. Aanmelden zet smarcivaZIP in het contextmenu.</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>Aangemeld. smarcivaZIP is te gebruiken vanuit het contextmenu van Verkenner.</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>Alle vinkjes weghalen</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>Afmelden</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>Afmelden is mislukt.
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>Afgemeld.</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>Op Windows 11 zit het contextmenu-item onder «Meer opties weergeven». Zo is Windows nu eenmaal gebouwd.</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>7z.dll is niet gevonden.
+
+Zet 7z.dll naast smarcivaZIP, of installeer 7-Zip.
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>Inpakken</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>Tekencodering</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>Uitpakken</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+</root>

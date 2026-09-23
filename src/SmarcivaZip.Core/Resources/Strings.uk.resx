@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>Простий архіватор: користуватися ним можна так само, як Lhaplus, але він розуміє RAR5, Zstandard, понівечені назви файлів і архіви, створені в macOS.</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>Рушій архівування</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>Використовує 7z.dll із 7-Zip.
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>Підтримувані формати</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>Розпакування ({0} типів): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>Файл 7z.dll не знайдено, тому перелік форматів показати не вдасться.</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>Пакування: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>Сам smarcivaZIP поширюється за ліцензією MIT. Долучений 7z.dll узятий із 7-Zip (Ігор Павлов) і поширюється за LGPL-2.1 або новішою, а його код розпакування RAR додатково підпадає під обмеження unRAR. Подробиці — у долученому файлі THIRD-PARTY-NOTICES.md.</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>Ліцензія</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>Версія {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>Усі файли</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>Заблоковано записів, що намагалися писати поза теку призначення: {0}. Можливо, цей архів складено зловмисно.</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>Під час розпакування цей архів розростається до незвично великого розміру.
+
+{0}
+
+Продовжити?</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>Не вдалося запакувати</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>Пакування неможливе</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>Рушій архівування не знайдено</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+Подробиці записано до:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>Не вдалося розпакувати</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　і ще помилок: {0}</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>Не вдалося відкрити</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>Зберегти як</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>Невідомий формат: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>Не вдалося прочитати файлів: {0}. Вони не потрапили до архіву.
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>Частину вмісту не вдалося розпакувати, бо пароль хибний.</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>Файл не знайдено: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>Непідтримуваний формат або пошкоджений файл: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>Ступінь стиснення — {0}x, це незвично багато: {1} перетворюється на {2}.</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>Після розпакування вийде {0}.</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>В архіві {0} записів (межа: {1}).</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>Кирилиця (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>Японська</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>Корейська</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>Китайська спрощена</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>Китайська традиційна</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Юнікод</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>Західноєвропейська</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP — простий архіватор
+
+Використання:
+  SmarcivaZip.exe &lt;архів&gt;                     розпакувати
+  SmarcivaZip.exe --extract &lt;архів&gt;           розпакувати поряд з архівом
+  SmarcivaZip.exe --extract-to-folder &lt;архів&gt;
+                                              розпакувати до нової теки
+  SmarcivaZip.exe --extract-preview &lt;архів&gt;
+                                              перевірити кодування і розпакувати
+  SmarcivaZip.exe --compress &lt;формат&gt; &lt;шлях...&gt;
+                                              запакувати (формати: zip, 7z, tar.gz ...)
+  SmarcivaZip.exe --compress &lt;формат&gt; --password &lt;шлях...&gt;
+                                              запакувати з паролем
+  SmarcivaZip.exe --settings                  відкрити вікно налаштувань
+  SmarcivaZip.exe --register                  зареєструвати зв'язки та контекстне меню
+  SmarcivaZip.exe --unregister                скасувати реєстрацію</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>Гаразд</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>Інше</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>Повернути типові значення</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>Не вдалося запакувати (0x{0}).</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>Формат {0} не можна записувати.</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>Цей 7z.dll не вміє створювати архіви {0}.</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>Під час пакування сталася помилка.</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>Файлів для пакування не знайдено.</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>Пакувати нічого.</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>Типовий формат</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>Рівень стиснення</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>Що вищий рівень, то менший архів, але то довше це триває. Без особливих причин вистачить звичайного рівня.</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>Кнопка «Зберегти» застосує це до контекстного меню.</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>Формати, показані в контекстному меню</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>Позначені формати з'являться в контекстному меню під smarcivaZIP у порядку цього переліку.</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>Нижче</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>Вище</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>Перед пакуванням питати, куди зберегти</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>Завжди показувати підтвердження кодування перед розпакуванням</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>Коли вимкнено, підтвердження з'являється лише при непевному визначенні. Залиште вимкненим, щоб подвійне клацання розпаковувало одразу.</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>Автоматично (за мовою інтерфейсу)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>Складати назад розкладені символи (NFD)</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>Архіви, створені в macOS, зберігають символ на кшталт «ї» як «i» плюс окремий знак. Без цього параметра такі назви у Windows виглядають зіпсованими.</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>Бажана мова</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>Файли ZIP зазвичай не повідомляють, у якому кодуванні записано назви файлів, — його доводиться вгадувати. Тут визначається, яка мова перемагає, коли різниця мізерна.</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>Підтвердження</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>Контрольна сума CRC не збігається; файл, можливо, пошкоджено.</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>Після кінця архіву йдуть зайві дані.</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>Дані пошкоджено.</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>Не вдалося розпакувати ({0}).</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>Не вдалося розпакувати (0x{0}).</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>Заголовки пошкоджено.</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>Цей файл не розпізнано як архів.</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>Не вдалося прочитати дані.</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>Архів обривається зарано.</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>Цей метод стиснення не підтримується.</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>Пароль хибний.</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>Формат {0}</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>Не підтримується цим 7z.dll</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>Огляд...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>Виберіть теку призначення</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>Якщо файл із такою назвою вже є</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>Перезаписати</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>Зберегти під іншою назвою (радимо)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>Пропустити</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>Після успіху надсилати архів до кошика</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>Прибирати службові файли macOS (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Прибирати Thumbs.db і desktop.ini</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>Завжди створювати теку з назвою архіву</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>Лише коли потрібно (радимо)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>Якщо весь вміст і так лежить в одній теці, його буде розпаковано як є; інакше теку буде створено.</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>Створення теки</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>Ніколи не створювати теку</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>Зберігати позначку «отримано з інтернету» (Mark of the Web)</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>Відкривати теку після завершення</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>Завжди до однієї сталої теки</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>Куди розпаковувати</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>Поряд з архівом</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>Відновлювати дату й час файлів</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>У tar.gz і подібних розпаковувати внутрішній tar заразом</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>Архів</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>Стиснений файл</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>Архів LZH</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>Архів RAR</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>Архів 7z</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>Архів TAR</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>Архів ZIP</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>Найшвидший</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>Найбільший</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>Звичайний (радимо)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>Без стиснення (швидко)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>Ультра (повільно)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>Запакувати в {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>Запакувати в {0} (з паролем)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>Розпакувати тут</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>Розпакувати, вибравши кодування...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>Розпакувати до нової теки</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Налаштування...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>Введіть пароль у верхнє поле, а потім ще раз у нижнє для підтвердження. Якщо забудете його, вміст стане недосяжним.</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>Задати пароль</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>Файл {0} зашифровано. Введіть пароль до нього.</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>Потрібен пароль</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>Введене не збігається. Наберіть ще раз.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Введіть пароль.</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>Кодування</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- визначено</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>Прибрати __MACOSX / ._* / .DS_Store</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>Розпакувати з цими налаштуваннями</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> Схоже, цей архів створено в macOS.</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... і ще {0}</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>Виправити розкладені символи (NFD) з macOS</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>Формат {0}, записів: {1}. {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>Перевірка кодування — smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>Визначене кодування майже напевно правильне.</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>Певності у визначенні немає. Погляньте на перелік нижче й виберіть те, з яким назви читаються.</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>Визначене кодування, найімовірніше, правильне, але все ж погляньте.</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>Скасування...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>Пакування об'єктів: {0}</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>Пакування {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>Розпакування {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>Підготовка...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Обробка...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Налаштування smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>Додати...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>Додати всі розширення, які вміє відкривати 7z.dll</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>Крапку на початку ставити не обов'язково (наприклад: alz).</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>Додати розширення</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>Позначити все</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>Кнопка «Зберегти» застосує ці позначки. Розширення, якими вже володіє інша програма, наприклад .zip, доведеться додатково перемкнути в типових застосунках Windows.</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>Розширення, що відкриваються подвійним клацанням</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>Позначені розширення відкриватимуться у smarcivaZIP. Знята позначка прибирає зв'язок.</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>Набуде чинності під час наступного запуску smarcivaZIP.</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>Додавати більше нічого.</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>Відкрити типові застосунки Windows</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>Зареєстровано.
+
+Ці типи файлів за подвійним клацанням досі відкриває інша програма, бо Windows лишає такий вибір за користувачем:
+
+{0}
+
+Контекстне меню при цьому працює. Щоб змінити поведінку подвійного клацання, відкрийте типові застосунки Windows або клацніть файл правою кнопкою і виберіть «Відкрити за допомогою» → «Вибрати інший застосунок» → «Завжди використовувати цей застосунок».
+
+Відкрити типові застосунки зараз?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (зараз: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>Зареєструвати</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>Реєстрація не вдалася.
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>Контекстне меню та зв'язки з файлами ще не зареєстровано.
+
+Зареєструвати зараз? Без них користуватися smarcivaZIP з Провідника не вийде.</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>Зареєстровано.
+
+У Windows 11 smarcivaZIP з'явиться в контекстному меню під пунктом «Показати додаткові параметри».</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>Вилучити</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>Зареєструвати заново</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>Контекстне меню та зв'язки з файлами</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>Ще не зареєстровано. Реєстрація додасть smarcivaZIP до контекстного меню.</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>Зареєстровано. smarcivaZIP доступний із контекстного меню Провідника.</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>Зняти всі позначки</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>Скасувати реєстрацію</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>Скасувати реєстрацію не вдалося.
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>Реєстрацію скасовано.</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>У Windows 11 пункт контекстного меню міститься в «Показати додаткові параметри». Так влаштовано сам Windows.</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>Файл 7z.dll не знайдено.
+
+Покладіть 7z.dll поряд зі smarcivaZIP або встановіть 7-Zip.
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>Відомості</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>Пакування</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>Кодування</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>Розпакування</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+</root>

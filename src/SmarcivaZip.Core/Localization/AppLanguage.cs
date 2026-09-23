@@ -20,10 +20,25 @@ public sealed record AppLanguage(string Code, string DisplayName)
     [
         Auto,
         new("en", "English"),
-        new("ja", "日本語"),
         new("zh-Hans", "简体中文"),
         new("zh-Hant", "繁體中文"),
-        new("ko", "한국어")
+        new("es", "Español"),
+        new("ar", "العربية"),
+        new("pt", "Português"),
+        new("id", "Bahasa Indonesia"),
+        new("fr", "Français"),
+        new("ja", "日本語"),
+        new("ru", "Русский"),
+        new("de", "Deutsch"),
+        new("ko", "한국어"),
+        new("tr", "Türkçe"),
+        new("it", "Italiano"),
+        new("vi", "Tiếng Việt"),
+        new("pl", "Polski"),
+        new("th", "ไทย"),
+        new("nl", "Nederlands"),
+        new("uk", "Українська"),
+        new("hi", "हिन्दी")
     ];
 
     public override string ToString() => DisplayName;

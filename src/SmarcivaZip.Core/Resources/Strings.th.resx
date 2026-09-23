@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>โปรแกรมบีบอัดที่เรียบง่าย ใช้งานได้เหมือน Lhaplus แต่รองรับ RAR5, Zstandard, ชื่อไฟล์ที่อ่านไม่ออก และไฟล์บีบอัดที่สร้างบน macOS</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>เครื่องมือจัดการไฟล์บีบอัด</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>ใช้ 7z.dll ของ 7-Zip
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>รูปแบบที่รองรับ</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>การแตกไฟล์ ({0} ชนิด): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>ไม่พบไฟล์ 7z.dll จึงแสดงรายการรูปแบบไม่ได้</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>การบีบอัด: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>ตัว smarcivaZIP เองใช้สัญญาอนุญาต MIT ส่วนไฟล์ 7z.dll ที่แนบมานั้นมาจาก 7-Zip (Igor Pavlov) ใช้สัญญาอนุญาต LGPL-2.1 หรือใหม่กว่า และส่วนที่ใช้แตกไฟล์ RAR ยังอยู่ภายใต้ข้อจำกัด unRAR อีกด้วย รายละเอียดอยู่ในไฟล์ THIRD-PARTY-NOTICES.md ที่แนบมา</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>สัญญาอนุญาต</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>รุ่น {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>ไฟล์ทั้งหมด</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>สกัดกั้นรายการที่พยายามเขียนนอกโฟลเดอร์ปลายทางไว้ {0} รายการ ไฟล์บีบอัดนี้อาจถูกสร้างขึ้นโดยจงใจ</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>เมื่อแตกออกมาแล้ว ไฟล์บีบอัดนี้จะใหญ่ผิดปกติ
+
+{0}
+
+จะทำต่อไหม</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>บีบอัดไม่สำเร็จ</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>บีบอัดไม่ได้</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>ไม่พบเครื่องมือจัดการไฟล์บีบอัด</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>ข้อผิดพลาด</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+บันทึกรายละเอียดไว้ที่:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>แตกไฟล์ไม่สำเร็จ</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　และข้อผิดพลาดอีก {0} รายการ</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>เปิดไม่ได้</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>บันทึกเป็น</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>รูปแบบที่ไม่รู้จัก: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>อ่านไฟล์ไม่ได้ {0} ไฟล์ จึงไม่ได้ใส่ลงในไฟล์บีบอัด
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>แตกเนื้อหาบางส่วนไม่ได้ เพราะรหัสผ่านไม่ถูกต้อง</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>ไม่พบไฟล์: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>รูปแบบที่ไม่รองรับ หรือไฟล์เสียหาย: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>อัตราการบีบอัดสูงถึง {0} เท่า ซึ่งสูงผิดปกติ: {1} กลายเป็น {2}</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>เมื่อแตกออกมาจะได้ {0}</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>ไฟล์บีบอัดนี้มี {0} รายการ (ขีดจำกัด: {1})</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>ซีริลลิก (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>ญี่ปุ่น</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>เกาหลี</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>จีนตัวย่อ</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>จีนตัวเต็ม</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>ยูนิโคด</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>ยุโรปตะวันตก</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - โปรแกรมบีบอัดที่เรียบง่าย
+
+วิธีใช้:
+  SmarcivaZip.exe &lt;ไฟล์บีบอัด&gt;
+      แตกไฟล์นั้น
+  SmarcivaZip.exe --extract &lt;ไฟล์บีบอัด&gt;
+      แตกไว้ข้างไฟล์บีบอัด
+  SmarcivaZip.exe --extract-to-folder &lt;ไฟล์บีบอัด&gt;
+      แตกลงในโฟลเดอร์ใหม่
+  SmarcivaZip.exe --extract-preview &lt;ไฟล์บีบอัด&gt;
+      ตรวจการเข้ารหัสอักขระก่อนแล้วจึงแตก
+  SmarcivaZip.exe --compress &lt;รูปแบบ&gt; &lt;เส้นทาง...&gt;
+      บีบอัด (รูปแบบ: zip, 7z, tar.gz ฯลฯ)
+  SmarcivaZip.exe --compress &lt;รูปแบบ&gt; --password &lt;เส้นทาง...&gt;
+      บีบอัดพร้อมรหัสผ่าน
+  SmarcivaZip.exe --settings
+      เปิดหน้าต่างการตั้งค่า
+  SmarcivaZip.exe --register
+      ลงทะเบียนการเชื่อมโยงไฟล์และเมนูคลิกขวา
+  SmarcivaZip.exe --unregister
+      ถอนการลงทะเบียนนั้น</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>อื่น ๆ</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>คืนค่าเริ่มต้น</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>บีบอัดไม่สำเร็จ (0x{0})</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>เขียนรูปแบบ {0} ไม่ได้</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>7z.dll นี้สร้างไฟล์บีบอัด {0} ไม่ได้</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดระหว่างการบีบอัด</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>ไม่พบไฟล์ที่จะบีบอัด</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>ไม่มีอะไรให้บีบอัด</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>รูปแบบเริ่มต้น</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>ระดับการบีบอัด</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>ระดับยิ่งสูง ไฟล์ยิ่งเล็ก แต่ยิ่งใช้เวลานาน ถ้าไม่มีเหตุผลพิเศษ ระดับปกติก็พอแล้ว</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>ปุ่มบันทึกจะนำค่านี้ไปใช้กับเมนูคลิกขวา</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>รูปแบบที่แสดงในเมนูคลิกขวา</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>รูปแบบที่ติ๊กไว้จะปรากฏใต้ smarcivaZIP ในเมนูคลิกขวา ตามลำดับในรายการนี้</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>เลื่อนลง</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>เลื่อนขึ้น</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>ถามที่บันทึกก่อนบีบอัด</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>แสดงการยืนยันการเข้ารหัสอักขระก่อนแตกไฟล์เสมอ</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>ถ้าปิดไว้ การยืนยันจะขึ้นเฉพาะตอนที่ตรวจแล้วไม่แน่ใจ ปล่อยไว้แบบปิดเพื่อให้ดับเบิลคลิกแล้วแตกได้ทันที</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>อัตโนมัติ (ตามภาษาของหน้าจอ)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>ประกอบอักขระที่ถูกแยกออก (NFD) กลับคืน</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>ไฟล์บีบอัดที่สร้างบน macOS จะเก็บอักขระอย่าง «é» เป็น «e» บวกเครื่องหมายแยกต่างหาก ถ้าไม่เปิดตัวเลือกนี้ ชื่อแบบนั้นจะดูเพี้ยนบน Windows</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>ภาษาที่ให้ความสำคัญก่อน</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ไฟล์ ZIP มักไม่ได้บอกว่าชื่อไฟล์ใช้การเข้ารหัสอักขระแบบใด จึงต้องเดาเอา ตรงนี้กำหนดว่าภาษาใดจะชนะเมื่อผลออกมาสูสี</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>การยืนยัน</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>ค่า CRC ไม่ตรงกัน ไฟล์อาจเสียหาย</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>มีข้อมูลส่วนเกินอยู่หลังจุดสิ้นสุดของไฟล์บีบอัด</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>ข้อมูลเสียหาย</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>แตกไฟล์ไม่สำเร็จ ({0})</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>แตกไฟล์ไม่สำเร็จ (0x{0})</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>ส่วนหัวเสียหาย</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>ไฟล์นี้ไม่ถูกมองว่าเป็นไฟล์บีบอัด</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>อ่านข้อมูลไม่ได้</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>ไฟล์บีบอัดจบก่อนที่ควรจะจบ</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>ไม่รองรับวิธีบีบอัดแบบนี้</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>รหัสผ่านไม่ถูกต้อง</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>รูปแบบ {0}</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>7z.dll นี้ไม่รองรับ</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>เรียกดู...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>เลือกโฟลเดอร์ปลายทาง</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>เมื่อมีไฟล์ชื่อเดียวกันอยู่แล้ว</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>เขียนทับ</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>บันทึกเป็นชื่ออื่น (แนะนำ)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>ข้ามไป</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>ย้ายไฟล์บีบอัดไปถังขยะเมื่อทำสำเร็จ</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>ตัดไฟล์ประกอบของ macOS ออก (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>ตัด Thumbs.db และ desktop.ini ออก</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>สร้างโฟลเดอร์ชื่อเดียวกับไฟล์บีบอัดเสมอ</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>เฉพาะเมื่อจำเป็น (แนะนำ)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>ถ้าเนื้อหาทั้งหมดอยู่ในโฟลเดอร์เดียวอยู่แล้ว ก็จะแตกออกมาตามนั้น ถ้าไม่ใช่จึงจะสร้างโฟลเดอร์ให้</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>การสร้างโฟลเดอร์</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>ไม่สร้างโฟลเดอร์เลย</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>คงเครื่องหมาย «มาจากอินเทอร์เน็ต» (Mark of the Web) ไว้</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>เปิดโฟลเดอร์หลังทำเสร็จ</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>ลงในโฟลเดอร์ที่กำหนดไว้เสมอ</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>แตกไฟล์ไปที่ใด</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>ข้างไฟล์บีบอัด</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>คืนวันและเวลาของไฟล์</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>สำหรับ tar.gz และแบบเดียวกัน ให้แตก tar ข้างในไปพร้อมกันเลย</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>ไฟล์บีบอัด</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>ไฟล์ที่ถูกบีบอัด</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>ไฟล์บีบอัด LZH</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>ไฟล์บีบอัด RAR</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>ไฟล์บีบอัด 7z</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>ไฟล์บีบอัด TAR</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>ไฟล์บีบอัด ZIP</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>เร็วที่สุด</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>สูงสุด</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>ปกติ (แนะนำ)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>ไม่บีบอัด (เร็ว)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>อัลตรา (ช้า)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>บีบอัดเป็น {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>บีบอัดเป็น {0} (ใส่รหัสผ่าน)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>แตกไฟล์ที่นี่</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>แตกไฟล์โดยเลือกการเข้ารหัสอักขระ...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>แตกไฟล์ลงในโฟลเดอร์ใหม่</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>การตั้งค่า...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>พิมพ์รหัสผ่านในช่องบน แล้วพิมพ์ซ้ำในช่องล่างเพื่อยืนยัน ถ้าลืมไปแล้วจะเข้าถึงเนื้อหาไม่ได้อีก</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>ตั้งรหัสผ่าน</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} ถูกเข้ารหัสไว้ กรุณาพิมพ์รหัสผ่านของไฟล์นี้</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>ต้องใช้รหัสผ่าน</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>สองช่องไม่ตรงกัน กรุณาพิมพ์ใหม่</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>กรุณาพิมพ์รหัสผ่าน</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>การเข้ารหัสอักขระ</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- ผลที่ตรวจได้</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>ตัด __MACOSX / ._* / .DS_Store ออก</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>แตกไฟล์ด้วยการตั้งค่านี้</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> ไฟล์บีบอัดนี้ดูเหมือนถูกสร้างบน macOS</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... และอีก {0} รายการ</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>แก้อักขระที่ถูกแยกออก (NFD) ซึ่งมาจาก macOS</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>รูปแบบ {0}, {1} รายการ {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>ตรวจการเข้ารหัสอักขระ - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>การเข้ารหัสอักขระที่ตรวจได้แทบจะแน่นอนว่าถูกต้อง</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>ผลการตรวจยังไม่แน่ใจ กรุณาดูรายการข้างล่างแล้วเลือกอันที่ชื่ออ่านออกเป็นปกติ</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>การเข้ารหัสอักขระที่ตรวจได้น่าจะถูกต้อง แต่ลองดูสักหน่อยก่อน</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>กำลังยกเลิก...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>กำลังบีบอัด {0} รายการ</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>กำลังบีบอัด {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>กำลังแตก {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>กำลังเตรียม...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>กำลังดำเนินการ...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>การตั้งค่า smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>เพิ่ม...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>เพิ่มนามสกุลทั้งหมดที่ 7z.dll เปิดได้</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>ไม่ต้องใส่จุดข้างหน้า (เช่น alz)</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>เพิ่มนามสกุลไฟล์</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>ติ๊กทั้งหมด</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>ปุ่มบันทึกจะนำการติ๊กเหล่านี้ไปใช้ ส่วนนามสกุลที่โปรแกรมอื่นถือครองอยู่แล้ว เช่น .zip ยังต้องไปเปลี่ยนที่แอปเริ่มต้นของ Windows อีกที</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>นามสกุลที่เปิดด้วยการดับเบิลคลิก</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>นามสกุลที่ติ๊กไว้จะเปิดด้วย smarcivaZIP ถ้าเอาเครื่องหมายออก การเชื่อมโยงนั้นก็จะถูกยกเลิก</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>ภาษา</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>จะมีผลเมื่อเปิด smarcivaZIP ครั้งถัดไป</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>ไม่มีอะไรให้เพิ่มแล้ว</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>เปิดแอปเริ่มต้นของ Windows</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>ลงทะเบียนแล้ว
+
+ไฟล์ชนิดต่อไปนี้ยังคงเปิดด้วยโปรแกรมอื่นเมื่อดับเบิลคลิก เพราะ Windows สงวนการเลือกนี้ไว้ให้ผู้ใช้เป็นคนตัดสิน:
+
+{0}
+
+เมนูคลิกขวายังใช้งานได้ตามปกติ หากต้องการเปลี่ยนสิ่งที่ดับเบิลคลิกทำ ให้เปิดแอปเริ่มต้นของ Windows หรือคลิกขวาที่ไฟล์แล้วเลือก «เปิดด้วย» → «เลือกแอปอื่น» → «ใช้แอปนี้เสมอ»
+
+จะเปิดแอปเริ่มต้นตอนนี้เลยไหม</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (ตอนนี้: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>ลงทะเบียน</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>ลงทะเบียนไม่สำเร็จ
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>ยังไม่ได้ลงทะเบียนเมนูคลิกขวาและการเชื่อมโยงไฟล์
+
+จะลงทะเบียนตอนนี้ไหม ถ้าไม่มีสิ่งเหล่านี้ จะใช้ smarcivaZIP จาก File Explorer ไม่ได้</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>ลงทะเบียนแล้ว
+
+บน Windows 11 smarcivaZIP จะปรากฏในเมนูคลิกขวาใต้ «แสดงตัวเลือกเพิ่มเติม»</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>ลบ</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>ลงทะเบียนใหม่</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>เมนูคลิกขวาและการเชื่อมโยงไฟล์</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>ยังไม่ได้ลงทะเบียน การลงทะเบียนจะเพิ่ม smarcivaZIP เข้าไปในเมนูคลิกขวา</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>ลงทะเบียนแล้ว ใช้ smarcivaZIP จากเมนูคลิกขวาของ File Explorer ได้</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>เอาเครื่องหมายออกทั้งหมด</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>ถอนการลงทะเบียน</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>ถอนการลงทะเบียนไม่สำเร็จ
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>ถอนการลงทะเบียนแล้ว</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>บน Windows 11 รายการในเมนูคลิกขวาจะอยู่ใน «แสดงตัวเลือกเพิ่มเติม» ตัว Windows ถูกออกแบบมาแบบนั้น</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>ไม่พบไฟล์ 7z.dll
+
+กรุณาวาง 7z.dll ไว้ข้าง smarcivaZIP หรือติดตั้ง 7-Zip
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>ข้อมูล</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>การบีบอัด</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>การเข้ารหัสอักขระ</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>การแตกไฟล์</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>การตั้งค่า</value>
+  </data>
+</root>

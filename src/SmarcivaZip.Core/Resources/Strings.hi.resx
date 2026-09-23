@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>एक सरल संग्रह-प्रोग्राम, जिसे Lhaplus की तरह ही इस्तेमाल किया जाता है, पर जो RAR5, Zstandard, बिगड़े हुए फ़ाइल-नामों और macOS पर बने संग्रहों को भी सँभाल लेता है।</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>संग्रह इंजन</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>7-Zip की 7z.dll का उपयोग करता है।
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>समर्थित प्रारूप</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>निकालना ({0} प्रकार): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>7z.dll नहीं मिली, इसलिए प्रारूपों की सूची दिखाई नहीं जा सकती।</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>संग्रह बनाना: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>smarcivaZIP स्वयं MIT अनुज्ञप्ति के अंतर्गत है। साथ दी गई 7z.dll 7-Zip (इगोर पावलोव) से ली गई है और LGPL-2.1 या उससे नई अनुज्ञप्ति के अंतर्गत है; उसका RAR निकालने वाला हिस्सा unRAR प्रतिबंध के भी अधीन है। विवरण साथ दी गई THIRD-PARTY-NOTICES.md फ़ाइल में है।</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>अनुज्ञप्ति</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>संस्करण {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>सभी फ़ाइलें</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>गंतव्य फ़ोल्डर के बाहर लिखने की कोशिश करती {0} प्रविष्टियाँ रोक दी गईं। हो सकता है यह संग्रह जान-बूझकर ऐसा बनाया गया हो।</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>खोलने पर यह संग्रह असामान्य रूप से बड़ा हो जाता है।
+
+{0}
+
+फिर भी आगे बढ़ें?</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>संग्रह नहीं बन सका</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>संग्रह बनाना संभव नहीं</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>संग्रह इंजन नहीं मिला</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>त्रुटि</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+विवरण यहाँ सहेजा गया:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>फ़ाइलें नहीं निकाली जा सकीं</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　और {0} अन्य त्रुटियाँ</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>खोला नहीं जा सका</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>इस नाम से सहेजें</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>अनजान प्रारूप: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>{0} फ़ाइलें पढ़ी नहीं जा सकीं, इसलिए वे संग्रह में नहीं गईं।
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>कुछ सामग्री नहीं निकाली जा सकी, क्योंकि कूटशब्द ग़लत है।</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>फ़ाइल नहीं मिली: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>असमर्थित प्रारूप, या ख़राब फ़ाइल: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>संपीड़न अनुपात {0} गुना है, जो असामान्य रूप से ऊँचा है: {1} खुलकर {2} हो जाता है।</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>खोलने पर यह {0} हो जाता है।</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>संग्रह में {0} प्रविष्टियाँ हैं (सीमा: {1})।</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>सिरिलिक (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>जापानी</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>कोरियाई</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>सरलीकृत चीनी</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>पारंपरिक चीनी</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>यूनिकोड</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>पश्चिमी यूरोपीय</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - एक सरल संग्रह-प्रोग्राम
+
+उपयोग:
+  SmarcivaZip.exe &lt;संग्रह&gt;
+      उसे खोलें
+  SmarcivaZip.exe --extract &lt;संग्रह&gt;
+      संग्रह के बग़ल में खोलें
+  SmarcivaZip.exe --extract-to-folder &lt;संग्रह&gt;
+      नए फ़ोल्डर में खोलें
+  SmarcivaZip.exe --extract-preview &lt;संग्रह&gt;
+      वर्ण-संकेतन जाँचकर फिर खोलें
+  SmarcivaZip.exe --compress &lt;प्रारूप&gt; &lt;पथ...&gt;
+      संग्रह बनाएँ (प्रारूप: zip, 7z, tar.gz आदि)
+  SmarcivaZip.exe --compress &lt;प्रारूप&gt; --password &lt;पथ...&gt;
+      कूटशब्द के साथ संग्रह बनाएँ
+  SmarcivaZip.exe --settings
+      सेटिंग्स की खिड़की खोलें
+  SmarcivaZip.exe --register
+      फ़ाइल-संबद्धता और दायाँ-क्लिक मेन्यू पंजीकृत करें
+  SmarcivaZip.exe --unregister
+      वह पंजीकरण हटाएँ</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>ठीक है</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>अन्य</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>तयशुदा मान लौटाएँ</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>सहेजें</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>संग्रह नहीं बन सका (0x{0})।</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>{0} प्रारूप में लिखा नहीं जा सकता।</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>यह 7z.dll {0} संग्रह नहीं बना सकती।</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>संग्रह बनाते समय कोई त्रुटि हुई।</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>संग्रह में डालने के लिए कोई फ़ाइल नहीं मिली।</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>संग्रह में डालने को कुछ है ही नहीं।</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>तयशुदा प्रारूप</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>संपीड़न का स्तर</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>स्तर जितना ऊँचा, संग्रह उतना छोटा, पर समय उतना ही ज़्यादा। कोई ख़ास वजह न हो तो सामान्य स्तर काफ़ी है।</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>सहेजें बटन इसे दायाँ-क्लिक मेन्यू पर लागू कर देता है।</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>दायाँ-क्लिक मेन्यू में दिखने वाले प्रारूप</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>चुने हुए प्रारूप दायाँ-क्लिक मेन्यू में smarcivaZIP के नीचे, इसी सूची के क्रम में दिखेंगे।</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>नीचे ले जाएँ</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>ऊपर ले जाएँ</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>संग्रह बनाने से पहले पूछें कि कहाँ सहेजना है</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>फ़ाइलें निकालने से पहले वर्ण-संकेतन की पुष्टि हमेशा दिखाएँ</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>बंद होने पर पुष्टि तभी आती है जब पहचान पक्की न हो। इसे बंद ही रहने दें ताकि दोहरे क्लिक से फ़ाइलें तुरंत निकल जाएँ।</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>स्वतः (परदे की भाषा के अनुसार)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>अलग हो गए वर्णों (NFD) को फिर से जोड़ें</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>macOS पर बने संग्रह «é» जैसे वर्ण को «e» और एक अलग चिह्न के रूप में रखते हैं। इस विकल्प के बिना ऐसे नाम Windows पर टूटे हुए दिखते हैं।</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>वरीयता वाली भाषा</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ZIP फ़ाइलें प्रायः यह नहीं बतातीं कि उनके नाम किस वर्ण-संकेतन में हैं, इसलिए अनुमान लगाना पड़ता है। यहाँ तय होता है कि मुक़ाबला बराबरी का हो तो कौन-सी भाषा जीते।</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>पुष्टि</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>CRC मेल नहीं खाता; फ़ाइल ख़राब हो सकती है।</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>संग्रह के अंत के बाद फ़ालतू डेटा पड़ा है।</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>डेटा ख़राब है।</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>फ़ाइलें नहीं निकाली जा सकीं ({0})।</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>फ़ाइलें नहीं निकाली जा सकीं (0x{0})।</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>शीर्ष-सूचनाएँ ख़राब हैं।</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>यह फ़ाइल संग्रह के रूप में पहचानी नहीं गई।</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>डेटा पढ़ा नहीं जा सका।</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>संग्रह समय से पहले ही ख़त्म हो जाता है।</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>संपीड़न की यह विधि समर्थित नहीं है।</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>कूटशब्द ग़लत है।</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>{0} प्रारूप</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>इस 7z.dll में समर्थित नहीं</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>ब्राउज़ करें...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>गंतव्य फ़ोल्डर चुनें</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>यदि उसी नाम की फ़ाइल पहले से हो</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>ऊपर लिख दें</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>दूसरे नाम से सहेजें (अनुशंसित)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>छोड़ दें</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>सफल होने पर संग्रह को रद्दी की टोकरी में डालें</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>macOS की सहायक फ़ाइलें हटाएँ (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Thumbs.db और desktop.ini हटाएँ</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>हमेशा संग्रह के नाम का फ़ोल्डर बनाएँ</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>केवल ज़रूरत पड़ने पर (अनुशंसित)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>यदि सारी सामग्री पहले से ही एक फ़ोल्डर में है तो वह वैसी ही निकल जाती है; वरना एक फ़ोल्डर बना दिया जाता है।</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>फ़ोल्डर बनाना</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>कभी फ़ोल्डर न बनाएँ</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>«इंटरनेट से आया» चिह्न (Mark of the Web) बनाए रखें</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>बाद में फ़ोल्डर खोलें</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>हमेशा एक तय फ़ोल्डर में</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>कहाँ निकालना है</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>संग्रह के बग़ल में</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>फ़ाइलों की तारीख़ और समय लौटाएँ</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>tar.gz जैसे संग्रहों में भीतर का tar भी साथ ही खोल दें</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>संग्रह</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>संपीड़ित फ़ाइल</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>LZH संग्रह</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>RAR संग्रह</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>7z संग्रह</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>TAR संग्रह</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>ZIP संग्रह</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>सबसे तेज़</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>अधिकतम</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>सामान्य (अनुशंसित)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>बिना संपीड़न (तेज़)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>अत्यधिक (धीमा)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>{0} में सिकोड़ें</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>{0} में सिकोड़ें (कूटशब्द के साथ)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>यहीं निकालें</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>वर्ण-संकेतन चुनकर निकालें...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>नए फ़ोल्डर में निकालें</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>सेटिंग्स...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>ऊपर वाले ख़ाने में कूटशब्द लिखें, फिर पुष्टि के लिए नीचे वाले में दोबारा लिखें। भूल गए तो सामग्री तक फिर कभी नहीं पहुँचा जा सकेगा।</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>कूटशब्द तय करें</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} कूटबद्ध है। इसका कूटशब्द लिखें।</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>कूटशब्द चाहिए</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>दोनों ख़ाने मेल नहीं खाते। दोबारा लिखें।</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>कोई कूटशब्द लिखें।</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>वर्ण-संकेतन</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- पहचाना गया</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>__MACOSX / ._* / .DS_Store हटाएँ</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>इन्हीं सेटिंग्स के साथ निकालें</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> यह संग्रह macOS पर बना लगता है।</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... और {0} अन्य</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>macOS से आए अलग हुए वर्णों (NFD) को सुधारें</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>{0} प्रारूप, {1} प्रविष्टियाँ। {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>वर्ण-संकेतन की जाँच - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>पहचाना गया वर्ण-संकेतन लगभग निश्चित रूप से सही है।</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>पहचान पक्की नहीं है। नीचे की सूची देखकर वह चुनें जिसमें नाम ठीक से पढ़े जाएँ।</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>पहचाना गया वर्ण-संकेतन संभवतः सही है, फिर भी एक नज़र डाल लें।</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>रद्द किया जा रहा है...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>{0} वस्तुएँ सिकोड़ी जा रही हैं</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>{0} सिकोड़ा जा रहा है</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>{0} से फ़ाइलें निकाली जा रही हैं</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>तैयारी हो रही है...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>काम चल रहा है...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>smarcivaZIP की सेटिंग्स</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>जोड़ें...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>7z.dll जो भी विस्तारनाम खोल सकती है, सब जोड़ें</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>शुरू का बिंदु ज़रूरी नहीं (जैसे: alz)।</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>विस्तारनाम जोड़ें</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>सब चुनें</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>सहेजें बटन इन चुनावों को लागू कर देता है। .zip जैसे जो विस्तारनाम पहले से किसी और प्रोग्राम के पास हैं, उन्हें Windows की तयशुदा ऐप्स में जाकर भी बदलना पड़ेगा।</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>दोहरे क्लिक से खुलने वाले विस्तारनाम</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>चुने हुए विस्तारनाम smarcivaZIP से खुलेंगे। चुनाव हटाने पर वह संबद्धता मिट जाती है।</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>भाषा</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>smarcivaZIP अगली बार चलने पर लागू होगा।</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>जोड़ने को और कुछ बचा ही नहीं था।</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>Windows की तयशुदा ऐप्स खोलें</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>पंजीकृत हो गया।
+
+दोहरे क्लिक पर ये फ़ाइल-प्रकार अब भी किसी दूसरे प्रोग्राम से ही खुलेंगे, क्योंकि Windows यह चुनाव उपयोगकर्ता के हाथ में रखता है:
+
+{0}
+
+दायाँ-क्लिक मेन्यू फिर भी काम करता है। दोहरे क्लिक का व्यवहार बदलना हो तो Windows की तयशुदा ऐप्स खोलें, या किसी फ़ाइल पर दायाँ क्लिक करके «इससे खोलें» → «कोई दूसरा ऐप चुनें» → «हमेशा यही ऐप इस्तेमाल करें» चुनें।
+
+क्या अभी तयशुदा ऐप्स खोलें?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (अभी: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>पंजीकृत करें</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>पंजीकरण नहीं हो सका।
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>दायाँ-क्लिक मेन्यू और फ़ाइल-संबद्धताएँ अभी पंजीकृत नहीं हैं।
+
+अभी पंजीकृत करें? इनके बिना smarcivaZIP को File Explorer से इस्तेमाल नहीं किया जा सकता।</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>पंजीकृत हो गया।
+
+Windows 11 पर smarcivaZIP दायाँ-क्लिक मेन्यू में «अधिक विकल्प दिखाएँ» के नीचे दिखता है।</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>हटाएँ</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>दोबारा पंजीकृत करें</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>दायाँ-क्लिक मेन्यू और फ़ाइल-संबद्धताएँ</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>अभी पंजीकृत नहीं। पंजीकरण करने पर smarcivaZIP दायाँ-क्लिक मेन्यू में जुड़ जाएगा।</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>पंजीकृत है। smarcivaZIP को File Explorer के दायाँ-क्लिक मेन्यू से इस्तेमाल किया जा सकता है।</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>सब चुनाव हटाएँ</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>पंजीकरण हटाएँ</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>पंजीकरण हटाया नहीं जा सका।
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>पंजीकरण हटा दिया गया।</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>Windows 11 पर दायाँ-क्लिक मेन्यू की यह प्रविष्टि «अधिक विकल्प दिखाएँ» के भीतर रहती है। ख़ुद Windows ऐसे ही बना है।</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>7z.dll नहीं मिली।
+
+7z.dll को smarcivaZIP के बग़ल में रखें, या 7-Zip संस्थापित करें।
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>जानकारी</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>संग्रह बनाना</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>वर्ण-संकेतन</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>फ़ाइलें निकालना</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>सेटिंग्स</value>
+  </data>
+</root>

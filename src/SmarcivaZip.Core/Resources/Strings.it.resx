@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>Un programma di compressione essenziale, che si usa come Lhaplus ma gestisce RAR5, Zstandard, i nomi di file illeggibili e gli archivi creati su macOS.</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>Motore di archiviazione</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>Usa 7z.dll di 7-Zip.
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>Formati supportati</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>Estrazione ({0} tipi): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>7z.dll non è stato trovato, quindi non è possibile mostrare l'elenco dei formati.</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>Compressione: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>smarcivaZIP è distribuito con licenza MIT. La 7z.dll inclusa proviene da 7-Zip (Igor Pavlov) ed è distribuita con licenza LGPL-2.1 o successiva; il codice che estrae i RAR è inoltre soggetto alla restrizione unRAR. I dettagli sono nel file THIRD-PARTY-NOTICES.md allegato.</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>Licenza</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>Versione {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>Tutti i file</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>Sono state bloccate {0} voci che tentavano di scrivere fuori dalla cartella di destinazione. Questo archivio potrebbe essere stato costruito apposta.</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>Una volta estratto, questo archivio raggiunge dimensioni fuori dal comune.
+
+{0}
+
+Proseguire?</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>Compressione non riuscita</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>Compressione impossibile</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>Motore di archiviazione non trovato</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+I dettagli sono stati salvati in:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>Estrazione non riuscita</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　e altri {0} errori</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>Impossibile aprire</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>Salva con nome</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>Formato sconosciuto: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>{0} file non sono stati leggibili e sono rimasti fuori dall'archivio.
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>Una parte del contenuto non è stata estratta perché la password non è corretta.</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>File non trovato: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>Formato non supportato, oppure file danneggiato: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>Il rapporto di compressione è di {0}x, insolitamente alto: {1} diventano {2}.</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>Una volta estratto occupa {0}.</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>L'archivio contiene {0} voci (limite: {1}).</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>Cirillico (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>Giapponese</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>Coreano</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>Cinese semplificato</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>Cinese tradizionale</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>Europeo occidentale</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - un programma di compressione essenziale
+
+Uso:
+  SmarcivaZip.exe &lt;archivio&gt;                  estrarlo
+  SmarcivaZip.exe --extract &lt;archivio&gt;        estrarre accanto all'archivio
+  SmarcivaZip.exe --extract-to-folder &lt;archivio&gt;
+                                              estrarre in una nuova cartella
+  SmarcivaZip.exe --extract-preview &lt;archivio&gt;
+                                              controllare la codifica ed estrarre
+  SmarcivaZip.exe --compress &lt;formato&gt; &lt;percorso...&gt;
+                                              comprimere (formati: zip, 7z, tar.gz...)
+  SmarcivaZip.exe --compress &lt;formato&gt; --password &lt;percorso...&gt;
+                                              comprimere con password
+  SmarcivaZip.exe --settings                  aprire la finestra delle impostazioni
+  SmarcivaZip.exe --register                  registrare associazioni e menu contestuale
+  SmarcivaZip.exe --unregister                rimuoverli</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>Altro</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>Ripristina i valori predefiniti</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>Compressione non riuscita (0x{0}).</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>Il formato {0} non può essere scritto.</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>Questa 7z.dll non sa creare archivi {0}.</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>Si è verificato un errore durante la compressione.</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>Non è stato trovato alcun file da comprimere.</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>Non c'è nulla da comprimere.</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>Formato predefinito</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>Livello di compressione</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>Più alto è il livello, più piccolo è l'archivio, ma più tempo ci vuole. Senza motivi particolari il livello normale basta.</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>Salva applica questa scelta al menu contestuale.</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>Formati mostrati nel menu contestuale</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>I formati spuntati compaiono sotto smarcivaZIP nel menu contestuale, nell'ordine di questo elenco.</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>Sposta giù</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>Sposta su</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>Chiedere dove salvare prima di comprimere</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>Mostrare sempre la conferma della codifica prima di estrarre</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>Se è disattivata, la conferma compare solo quando il riconoscimento è incerto. Lasciala disattivata perché il doppio clic estragga subito.</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>Automatica (secondo la lingua dell'interfaccia)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>Ricomporre i caratteri scomposti (NFD)</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>Gli archivi creati su macOS salvano un nome come «à» sotto forma di «a» più un segno separato. Senza questa opzione quei nomi appaiono rotti su Windows.</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>Lingua preferita</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>I file ZIP di solito non dichiarano in quale codifica sono scritti i nomi: bisogna indovinarla. Qui si stabilisce quale lingua prevale quando il riconoscimento è in bilico.</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>Il CRC non corrisponde; il file potrebbe essere danneggiato.</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>Dopo la fine dell'archivio ci sono dati in eccesso.</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>I dati sono danneggiati.</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>Estrazione non riuscita ({0}).</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>Estrazione non riuscita (0x{0}).</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>Le intestazioni sono danneggiate.</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>Questo file non è riconosciuto come archivio.</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>Non è stato possibile leggere i dati.</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>L'archivio finisce prima del previsto.</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>Questo metodo di compressione non è supportato.</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>La password non è corretta.</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>Formato {0}</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>Non supportata da questa 7z.dll</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>Sfoglia...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>Scegli la cartella di destinazione</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>Se esiste già un file con lo stesso nome</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>Sovrascrivere</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>Salvare con un altro nome (consigliato)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>Saltare</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>Spostare l'archivio nel cestino se tutto va bene</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>Togliere i file di servizio di macOS (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Togliere Thumbs.db e desktop.ini</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>Creare sempre una cartella con il nome dell'archivio</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>Solo quando serve (consigliato)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>Se il contenuto sta già tutto in un'unica cartella viene estratto così com'è, altrimenti viene creata una cartella.</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>Creazione della cartella</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>Non creare mai una cartella</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>Mantenere il contrassegno «proviene da Internet» (Mark of the Web)</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>Aprire la cartella al termine</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>Sempre in una cartella fissa</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>Dove estrarre</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>Accanto all'archivio</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>Ripristinare data e ora dei file</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>Nei tar.gz e simili, estrarre anche il tar interno in un colpo solo</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>Archivio</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>File compresso</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>Archivio LZH</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>Archivio RAR</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>Archivio 7z</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>Archivio TAR</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>Archivio ZIP</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>Il più veloce</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>Massimo</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>Normale (consigliato)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>Senza compressione (veloce)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>Ultra (lento)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>Comprimi in {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>Comprimi in {0} (con password)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>Estrai qui</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>Estrai scegliendo la codifica...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>Estrai in una nuova cartella</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Impostazioni...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>Scrivi la password nel primo campo e poi di nuovo nel secondo per confermarla. Se la dimentichi, il contenuto diventa irrecuperabile.</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>Imposta una password</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} è cifrato. Scrivi la password corrispondente.</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>Serve la password</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>I due campi non coincidono. Scrivila di nuovo.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Scrivi una password.</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>Codifica</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- riconosciuta</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>Togliere __MACOSX / ._* / .DS_Store</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>Estrai con queste impostazioni</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> Questo archivio sembra creato su macOS.</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... e altri {0}</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>Correggere i caratteri scomposti (NFD) provenienti da macOS</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>Formato {0}, {1} voci. {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>Controllo della codifica - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>La codifica riconosciuta è quasi certamente quella giusta.</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>Il riconoscimento non è sicuro. Guarda l'elenco qui sotto e scegli quella con cui i nomi si leggono bene.</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>La codifica riconosciuta è probabilmente quella giusta, ma dài comunque un'occhiata.</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>Annullamento...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>Compressione di {0} elementi</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>Compressione di {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>Estrazione di {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>Preparazione...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Elaborazione...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Impostazioni di smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>Aggiungi...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>Aggiungi tutte le estensioni che 7z.dll sa aprire</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>Il punto iniziale non serve (per esempio: alz).</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>Aggiungi un'estensione</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>Spunta tutto</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>Salva applica queste spunte. Le estensioni già appartenenti a un'altra applicazione, come .zip, vanno cambiate anche dalle app predefinite di Windows.</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>Estensioni aperte con un doppio clic</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>Le estensioni spuntate si aprono con smarcivaZIP. Togliendo la spunta si rimuove l'associazione.</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>Ha effetto al prossimo avvio di smarcivaZIP.</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>Non c'era più nulla da aggiungere.</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>Apri le app predefinite di Windows</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>Registrato.
+
+Questi tipi di file continuano ad aprirsi con un'altra applicazione al doppio clic, perché Windows lascia questa scelta all'utente:
+
+{0}
+
+Il menu contestuale funziona lo stesso. Per cambiare il comportamento del doppio clic apri le app predefinite di Windows, oppure fai clic destro su un file e scegli «Apri con» → «Scegli un'altra app» → «Usa sempre questa app».
+
+Vuoi aprire ora le app predefinite?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (attualmente: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>Registra</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>La registrazione non è riuscita.
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>Il menu contestuale e le associazioni dei file non sono ancora registrati.
+
+Registrarli ora? Senza di essi smarcivaZIP non si può usare da Esplora file.</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>Registrato.
+
+Su Windows 11 smarcivaZIP compare nel menu contestuale sotto «Mostra altre opzioni».</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>Rimuovi</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>Registra di nuovo</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>Menu contestuale e associazioni dei file</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>Non ancora registrato. La registrazione aggiunge smarcivaZIP al menu contestuale.</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>Registrato. smarcivaZIP si può usare dal menu contestuale di Esplora file.</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>Togli tutte le spunte</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>Annulla la registrazione</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>L'annullamento della registrazione non è riuscito.
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>Registrazione annullata.</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>Su Windows 11 la voce del menu contestuale si trova dentro «Mostra altre opzioni». È Windows a essere fatto così.</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>7z.dll non è stato trovato.
+
+Metti 7z.dll accanto a smarcivaZIP, oppure installa 7-Zip.
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>Informazioni</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>Compressione</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>Codifica</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>Estrazione</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+</root>

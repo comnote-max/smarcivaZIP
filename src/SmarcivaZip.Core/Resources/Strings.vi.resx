@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>Một phần mềm nén gọn nhẹ, dùng y như Lhaplus nhưng xử lý được RAR5, Zstandard, tên tệp bị lỗi phông và những kho nén tạo trên macOS.</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>Bộ máy nén</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>Dùng 7z.dll của 7-Zip.
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>Các định dạng được hỗ trợ</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>Giải nén ({0} loại): {1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>Không tìm thấy 7z.dll nên không thể hiện danh sách định dạng.</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>Nén: {0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>Bản thân smarcivaZIP theo giấy phép MIT. Tệp 7z.dll đi kèm lấy từ 7-Zip (Igor Pavlov), theo giấy phép LGPL-2.1 trở lên, và phần mã giải nén RAR còn chịu thêm ràng buộc unRAR. Chi tiết nằm trong tệp THIRD-PARTY-NOTICES.md đi kèm.</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>Giấy phép</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>Phiên bản {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>Mọi tệp</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>Đã chặn {0} mục định ghi ra ngoài thư mục đích. Kho nén này có thể được dựng lên với ý đồ xấu.</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>Kho nén này khi giải ra sẽ phình tới kích thước bất thường.
+
+{0}
+
+Vẫn tiếp tục chứ?</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>Nén không thành</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>Không nén được</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>Không tìm thấy bộ máy nén</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}: {1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+Chi tiết đã được lưu vào:
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>Giải nén không thành</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　và {0} lỗi nữa</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>Không mở được</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>Lưu thành</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>Định dạng lạ: {0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>Có {0} tệp không đọc được nên không vào được kho nén.
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>Một phần nội dung không giải nén được vì mật khẩu sai.</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>Không tìm thấy tệp: {0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>Định dạng không được hỗ trợ, hoặc tệp đã hỏng: {0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>Tỉ lệ nén lên tới {0} lần, cao bất thường: {1} bung thành {2}.</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>Giải ra sẽ thành {0}.</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>Kho nén chứa {0} mục (giới hạn: {1}).</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>Kirin (DOS)</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>Tiếng Nhật</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>Tiếng Hàn</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM (DOS)</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>Tiếng Trung giản thể</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>Tiếng Trung phồn thể</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>Tây Âu</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - phần mềm nén gọn nhẹ
+
+Cách dùng:
+  SmarcivaZip.exe &lt;kho nén&gt;                   giải nén nó
+  SmarcivaZip.exe --extract &lt;kho nén&gt;         giải nén cạnh kho nén
+  SmarcivaZip.exe --extract-to-folder &lt;kho nén&gt;
+                                              giải nén vào thư mục mới
+  SmarcivaZip.exe --extract-preview &lt;kho nén&gt;
+                                              xem lại bảng mã rồi giải nén
+  SmarcivaZip.exe --compress &lt;định dạng&gt; &lt;đường dẫn...&gt;
+                                              nén (định dạng: zip, 7z, tar.gz...)
+  SmarcivaZip.exe --compress &lt;định dạng&gt; --password &lt;đường dẫn...&gt;
+                                              nén kèm mật khẩu
+  SmarcivaZip.exe --settings                  mở cửa sổ thiết lập
+  SmarcivaZip.exe --register                  đăng ký liên kết tệp và trình đơn chuột phải
+  SmarcivaZip.exe --unregister                gỡ đăng ký đó</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>Trả về mặc định</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>Nén không thành (0x{0}).</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>Không ghi được định dạng {0}.</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>7z.dll này không tạo được kho nén {0}.</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>Có lỗi xảy ra trong lúc nén.</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>Không tìm thấy tệp nào để nén.</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>Không có gì để nén.</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>Định dạng mặc định</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>Mức nén</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>Mức càng cao thì kho nén càng nhỏ nhưng càng lâu. Không có lý do đặc biệt thì mức thường là đủ.</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>Nút Lưu sẽ áp dụng điều này cho trình đơn chuột phải.</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>Các định dạng hiện trong trình đơn chuột phải</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>Những định dạng được đánh dấu sẽ hiện dưới smarcivaZIP trong trình đơn chuột phải, theo thứ tự của danh sách này.</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>Xuống</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>Lên</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>Hỏi nơi lưu trước khi nén</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>Luôn hiện bước xác nhận bảng mã trước khi giải nén</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>Khi tắt, bước xác nhận chỉ hiện lúc nhận dạng chưa chắc chắn. Cứ để tắt để nháy đúp là giải nén ngay.</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>Tự động (theo ngôn ngữ giao diện)</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>Ghép lại những ký tự bị tách rời (NFD)</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>Kho nén tạo trên macOS lưu một chữ như «ế» thành «e» cộng thêm các dấu rời. Không bật mục này thì những tên ấy trông như bị hỏng trên Windows.</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>Ngôn ngữ ưu tiên</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>Tệp ZIP thường không nói rõ tên tệp nằm trong bảng mã nào, nên phải đoán. Mục này quyết định ngôn ngữ nào thắng khi kết quả sát sao.</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>Giá trị CRC không khớp; tệp có thể đã hỏng.</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>Có dữ liệu thừa nằm sau phần cuối của kho nén.</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>Dữ liệu đã hỏng.</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>Giải nén không thành ({0}).</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>Giải nén không thành (0x{0}).</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>Phần đầu tệp đã hỏng.</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>Tệp này không được nhận ra là kho nén.</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>Không đọc được dữ liệu.</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>Kho nén kết thúc sớm hơn lẽ ra.</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>Cách nén này không được hỗ trợ.</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>Mật khẩu sai.</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>Định dạng {0}</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>7z.dll này không hỗ trợ</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>Duyệt...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>Chọn thư mục đích</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>Khi đã có tệp trùng tên</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>Ghi đè</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>Lưu thành tên khác (nên dùng)</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>Bỏ qua</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>Chuyển kho nén vào thùng rác nếu xong xuôi</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>Bỏ các tệp phụ của macOS (__MACOSX / ._* / .DS_Store)</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>Bỏ Thumbs.db và desktop.ini</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>Luôn tạo thư mục mang tên kho nén</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>Chỉ khi cần (nên dùng)</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>Nếu toàn bộ nội dung vốn đã nằm trong một thư mục thì giải ra nguyên vậy; nếu không thì tạo thêm một thư mục.</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>Tạo thư mục</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>Không bao giờ tạo thư mục</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>Giữ dấu «tải từ internet» (Mark of the Web)</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>Mở thư mục sau khi xong</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>Luôn vào một thư mục cố định</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>Giải nén vào đâu</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>Cạnh kho nén</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>Khôi phục ngày giờ của tệp</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>Với tar.gz và loại tương tự, giải luôn tệp tar bên trong</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>Kho nén</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>Tệp nén</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0} (smarcivaZIP)</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>Kho nén LZH</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>Kho nén RAR</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>Kho nén 7z</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>Kho nén TAR</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>Kho nén ZIP</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>Nhanh nhất</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>Tối đa</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>Thường (nên dùng)</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>Không nén (nhanh)</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>Cực đại (chậm)</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>Nén thành {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>Nén thành {0} (có mật khẩu)</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>Giải nén tại đây</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>Giải nén và chọn bảng mã...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>Giải nén vào thư mục mới</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>Thiết lập...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>Gõ mật khẩu vào ô trên, rồi gõ lại vào ô dưới để xác nhận. Nếu quên mất, nội dung sẽ không còn lấy lại được.</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>Đặt mật khẩu</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} đã được mã hóa. Hãy gõ mật khẩu của nó.</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>Cần mật khẩu</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>Hai ô không khớp nhau. Hãy gõ lại.</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>Hãy gõ một mật khẩu.</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>Bảng mã</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  &lt;- nhận ra</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>Bỏ __MACOSX / ._* / .DS_Store</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>Giải nén với thiết lập này</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> Kho nén này trông như được tạo trên macOS.</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... và {0} mục nữa</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>Sửa lại những ký tự bị tách rời (NFD) từ macOS</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>Định dạng {0}, {1} mục. {2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>Xem lại bảng mã - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>Bảng mã nhận ra gần như chắc chắn là đúng.</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>Việc nhận dạng chưa chắc chắn. Hãy nhìn danh sách bên dưới và chọn bảng mã nào cho tên đọc được xuôi.</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>Bảng mã nhận ra nhiều khả năng là đúng, nhưng bạn cứ ngó qua.</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>Đang hủy...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>Đang nén {0} mục</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>Đang nén {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>Đang giải nén {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>Đang chuẩn bị...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>Đang xử lý...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Thiết lập smarcivaZIP</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>Thêm...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>Thêm mọi phần mở rộng mà 7z.dll mở được</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>Không cần dấu chấm ở đầu (ví dụ: alz).</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>Thêm phần mở rộng</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>Đánh dấu tất cả</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>Nút Lưu sẽ áp dụng các dấu này. Những phần mở rộng đã thuộc về ứng dụng khác, như .zip, còn phải đổi thêm ở phần ứng dụng mặc định của Windows.</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>Các phần mở rộng mở bằng cách nháy đúp</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>Phần mở rộng được đánh dấu sẽ mở bằng smarcivaZIP. Bỏ dấu thì liên kết đó bị gỡ.</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>Có hiệu lực ở lần khởi động smarcivaZIP kế tiếp.</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>Không còn gì để thêm nữa.</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>Mở phần ứng dụng mặc định của Windows</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>Đã đăng ký.
+
+Những loại tệp sau khi nháy đúp vẫn mở bằng ứng dụng khác, vì Windows dành quyền chọn đó cho người dùng:
+
+{0}
+
+Trình đơn chuột phải thì vẫn chạy bình thường. Muốn đổi việc nháy đúp làm gì, hãy mở phần ứng dụng mặc định của Windows, hoặc nháy chuột phải lên một tệp rồi chọn «Mở bằng» → «Chọn ứng dụng khác» → «Luôn dùng ứng dụng này».
+
+Mở phần ứng dụng mặc định ngay bây giờ chứ?</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  (hiện tại: {1})</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>Đăng ký không thành.
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>Trình đơn chuột phải và liên kết tệp vẫn chưa được đăng ký.
+
+Đăng ký ngay chứ? Không có chúng thì không dùng được smarcivaZIP từ File Explorer.</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>Đã đăng ký.
+
+Trên Windows 11, smarcivaZIP hiện trong trình đơn chuột phải ở mục «Hiện thêm tùy chọn».</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>Đăng ký lại</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>Trình đơn chuột phải và liên kết tệp</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>Chưa đăng ký. Việc đăng ký sẽ đưa smarcivaZIP vào trình đơn chuột phải.</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>Đã đăng ký. Có thể dùng smarcivaZIP từ trình đơn chuột phải của File Explorer.</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>Bỏ hết dấu</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>Gỡ đăng ký</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>Gỡ đăng ký không thành.
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>Đã gỡ đăng ký.</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>Trên Windows 11, mục trình đơn chuột phải nằm trong «Hiện thêm tùy chọn». Bản thân Windows được làm như vậy.</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>Không tìm thấy 7z.dll.
+
+Hãy đặt 7z.dll cạnh smarcivaZIP, hoặc cài 7-Zip.
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>Nén</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>Bảng mã</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>Giải nén</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+</root>

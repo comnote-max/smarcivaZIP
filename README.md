@@ -74,8 +74,21 @@ DMG（HFS+ / 一部 APFS）もそのまま開けます。
 
 ## 表示言語
 
-日本語と英語に対応しています。既定では Windows の表示言語に合わせ、
+20 言語に対応しています。既定では Windows の表示言語に合わせ、
 対応していない言語のときは英語になります。設定画面の「設定」タブで固定もできます。
+
+English / 简体中文 / 繁體中文 / Español / العربية / Português / Bahasa Indonesia /
+Français / 日本語 / Русский / Deutsch / 한국어 / Türkçe / Italiano / Tiếng Việt /
+Polski / ไทย / Nederlands / Українська / हिन्दी
+
+この 20 言語で、インターネット利用者のおおよそ 9 割に母語か第二言語で届きます。
+上位 10 言語ほどで 8 割に達し、そこから先は 1 言語あたりの上積みが急に小さくなるため、
+地域方言までは追わずここで止めています。
+
+アラビア語では画面全体を右から左に反転します。ボタンの並びや文字の寄せだけでなく、
+文中に混ざる数字やラテン文字の位置も変わるためです。
+タイ語・ヒンディー語・アラビア語の字形は Windows 10 以降に標準で入っている
+Nirmala UI / Leelawadee UI / Segoe UI から拾います（フォントの追加導入は不要です）。
 
 表示言語は文字コードの判定にも効きます。ZIP のファイル名は判定が割れることがあり、
 そのときは利用者の言語圏を優先するのが最も当たるためです
@@ -259,7 +272,7 @@ src/
   SmarcivaZip.Core/     7z.dll の相互運用、文字コード判定、安全性、展開・圧縮
     SevenZip/           COM インターフェイスと専用ワーカースレッド
     Localization/       表示言語と文字列リソース
-    Resources/          Strings.resx（英語）/ Strings.ja.resx（日本語）
+    Resources/          Strings.resx（英語・中立）と各言語の Strings.<言語コード>.resx
     Encodings/          コードページ判定、ZIP セントラルディレクトリ解析、NFC 正規化
     Safety/             パスのサニタイズ、Zip Bomb 検出、Mark of the Web
     Extraction/         展開

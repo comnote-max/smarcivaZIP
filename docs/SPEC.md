@@ -176,12 +176,29 @@ smarcivaZIP  ▸  ZIP に圧縮
 
 ## 4.4 表示言語
 
-日本語と英語。既定は Windows の表示言語に追従し、未対応の言語は英語に落ちる。
+20 言語。既定は Windows の表示言語に追従し、未対応の言語は英語に落ちる。
 設定画面で固定もできる。切り替えは再起動後に反映される
 （XAML のリソース参照はウィンドウ生成時に解決されるため）。
 
+en / zh-Hans / zh-Hant / es / ar / pt / id / fr / ja / ru /
+de / ko / tr / it / vi / pl / th / nl / uk / hi
+
+選定は話者数ではなくインターネット利用者数で行った。母語話者だけを見ると
+書き言葉としては別言語を使う地域を取りこぼすためである。この 20 言語で約 9 割、
+上位 10 言語ほどで約 8 割に届く。それ以降は 1 言語あたりの上積みが急落するので、
+地域方言には踏み込まない。
+
+アラビア語は右から左に書くため、`AppLanguage.IsRightToLeft` を見て
+`FlowDirection` をウィンドウ全体に適用する。WPF はこのとき HWND に
+`WS_EX_LAYOUTRTL` を立てるので、`PrintWindow` で取った画像は左右が反転する。
+スクリーンショットで確認するときは反転させて見ること（画面表示自体は正しい）。
+
+タイ語・ヒンディー語・アラビア語は `App.xaml` の `UiFont` のフォールバックで
+Nirmala UI / Leelawadee UI / Segoe UI に落として字形を得る。
+いずれも Windows 10 以降に標準で入っており、追加導入は要らない。
+
 文字列は `SmarcivaZip.Core/Resources/Strings.resx`（英語・中立）と
-`Strings.ja.resx` に置き、`ResourceManager` を直接引く。
+`Strings.<言語コード>.resx` に置き、`ResourceManager` を直接引く。
 Visual Studio が生成する `*.Designer.cs` は使わない。
 あれはデザイン時ツールの生成物で、`dotnet build` だけの CI では作られず、
 生成物をコミットすると resx とずれる余地が残るためである。

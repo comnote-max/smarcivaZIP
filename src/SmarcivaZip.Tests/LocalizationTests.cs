@@ -223,7 +223,11 @@ public class LocalizationTests
         CultureInfo previous = CultureInfo.CurrentUICulture;
         try
         {
-            AppLanguage.Apply("de");
+            // 訳を用意していない言語なら何でもよい。cy（ウェールズ語）を選んでいるのは、
+            // 提供言語に加える予定がないから。取り違えを防ぐため、そのことも確かめておく。
+            Assert.DoesNotContain(AppLanguage.Available, l => l.Code == "cy");
+
+            AppLanguage.Apply("cy");
             Assert.Equal("Register", Strings.Get("Setup_Register"));
 
             AppLanguage.Apply("ja");
