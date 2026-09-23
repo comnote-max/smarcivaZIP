@@ -1,0 +1,44 @@
+name: Store package
+
+# Microsoft Store に提出する MSIX を作る。手で起動する（Actions の画面の「Run workflow」）。
+# ストアが署名するので、ここでは署名しない。できた .msixbundle を Partner Center の
+# 「パッケージ」にアップロードする。
+on:
+  workflow_dispatch:
+
+# Partner Center の「製品 ID」ページの値。秘密ではないのでここに書く。
+env:
+  IDENTITY_NAME: ec-shopjapan.smarcivaZIP
+  PUBLISHER: CN=22756C9F-FFE8-4314-9C51-9BAA444B0627
+  PUBLISHER_DISPLAY_NAME: ec-shop japan
+
+jobs:
+  msix:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Test
+        shell: pwsh
+        run: |
+          ./tools/fetch-7zip.ps1 -Architectures x64
+          dotnet test src/SmarcivaZip.Tests -c Release --nologo
+
+      - name: Build the Store MSIX bundle
+        shell: pwsh
+        run: >
+          ./tools/build-msix.ps1
+          -IdentityName "$env:IDENTITY_NAME"
+          -Publisher "$env:PUBLISHER"
+          -PublisherDisplayName "$env:PUBLISHER_DISPLAY_NAME"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smarcivazip-store-msix
+          path: artifacts/msix/*.msixbundle
+          if-no-files-found: error
