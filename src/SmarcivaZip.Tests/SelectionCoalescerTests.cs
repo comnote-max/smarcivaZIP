@@ -19,6 +19,29 @@ public class SelectionCoalescerTests
     /// <summary>テストごとに別の鍵を使う。同時に走っても互いに巻き込まない。</summary>
     private static string NewKey() => "test-" + Guid.NewGuid().ToString("N");
 
+    /// <summary>
+    /// 呼び出しひとつにつきスレッドひとつを用意する。
+    ///
+    /// 本番ではファイルごとに別プロセスが起動するので、待ち手はそれぞれ自分のスレッドを持つ。
+    /// このテストはそれを 1 プロセス内のタスクで代用しているが、
+    /// NamedPipeClientStream.ConnectAsync は接続できるまでスレッドプールのスレッドを
+    /// 1 本占有し続ける。コアの少ない CI ではプールのスレッドが待ち手に食い尽くされ、
+    /// まとめ役の続きが回ってこないまま待ち手が時間切れになり、全員が「自分が先頭」になる
+    /// （DOTNET_PROCESSOR_COUNT=1 で 20 回中 20 回再現した）。
+    /// 本番には無い取り合いなので、テストの側で別プロセスと同じ条件にそろえる。
+    /// </summary>
+    private static IDisposable OneThreadPerCaller(int callers)
+    {
+        ThreadPool.GetMinThreads(out int worker, out int io);
+        ThreadPool.SetMinThreads(Math.Max(worker, callers + 4), Math.Max(io, callers + 4));
+        return new RestoreMinThreads(worker, io);
+    }
+
+    private sealed class RestoreMinThreads(int worker, int io) : IDisposable
+    {
+        public void Dispose() => ThreadPool.SetMinThreads(worker, io);
+    }
+
     private static string PathIn(string directory, string name) => Path.Combine(directory, name);
 
     [Fact]
@@ -34,6 +57,7 @@ public class SelectionCoalescerTests
     [Fact]
     public async Task 同時に来た呼び出しがひとつにまとまる()
     {
+        using IDisposable _ = OneThreadPerCaller(8);
         string key = NewKey();
         string directory = @"C:\work";
 
@@ -57,6 +81,7 @@ public class SelectionCoalescerTests
     {
         // 1 件ごとに 300 ms 空けても、締め切り (600 ms) 未満なので拾われ続ける。
         // 合計の経過時間は最初の締め切りを大きく超える。
+        using IDisposable _ = OneThreadPerCaller(5);
         string key = NewKey();
         string directory = @"C:\work";
 
@@ -83,6 +108,7 @@ public class SelectionCoalescerTests
     public async Task 操作が違えば別々にまとまる()
     {
         // ZIP 圧縮と 7z 圧縮を同時に選んだとき、混ざってはいけない。
+        using IDisposable _ = OneThreadPerCaller(3);
         string directory = @"C:\work";
 
         Task<CoalescedSelection> zip1 = SelectionCoalescer.CollectAsync("op-zip", PathIn(directory, "a.txt"));
@@ -120,6 +146,7 @@ public class SelectionCoalescerTests
     {
         // エクスプローラーが渡す順序は選択順で安定しないため、書庫の中身が
         // 実行のたびに入れ替わらないよう並べ直している。
+        using IDisposable _ = OneThreadPerCaller(3);
         string key = NewKey();
         string directory = @"C:\work";
 

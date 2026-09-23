@@ -1,3 +1,5 @@
+using System.Text;
+using SmarcivaZip.Core.Encodings;
 using SmarcivaZip.Core.Extraction;
 using Xunit;
 
@@ -62,6 +64,62 @@ public sealed class LzhTests : IDisposable
         var paths = reader.Entries.Select(e => e.Path.Replace('\\', '/')).ToList();
 
         Assert.Contains("サブフォルダ/読みかた.txt", paths);
+    }
+
+    [Fact]
+    public void 名前は7zdllではなく自前で読んだバイト列から作る()
+    {
+        // 7z.dll は LZH の名前を Windows のシステムのコードページで読む。
+        // 日本語版 Windows ではそれが偶然 CP932 なので、上のテストはこの開発機では
+        // 何もしなくても通ってしまい、英語版の CI でだけ落ちていた。
+        // 指定したコードページがそのまま結果に出ることを確かめれば、
+        // どの環境でも「システムの設定に左右されない」ことの確認になる。
+        using ArchiveReader reader = ArchiveReader.Open(Fixture, new ArchiveOpenOptions { ForcedCodePage = 1252 });
+
+        CodePageInfo.EnsureEncodingProviderRegistered();
+        string expected = Encoding.GetEncoding(1252).GetString(Encoding.GetEncoding(932).GetBytes("日本語の名前.txt"));
+
+        var paths = reader.Entries.Select(e => e.Path.Replace('\\', '/')).ToList();
+        Assert.Contains(expected, paths);
+        Assert.DoesNotContain("日本語の名前.txt", paths);
+    }
+
+    [Fact]
+    public void 指定が無ければCP932で読んだと報告する()
+    {
+        using ArchiveReader reader = ArchiveReader.Open(Fixture);
+
+        Assert.Equal(CodePageInfo.ShiftJis, reader.DetectedCodePage);
+    }
+
+    [Fact]
+    public void ヘッダからフォルダと名前を分けて取り出せる()
+    {
+        IReadOnlyList<LzhEntryNameInfo>? entries = LzhHeaders.TryRead(Fixture);
+
+        Assert.NotNull(entries);
+        Assert.Equal(3, entries.Count);
+
+        CodePageInfo.EnsureEncodingProviderRegistered();
+        Encoding cp932 = Encoding.GetEncoding(932);
+        Assert.Contains(entries, e => e.Decode(cp932) == @"サブフォルダ\読みかた.txt");
+    }
+
+    [Fact]
+    public void 二バイト目が0x5Cの文字で名前が割れない()
+    {
+        // 「表」は CP932 で 0x95 0x5C。バイトのまま '\' で切ると文字が割れ、
+        // 存在しないフォルダができてしまう。
+        CodePageInfo.EnsureEncodingProviderRegistered();
+        Encoding cp932 = Encoding.GetEncoding(932);
+
+        var info = new LzhEntryNameInfo(
+            DirectoryRaw: [.. cp932.GetBytes("資料"), 0xFF],
+            NameRaw: cp932.GetBytes("表.txt"),
+            OriginalSize: 0,
+            IsDirectory: false);
+
+        Assert.Equal(@"資料\表.txt", info.Decode(cp932));
     }
 
     [Fact]

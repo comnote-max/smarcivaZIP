@@ -32,6 +32,7 @@ public sealed class ArchiveReader : IDisposable
     private readonly InStreamWrapper _stream;
     private readonly FileStream _fileStream;
     private readonly ZipCentralDirectory? _centralDirectory;
+    private readonly IReadOnlyList<LzhEntryNameInfo>? _lzhNames;
     private bool _disposed;
 
     public string ArchivePath { get; }
@@ -62,9 +63,11 @@ public sealed class ArchiveReader : IDisposable
         double confidence,
         IReadOnlyList<EncodingGuess> candidates,
         bool isMacArchive,
-        ZipCentralDirectory? centralDirectory)
+        ZipCentralDirectory? centralDirectory,
+        IReadOnlyList<LzhEntryNameInfo>? lzhNames)
     {
         _centralDirectory = centralDirectory;
+        _lzhNames = lzhNames;
         ArchivePath = archivePath;
         Handler = handler;
         _archive = archive;
@@ -111,6 +114,11 @@ public sealed class ArchiveReader : IDisposable
                 streamWrapper = new InStreamWrapper(fileStream, leaveOpen: true);
                 archive = library.CreateInArchive(handler.ClassId);
 
+                // LZH は生の名前を自前で読み、指定が無ければ CP932 で読む（SPEC 2.4）。
+                IReadOnlyList<LzhEntryNameInfo>? lzhNames =
+                    IsLzh(handler) ? LzhHeaders.TryRead(archivePath) : null;
+                int? nameCodePage = codePage ?? (lzhNames is not null ? CodePageInfo.ShiftJis : null);
+
                 ApplyCodePage(archive, handler, codePage);
 
                 var openCallback = new ArchiveOpenCallback(options.Password);
@@ -121,16 +129,21 @@ public sealed class ArchiveReader : IDisposable
                 if (itemCount == 0 && !IsEmptyArchiveAcceptable(handler)) throw new IOException();
 
                 IReadOnlyList<ArchiveEntry> entries = ReadEntries(
-                    archive, itemCount, handler, centralDirectory, codePage,
-                    options.NormalizeToNfc, out bool isMac);
+                    archive, itemCount, handler, centralDirectory, lzhNames, nameCodePage,
+                    options.NormalizeToNfc, out bool isMac, out bool lzhNamesUsed);
+
+                int? adoptedCodePage = centralDirectory is not null ? codePage
+                    : lzhNamesUsed ? nameCodePage
+                    : null;
 
                 return new ArchiveReader(
                     archivePath, handler, archive, streamWrapper, fileStream, entries,
-                    centralDirectory is null ? null : codePage,
+                    adoptedCodePage,
                     detection?.Confidence ?? 1.0,
                     detection?.Ranked ?? [],
                     isMac || (centralDirectory?.LooksLikeMacArchive ?? false),
-                    centralDirectory);
+                    centralDirectory,
+                    lzhNamesUsed ? lzhNames : null);
             }
             catch (Exception ex) when (ex is IOException or COMException or InvalidOperationException)
             {
@@ -231,23 +244,31 @@ public sealed class ArchiveReader : IDisposable
         }
     }
 
+    private static bool IsLzh(HandlerInfo handler)
+        => handler.Name.Equals("lzh", StringComparison.OrdinalIgnoreCase) || handler.MatchesExtension("lzh");
+
     private static IReadOnlyList<ArchiveEntry> ReadEntries(
         IInArchive archive,
         uint itemCount,
         HandlerInfo handler,
         ZipCentralDirectory? centralDirectory,
+        IReadOnlyList<LzhEntryNameInfo>? lzhNames,
         int? codePage,
         bool normalizeToNfc,
-        out bool isMacArchive)
+        out bool isMacArchive,
+        out bool lzhNamesUsed)
     {
         var entries = new List<ArchiveEntry>((int)itemCount);
         isMacArchive = false;
 
-        // ZIP は自前で読んだ名前を正とする。ただし 7z.dll 側と同じ並びである
-        // 保証はないので、CRC とサイズが全件一致した場合にだけ差し替える。
-        IReadOnlyList<string>? repairedNames = centralDirectory is null
-            ? null
-            : BuildRepairedZipNames(archive, itemCount, centralDirectory, codePage);
+        // ZIP と LZH は自前で読んだ名前を正とする。ただし 7z.dll 側と同じ並びである
+        // 保証はないので、サイズなどが全件一致した場合にだけ差し替える。
+        IReadOnlyList<string>? repairedNames = centralDirectory is not null
+            ? BuildRepairedZipNames(archive, itemCount, centralDirectory, codePage)
+            : lzhNames is not null && codePage is not null
+                ? BuildRepairedLzhNames(archive, itemCount, lzhNames, codePage.Value)
+                : null;
+        lzhNamesUsed = centralDirectory is null && repairedNames is not null;
 
         for (uint i = 0; i < itemCount; i++)
         {
@@ -329,6 +350,36 @@ public sealed class ArchiveReader : IDisposable
         return names;
     }
 
+    /// <summary>
+    /// LZH の生バイト列から名前を作り直す。LZH のヘッダは先頭から順に並ぶだけなので
+    /// 7z.dll と並びが食い違うことはまず無いが、念のため件数・種類・サイズを全件照合する。
+    /// 一致しなければ null を返し、7z.dll の名前をそのまま使う（従来と同じ動きになるだけ）。
+    /// </summary>
+    private static IReadOnlyList<string>? BuildRepairedLzhNames(
+        IInArchive archive, uint itemCount, IReadOnlyList<LzhEntryNameInfo> lzhNames, int codePage)
+    {
+        if (lzhNames.Count != itemCount) return null;
+
+        Encoding? decoder = CodePageInfo.GetLenientEncoding(codePage);
+        if (decoder is null) return null;
+
+        var names = new List<string>((int)itemCount);
+
+        for (uint i = 0; i < itemCount; i++)
+        {
+            LzhEntryNameInfo info = lzhNames[(int)i];
+
+            bool isFolder = PropertyHelper.GetItemBool(archive, i, ItemPropId.IsFolder);
+            if (isFolder != info.IsDirectory) return null;
+            if (!isFolder && PropertyHelper.GetItemUInt64(archive, i, ItemPropId.Size) != info.OriginalSize)
+                return null;
+
+            names.Add(info.Decode(decoder));
+        }
+
+        return names;
+    }
+
     private static string DecodeZipName(ZipEntryNameInfo info, Encoding fallback, Encoding utf8Strict)
     {
         // 1. Info-ZIP Unicode Path Extra Field があればそれが最も信頼できる。
@@ -358,6 +409,19 @@ public sealed class ArchiveReader : IDisposable
     /// </summary>
     public IReadOnlyList<string> PreviewNames(int codePage, bool normalizeToNfc, int limit = 500)
     {
+        if (_lzhNames is not null)
+        {
+            Encoding lzhDecoder = CodePageInfo.GetLenientEncoding(codePage) ?? Encoding.UTF8;
+            return _lzhNames
+                .Take(limit)
+                .Select(info =>
+                {
+                    string name = info.Decode(lzhDecoder);
+                    return normalizeToNfc ? NameNormalizer.ToNfc(name) : name;
+                })
+                .ToList();
+        }
+
         if (_centralDirectory is null)
         {
             return Entries.Take(limit)
