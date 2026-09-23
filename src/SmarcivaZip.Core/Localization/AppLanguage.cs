@@ -19,8 +19,11 @@ public sealed record AppLanguage(string Code, string DisplayName)
     public static readonly IReadOnlyList<AppLanguage> Available =
     [
         Auto,
+        new("en", "English"),
         new("ja", "日本語"),
-        new("en", "English")
+        new("zh-Hans", "简体中文"),
+        new("zh-Hant", "繁體中文"),
+        new("ko", "한국어")
     ];
 
     public override string ToString() => DisplayName;
@@ -33,6 +36,13 @@ public sealed record AppLanguage(string Code, string DisplayName)
         CultureInfo.CurrentUICulture = culture;
         CultureInfo.DefaultThreadCurrentUICulture = culture;
     }
+
+    /// <summary>
+    /// その言語が右から左へ書くか。アラビア語などで画面全体を反転させる必要がある。
+    /// 反転しないと、ボタンの並びもテキストの寄せも逆のまま読みにくいだけでなく、
+    /// 文中に混ざる数字や記号の位置がずれて意味が変わることがある。
+    /// </summary>
+    public static bool IsRightToLeft(CultureInfo culture) => culture.TextInfo.IsRightToLeft;
 
     private static CultureInfo Resolve(string? code)
     {

@@ -40,6 +40,7 @@ public partial class App : Application
         // ウィンドウが作られる前に表示言語を決める。
         // XAML のリソース参照は生成時に解決されるため、後から変えても反映されない。
         AppLanguage.Apply(_settings.Language);
+        ApplyTextDirection();
         _settings.ApplyToDetector();
 
         CommandLine command = CommandLine.Parse(e.Args);
@@ -65,6 +66,19 @@ public partial class App : Application
             _archiveWorker.Dispose();
             Shutdown();
         }
+    }
+
+    /// <summary>
+    /// アラビア語のように右から左へ書く言語では、画面全体を反転させる。
+    /// ウィンドウごとに指定して回るのではなく、既定値を差し替えて一度で済ませる。
+    /// </summary>
+    private static void ApplyTextDirection()
+    {
+        if (!AppLanguage.IsRightToLeft(System.Globalization.CultureInfo.CurrentUICulture)) return;
+
+        FrameworkElement.FlowDirectionProperty.OverrideMetadata(
+            typeof(FrameworkElement),
+            new FrameworkPropertyMetadata(FlowDirection.RightToLeft));
     }
 
     private async Task RunAsync(CommandLine command)

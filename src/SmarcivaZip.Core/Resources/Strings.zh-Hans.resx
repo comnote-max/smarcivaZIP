@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Description" xml:space="preserve">
+    <value>保留 Lhaplus 使用手感的简易压缩工具，支持 RAR5、Zstandard、文件名乱码修复以及 macOS 生成的压缩包。</value>
+  </data>
+  <data name="About_EngineHeading" xml:space="preserve">
+    <value>压缩引擎</value>
+  </data>
+  <data name="About_EngineUsing" xml:space="preserve">
+    <value>正在使用 7-Zip 的 7z.dll。
+{0}</value>
+  </data>
+  <data name="About_FormatsHeading" xml:space="preserve">
+    <value>支持的格式</value>
+  </data>
+  <data name="About_FormatsRead" xml:space="preserve">
+    <value>解压（{0} 种）：{1}</value>
+  </data>
+  <data name="About_FormatsUnavailable" xml:space="preserve">
+    <value>未找到 7z.dll，无法显示格式列表。</value>
+  </data>
+  <data name="About_FormatsWrite" xml:space="preserve">
+    <value>压缩：{0}</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>smarcivaZIP 本身采用 MIT 许可证。随附的 7z.dll 来自 7-Zip（Igor Pavlov），适用 LGPL-2.1 或更高版本，其 RAR 解压代码受 unRAR 限制约束。详情请参阅随附的 THIRD-PARTY-NOTICES.md。</value>
+  </data>
+  <data name="About_LicenseHeading" xml:space="preserve">
+    <value>许可证</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>版本 {0}</value>
+  </data>
+  <data name="App_AllFiles" xml:space="preserve">
+    <value>所有文件</value>
+  </data>
+  <data name="App_BlockedEntries" xml:space="preserve">
+    <value>已拦截 {0} 个试图写入解压目标之外的条目。此压缩包可能被人为构造。</value>
+  </data>
+  <data name="App_BombWarning" xml:space="preserve">
+    <value>此压缩包解压后会变得异常庞大。
+
+{0}
+
+要继续吗？</value>
+  </data>
+  <data name="App_CompressFailedTitle" xml:space="preserve">
+    <value>压缩失败</value>
+  </data>
+  <data name="App_CompressNotPossible" xml:space="preserve">
+    <value>无法压缩</value>
+  </data>
+  <data name="App_EngineMissingTitle" xml:space="preserve">
+    <value>未找到压缩引擎</value>
+  </data>
+  <data name="App_ErrorBullet" xml:space="preserve">
+    <value>　- {0}：{1}</value>
+  </data>
+  <data name="App_ErrorTitle" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="App_ErrorWithLog" xml:space="preserve">
+    <value>{0}
+
+详细信息已记录到：
+{1}</value>
+  </data>
+  <data name="App_ExtractFailedTitle" xml:space="preserve">
+    <value>解压失败</value>
+  </data>
+  <data name="App_MoreErrors" xml:space="preserve">
+    <value>　另有 {0} 个错误</value>
+  </data>
+  <data name="App_OpenFailedTitle" xml:space="preserve">
+    <value>无法打开</value>
+  </data>
+  <data name="App_PathBullet" xml:space="preserve">
+    <value>　- {0}</value>
+  </data>
+  <data name="App_SaveDialogTitle" xml:space="preserve">
+    <value>另存为</value>
+  </data>
+  <data name="App_UnknownFormat" xml:space="preserve">
+    <value>未知格式：{0}</value>
+  </data>
+  <data name="App_UnreadableItems" xml:space="preserve">
+    <value>有 {0} 个文件无法读取，未加入压缩包。
+
+{1}</value>
+  </data>
+  <data name="App_WrongPassword" xml:space="preserve">
+    <value>密码错误，部分内容无法解压。</value>
+  </data>
+  <data name="Archive_FileNotFound" xml:space="preserve">
+    <value>找不到文件：{0}</value>
+  </data>
+  <data name="Archive_Unsupported" xml:space="preserve">
+    <value>格式不受支持，或文件已损坏：{0}</value>
+  </data>
+  <data name="Bomb_RatioTooHigh" xml:space="preserve">
+    <value>压缩率高达 {0} 倍，异常偏高：{1} 将解压为 {2}。</value>
+  </data>
+  <data name="Bomb_TooLarge" xml:space="preserve">
+    <value>解压后将达到 {0}。</value>
+  </data>
+  <data name="Bomb_TooManyEntries" xml:space="preserve">
+    <value>压缩包中含有 {0} 个条目（上限 {1} 个）。</value>
+  </data>
+  <data name="CodePage_Cyrillic" xml:space="preserve">
+    <value>西里尔文（DOS）</value>
+  </data>
+  <data name="CodePage_Japanese" xml:space="preserve">
+    <value>日语</value>
+  </data>
+  <data name="CodePage_Korean" xml:space="preserve">
+    <value>朝鲜语</value>
+  </data>
+  <data name="CodePage_Oem" xml:space="preserve">
+    <value>OEM（DOS）</value>
+  </data>
+  <data name="CodePage_SimplifiedChinese" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="CodePage_TraditionalChinese" xml:space="preserve">
+    <value>繁体中文</value>
+  </data>
+  <data name="CodePage_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="CodePage_WesternEuropean" xml:space="preserve">
+    <value>西欧语言</value>
+  </data>
+  <data name="CommandLine_Help" xml:space="preserve">
+    <value>smarcivaZIP - 简易压缩工具
+
+用法：
+  SmarcivaZip.exe &lt;压缩包&gt;                     解压
+  SmarcivaZip.exe --extract &lt;压缩包&gt;           解压到压缩包所在位置
+  SmarcivaZip.exe --extract-to-folder &lt;压缩包&gt;
+                                              解压到新建文件夹
+  SmarcivaZip.exe --extract-preview &lt;压缩包&gt;
+                                              确认编码后再解压
+  SmarcivaZip.exe --compress &lt;格式&gt; &lt;路径...&gt;
+                                              压缩（格式：zip、7z、tar.gz 等）
+  SmarcivaZip.exe --compress &lt;格式&gt; --password &lt;路径...&gt;
+                                              加密码压缩
+  SmarcivaZip.exe --settings                  打开设置窗口
+  SmarcivaZip.exe --register                  注册文件关联和右键菜单
+  SmarcivaZip.exe --unregister                取消注册</value>
+  </data>
+  <data name="Common_AppName" xml:space="preserve">
+    <value>smarcivaZIP</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Common_OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Common_Other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="Common_ResetDefaults" xml:space="preserve">
+    <value>恢复默认</value>
+  </data>
+  <data name="Common_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="CompressError_Failed" xml:space="preserve">
+    <value>压缩失败（0x{0}）。</value>
+  </data>
+  <data name="CompressError_FormatReadOnly" xml:space="preserve">
+    <value>{0} 格式不支持写入。</value>
+  </data>
+  <data name="CompressError_FormatUnsupported" xml:space="preserve">
+    <value>此 7z.dll 无法创建 {0} 格式的压缩包。</value>
+  </data>
+  <data name="CompressError_Generic" xml:space="preserve">
+    <value>压缩过程中发生错误。</value>
+  </data>
+  <data name="CompressError_NoFiles" xml:space="preserve">
+    <value>未找到可压缩的文件。</value>
+  </data>
+  <data name="CompressError_NoInput" xml:space="preserve">
+    <value>没有要压缩的内容。</value>
+  </data>
+  <data name="Compress_DefaultFormatHeading" xml:space="preserve">
+    <value>默认格式</value>
+  </data>
+  <data name="Compress_LevelHeading" xml:space="preserve">
+    <value>压缩级别</value>
+  </data>
+  <data name="Compress_LevelHelp" xml:space="preserve">
+    <value>级别越高压缩包越小，但耗时更长。没有特别理由时保持“标准”即可。</value>
+  </data>
+  <data name="Compress_MenuApplyNote" xml:space="preserve">
+    <value>保存后即会应用到右键菜单。</value>
+  </data>
+  <data name="Compress_MenuHeading" xml:space="preserve">
+    <value>右键菜单中显示的格式</value>
+  </data>
+  <data name="Compress_MenuHelp" xml:space="preserve">
+    <value>勾选的格式会按此处的顺序显示在右键菜单的 smarcivaZIP 之下。</value>
+  </data>
+  <data name="Compress_MoveDown" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="Compress_MoveUp" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="Compress_ShowDialog" xml:space="preserve">
+    <value>压缩前询问保存位置</value>
+  </data>
+  <data name="Encoding_AlwaysPreview" xml:space="preserve">
+    <value>解压前始终显示编码确认窗口</value>
+  </data>
+  <data name="Encoding_AlwaysPreviewHelp" xml:space="preserve">
+    <value>关闭时，只有在判断把握不大的情况下才会出现确认窗口。若想保持双击即刻解压的手感，请保持关闭。</value>
+  </data>
+  <data name="Encoding_Auto" xml:space="preserve">
+    <value>自动（跟随显示语言）</value>
+  </data>
+  <data name="Encoding_MacHeading" xml:space="preserve">
+    <value>macOS</value>
+  </data>
+  <data name="Encoding_NormalizeNfd" xml:space="preserve">
+    <value>修复被分解的字符（NFD）</value>
+  </data>
+  <data name="Encoding_NormalizeNfdHelp" xml:space="preserve">
+    <value>macOS 生成的压缩包会把“ガ”这样的字记录为“カ”加上一个组合符号。关闭此项时，这类文件名在 Windows 上会显示得支离破碎。</value>
+  </data>
+  <data name="Encoding_PreferredHeading" xml:space="preserve">
+    <value>优先语言</value>
+  </data>
+  <data name="Encoding_PreferredHelp" xml:space="preserve">
+    <value>ZIP 通常不会记录文件名使用的编码，只能靠推测。当推测结果接近时，由此决定优先采用哪种语言。</value>
+  </data>
+  <data name="Encoding_PreviewHeading" xml:space="preserve">
+    <value>确认窗口</value>
+  </data>
+  <data name="Error_CrcError" xml:space="preserve">
+    <value>CRC 校验不一致，文件可能已损坏。</value>
+  </data>
+  <data name="Error_DataAfterEnd" xml:space="preserve">
+    <value>压缩包末尾存在多余数据。</value>
+  </data>
+  <data name="Error_DataError" xml:space="preserve">
+    <value>数据已损坏。</value>
+  </data>
+  <data name="Error_ExtractFailed" xml:space="preserve">
+    <value>解压失败（{0}）。</value>
+  </data>
+  <data name="Error_ExtractFailedHr" xml:space="preserve">
+    <value>解压失败（0x{0}）。</value>
+  </data>
+  <data name="Error_HeadersError" xml:space="preserve">
+    <value>文件头已损坏。</value>
+  </data>
+  <data name="Error_IsNotArc" xml:space="preserve">
+    <value>无法识别为压缩包。</value>
+  </data>
+  <data name="Error_Unavailable" xml:space="preserve">
+    <value>无法读取数据。</value>
+  </data>
+  <data name="Error_UnexpectedEnd" xml:space="preserve">
+    <value>压缩包在中途结束。</value>
+  </data>
+  <data name="Error_UnsupportedMethod" xml:space="preserve">
+    <value>不支持此压缩方式。</value>
+  </data>
+  <data name="Error_WrongPassword" xml:space="preserve">
+    <value>密码错误。</value>
+  </data>
+  <data name="Extension_FormatSuffix" xml:space="preserve">
+    <value>{0} 格式</value>
+  </data>
+  <data name="Extension_Unsupported" xml:space="preserve">
+    <value>此 7z.dll 不支持</value>
+  </data>
+  <data name="Extract_Browse" xml:space="preserve">
+    <value>浏览...</value>
+  </data>
+  <data name="Extract_BrowseTitle" xml:space="preserve">
+    <value>选择解压目标文件夹</value>
+  </data>
+  <data name="Extract_ConflictHeading" xml:space="preserve">
+    <value>存在同名文件时</value>
+  </data>
+  <data name="Extract_ConflictOverwrite" xml:space="preserve">
+    <value>覆盖</value>
+  </data>
+  <data name="Extract_ConflictRename" xml:space="preserve">
+    <value>另存为其他名称（推荐）</value>
+  </data>
+  <data name="Extract_ConflictSkip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="Extract_DeleteArchive" xml:space="preserve">
+    <value>解压成功后将压缩包移入回收站</value>
+  </data>
+  <data name="Extract_ExcludeMac" xml:space="preserve">
+    <value>移除 macOS 的元数据（__MACOSX / ._* / .DS_Store）</value>
+  </data>
+  <data name="Extract_ExcludeWindows" xml:space="preserve">
+    <value>移除 Thumbs.db / desktop.ini</value>
+  </data>
+  <data name="Extract_FolderAlways" xml:space="preserve">
+    <value>始终创建以压缩包命名的文件夹</value>
+  </data>
+  <data name="Extract_FolderAuto" xml:space="preserve">
+    <value>仅在需要时创建（推荐）</value>
+  </data>
+  <data name="Extract_FolderAutoHelp" xml:space="preserve">
+    <value>若内容已经收在一个文件夹中则原样解压，否则新建一个文件夹。</value>
+  </data>
+  <data name="Extract_FolderHeading" xml:space="preserve">
+    <value>文件夹的创建方式</value>
+  </data>
+  <data name="Extract_FolderNever" xml:space="preserve">
+    <value>不创建文件夹</value>
+  </data>
+  <data name="Extract_Motw" xml:space="preserve">
+    <value>继承来自互联网的标记（Mark of the Web）</value>
+  </data>
+  <data name="Extract_OpenFolder" xml:space="preserve">
+    <value>解压后打开文件夹</value>
+  </data>
+  <data name="Extract_OutputFixed" xml:space="preserve">
+    <value>始终解压到固定文件夹</value>
+  </data>
+  <data name="Extract_OutputHeading" xml:space="preserve">
+    <value>解压位置</value>
+  </data>
+  <data name="Extract_OutputSame" xml:space="preserve">
+    <value>解压到压缩包所在位置</value>
+  </data>
+  <data name="Extract_Timestamps" xml:space="preserve">
+    <value>还原文件的时间戳</value>
+  </data>
+  <data name="Extract_UnwrapTar" xml:space="preserve">
+    <value>tar.gz 之类连同内部的 tar 一次解压到底</value>
+  </data>
+  <data name="FileType_Archive" xml:space="preserve">
+    <value>压缩包</value>
+  </data>
+  <data name="FileType_Compressed" xml:space="preserve">
+    <value>压缩文件</value>
+  </data>
+  <data name="FileType_Friendly" xml:space="preserve">
+    <value>{0}（smarcivaZIP）</value>
+  </data>
+  <data name="FileType_Lzh" xml:space="preserve">
+    <value>LZH 压缩包</value>
+  </data>
+  <data name="FileType_Rar" xml:space="preserve">
+    <value>RAR 压缩包</value>
+  </data>
+  <data name="FileType_SevenZip" xml:space="preserve">
+    <value>7z 压缩包</value>
+  </data>
+  <data name="FileType_Tar" xml:space="preserve">
+    <value>TAR 压缩包</value>
+  </data>
+  <data name="FileType_Zip" xml:space="preserve">
+    <value>ZIP 压缩包</value>
+  </data>
+  <data name="Level_Fastest" xml:space="preserve">
+    <value>最快</value>
+  </data>
+  <data name="Level_Maximum" xml:space="preserve">
+    <value>高压缩</value>
+  </data>
+  <data name="Level_Normal" xml:space="preserve">
+    <value>标准（推荐）</value>
+  </data>
+  <data name="Level_Store" xml:space="preserve">
+    <value>仅存储（快速、不压缩）</value>
+  </data>
+  <data name="Level_Ultra" xml:space="preserve">
+    <value>极限压缩（较慢）</value>
+  </data>
+  <data name="Menu_CompressTo" xml:space="preserve">
+    <value>压缩为 {0}</value>
+  </data>
+  <data name="Menu_CompressToPassword" xml:space="preserve">
+    <value>压缩为 {0}（带密码）</value>
+  </data>
+  <data name="Menu_ExtractHere" xml:space="preserve">
+    <value>解压到当前位置</value>
+  </data>
+  <data name="Menu_ExtractPreview" xml:space="preserve">
+    <value>选择编码后解压...</value>
+  </data>
+  <data name="Menu_ExtractToFolder" xml:space="preserve">
+    <value>解压到新建文件夹</value>
+  </data>
+  <data name="Menu_Settings" xml:space="preserve">
+    <value>设置...</value>
+  </data>
+  <data name="Password_CompressDetail" xml:space="preserve">
+    <value>请在上方输入密码，并在下方再输入一次以确认。一旦忘记密码，内容将无法取出。</value>
+  </data>
+  <data name="Password_CompressHeading" xml:space="preserve">
+    <value>设置密码</value>
+  </data>
+  <data name="Password_ExtractDetail" xml:space="preserve">
+    <value>{0} 已加密，请输入密码。</value>
+  </data>
+  <data name="Password_ExtractHeading" xml:space="preserve">
+    <value>需要密码</value>
+  </data>
+  <data name="Password_Mismatch" xml:space="preserve">
+    <value>两次输入的内容不一致，请重新输入。</value>
+  </data>
+  <data name="Password_Required" xml:space="preserve">
+    <value>请输入密码。</value>
+  </data>
+  <data name="Preview_CodePageLabel" xml:space="preserve">
+    <value>编码</value>
+  </data>
+  <data name="Preview_Detected" xml:space="preserve">
+    <value>{0}  ← 自动判断</value>
+  </data>
+  <data name="Preview_ExcludeMac" xml:space="preserve">
+    <value>移除 __MACOSX / ._* / .DS_Store</value>
+  </data>
+  <data name="Preview_Extract" xml:space="preserve">
+    <value>按此设置解压</value>
+  </data>
+  <data name="Preview_MacNote" xml:space="preserve">
+    <value> 这个压缩包似乎是在 macOS 上制作的。</value>
+  </data>
+  <data name="Preview_More" xml:space="preserve">
+    <value>... 另有 {0} 项</value>
+  </data>
+  <data name="Preview_NormalizeNfd" xml:space="preserve">
+    <value>修复来自 macOS 的分解字符（NFD）</value>
+  </data>
+  <data name="Preview_Summary" xml:space="preserve">
+    <value>{0} 格式 / 共 {1} 个条目。{2}{3}</value>
+  </data>
+  <data name="Preview_Title" xml:space="preserve">
+    <value>确认编码 - smarcivaZIP</value>
+  </data>
+  <data name="Preview_VerdictHigh" xml:space="preserve">
+    <value>自动判断几乎可以确定。</value>
+  </data>
+  <data name="Preview_VerdictLow" xml:space="preserve">
+    <value>自动判断的把握不大。请看下方列表，选出能正确显示的候选。</value>
+  </data>
+  <data name="Preview_VerdictMedium" xml:space="preserve">
+    <value>自动判断大致可靠，但请再确认一下。</value>
+  </data>
+  <data name="Progress_Cancelling" xml:space="preserve">
+    <value>正在中止...</value>
+  </data>
+  <data name="Progress_CompressMany" xml:space="preserve">
+    <value>正在压缩 {0} 个项目</value>
+  </data>
+  <data name="Progress_CompressOne" xml:space="preserve">
+    <value>正在压缩 {0}</value>
+  </data>
+  <data name="Progress_ExtractHeading" xml:space="preserve">
+    <value>正在解压 {0}</value>
+  </data>
+  <data name="Progress_Preparing" xml:space="preserve">
+    <value>准备中...</value>
+  </data>
+  <data name="Progress_Working" xml:space="preserve">
+    <value>处理中...</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>smarcivaZIP 设置</value>
+  </data>
+  <data name="Setup_Add" xml:space="preserve">
+    <value>添加...</value>
+  </data>
+  <data name="Setup_AddAllSupported" xml:space="preserve">
+    <value>添加 7z.dll 能处理的所有扩展名</value>
+  </data>
+  <data name="Setup_AddExtDetail" xml:space="preserve">
+    <value>前面的点可加可不加（例如：alz）。</value>
+  </data>
+  <data name="Setup_AddExtHeading" xml:space="preserve">
+    <value>添加扩展名</value>
+  </data>
+  <data name="Setup_CheckAll" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="Setup_ExtApplyNote" xml:space="preserve">
+    <value>按“保存”即会应用这些设置。像 .zip 这样已被其他应用占用的扩展名，仍需在 Windows 的“默认应用”中重新选择。</value>
+  </data>
+  <data name="Setup_ExtHeading" xml:space="preserve">
+    <value>双击时用本程序打开的扩展名</value>
+  </data>
+  <data name="Setup_ExtHelp" xml:space="preserve">
+    <value>勾选的扩展名将由 smarcivaZIP 打开。取消勾选则解除该关联。</value>
+  </data>
+  <data name="Setup_LanguageHeading" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Setup_LanguageHelp" xml:space="preserve">
+    <value>将于下次启动 smarcivaZIP 时生效。</value>
+  </data>
+  <data name="Setup_NothingToAdd" xml:space="preserve">
+    <value>没有可添加的扩展名。</value>
+  </data>
+  <data name="Setup_OpenDefaultApps" xml:space="preserve">
+    <value>打开 Windows 的“默认应用”</value>
+  </data>
+  <data name="Setup_OwnedByOthers" xml:space="preserve">
+    <value>已注册。
+
+不过以下扩展名双击时仍会由其他应用打开，因为只有用户本人才能更改默认应用：
+
+{0}
+
+右键菜单不受影响，可以照常使用。若也想改变双击的行为，请打开 Windows 的“默认应用”，或右键点击文件，选择“打开方式”→“选择其他应用”→“始终使用此应用”。
+
+现在打开“默认应用”吗？</value>
+  </data>
+  <data name="Setup_OwnedByOthersItem" xml:space="preserve">
+    <value>　{0}  （当前：{1}）</value>
+  </data>
+  <data name="Setup_Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="Setup_RegisterFailed" xml:space="preserve">
+    <value>注册失败。
+
+{0}</value>
+  </data>
+  <data name="Setup_RegisterOnSavePrompt" xml:space="preserve">
+    <value>右键菜单和文件关联尚未注册。
+
+现在注册吗？不注册则无法从资源管理器使用 smarcivaZIP。</value>
+  </data>
+  <data name="Setup_RegisteredMessage" xml:space="preserve">
+    <value>已注册。
+
+在 Windows 11 中，smarcivaZIP 位于右键菜单的“显示更多选项”之中。</value>
+  </data>
+  <data name="Setup_Remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Setup_Reregister" xml:space="preserve">
+    <value>重新注册</value>
+  </data>
+  <data name="Setup_ShellHeading" xml:space="preserve">
+    <value>右键菜单与文件关联</value>
+  </data>
+  <data name="Setup_StateNotRegistered" xml:space="preserve">
+    <value>尚未注册。注册后，右键菜单中会出现 smarcivaZIP。</value>
+  </data>
+  <data name="Setup_StateRegistered" xml:space="preserve">
+    <value>已注册。可从资源管理器的右键菜单使用。</value>
+  </data>
+  <data name="Setup_UncheckAll" xml:space="preserve">
+    <value>全部取消</value>
+  </data>
+  <data name="Setup_Unregister" xml:space="preserve">
+    <value>取消注册</value>
+  </data>
+  <data name="Setup_UnregisterFailed" xml:space="preserve">
+    <value>取消注册失败。
+
+{0}</value>
+  </data>
+  <data name="Setup_UnregisteredMessage" xml:space="preserve">
+    <value>已取消注册。</value>
+  </data>
+  <data name="Setup_Win11Note" xml:space="preserve">
+    <value>在 Windows 11 中，右键菜单项位于“显示更多选项”之中。这是 Windows 的设计。</value>
+  </data>
+  <data name="SevenZip_NotFound" xml:space="preserve">
+    <value>未找到 7z.dll。
+
+请将 7z.dll 放在 smarcivaZIP 旁边，或安装 7-Zip。
+https://www.7-zip.org/</value>
+  </data>
+  <data name="Tab_About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Tab_Compress" xml:space="preserve">
+    <value>压缩</value>
+  </data>
+  <data name="Tab_Encoding" xml:space="preserve">
+    <value>编码</value>
+  </data>
+  <data name="Tab_Extract" xml:space="preserve">
+    <value>解压</value>
+  </data>
+  <data name="Tab_Setup" xml:space="preserve">
+    <value>设置</value>
+  </data>
+</root>

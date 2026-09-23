@@ -21,7 +21,13 @@
       <SolidColorBrush x:Key="Warning" Color="#B7791F" />
       <SolidColorBrush x:Key="Danger" Color="#C0392B" />
 
-      <FontFamily x:Key="UiFont">Yu Gothic UI, Meiryo UI, Segoe UI</FontFamily>
+      <!--
+        書体は並べた順に、その文字を持っているものが使われる。
+        Yu Gothic UI には日本語と欧文しか無いので、後ろに各文字体系の書体を足す。
+        これが無いと、タイ語やヒンディー語やアラビア語が豆腐になる。
+        いずれも Windows 10 以降に標準で入っている。
+      -->
+      <FontFamily x:Key="UiFont">Yu Gothic UI, Meiryo UI, Segoe UI, Nirmala UI, Leelawadee UI, Segoe UI Historic</FontFamily>
 
       <Style TargetType="Window">
         <Setter Property="FontFamily" Value="{StaticResource UiFont}" />

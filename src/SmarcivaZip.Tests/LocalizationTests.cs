@@ -44,39 +44,89 @@ public class LocalizationTests
                         // テスト自身はキー名や日本語をリテラルで書くので対象外
                         && !path.Contains("SmarcivaZip.Tests"));
 
-    [Fact]
-    public void 日本語と英語でキーが一致している()
+    /// <summary>
+    /// 一覧に出している言語すべて。ここに載せた以上は訳が揃っている必要がある。
+    /// </summary>
+    public static TheoryData<string> OfferedLanguages()
     {
+        var data = new TheoryData<string>();
+
+        foreach (AppLanguage language in AppLanguage.Available)
+        {
+            if (language.Code.Length > 0) data.Add(language.Code);
+        }
+
+        return data;
+    }
+
+    [Theory]
+    [MemberData(nameof(OfferedLanguages))]
+    public void 一覧に出す言語は訳が揃っている(string code)
+    {
+        var culture = CultureInfo.GetCultureInfo(code);
+
         IReadOnlyList<string> english = Strings.Keys(English);
-        IReadOnlyList<string> japanese = Strings.Keys(Japanese);
+        IReadOnlyList<string> translated = Strings.Keys(culture);
 
         Assert.NotEmpty(english);
 
-        var missingJapanese = english.Except(japanese).ToList();
-        var missingEnglish = japanese.Except(english).ToList();
+        var missing = english.Except(translated).ToList();
+        var extra = translated.Except(english).ToList();
 
-        Assert.True(missingJapanese.Count == 0,
-            "日本語の訳がありません: " + string.Join(", ", missingJapanese));
-        Assert.True(missingEnglish.Count == 0,
-            "英語の訳がありません: " + string.Join(", ", missingEnglish));
+        Assert.True(missing.Count == 0,
+            $"{code} の訳がありません ({missing.Count} 件): " + string.Join(", ", missing.Take(10)));
+        Assert.True(extra.Count == 0,
+            $"{code} に余分なキーがあります: " + string.Join(", ", extra.Take(10)));
     }
 
-    [Fact]
-    public void 書式指定子が言語間でずれていない()
+    [Theory]
+    [MemberData(nameof(OfferedLanguages))]
+    public void 書式指定子が言語間でずれていない(string code)
     {
         // 片方だけ {0} を持っていると、その言語でだけ値が抜け落ちる。
+        var culture = CultureInfo.GetCultureInfo(code);
         var mismatched = new List<string>();
 
         foreach (string key in Strings.Keys(English))
         {
-            var inEnglish = PlaceholdersOf(key, English);
-            var inJapanese = PlaceholdersOf(key, Japanese);
-
-            if (!inEnglish.SetEquals(inJapanese)) mismatched.Add(key);
+            if (!PlaceholdersOf(key, English).SetEquals(PlaceholdersOf(key, culture)))
+                mismatched.Add(key);
         }
 
         Assert.True(mismatched.Count == 0,
-            "書式指定子が一致しません: " + string.Join(", ", mismatched));
+            $"{code} で書式指定子が一致しません: " + string.Join(", ", mismatched));
+    }
+
+    [Theory]
+    [MemberData(nameof(OfferedLanguages))]
+    public void 訳が英語のままになっていない(string code)
+    {
+        // 英語は中立リソースそのものなので比べる意味がない。
+        if (code == "en") return;
+
+        // 訳し忘れを拾う。英語そのままで正しい語（OK など）もあるので、
+        // 一定の割合を超えたときだけ失敗させる。
+        var culture = CultureInfo.GetCultureInfo(code);
+
+        IReadOnlyList<string> keys = Strings.Keys(English);
+        int untouched = keys.Count(key => ValueIn(key, English) == ValueIn(key, culture));
+
+        Assert.True(untouched < keys.Count / 4,
+            $"{code} は {untouched}/{keys.Count} 件が英語のままです");
+    }
+
+    private static string ValueIn(string key, CultureInfo culture)
+    {
+        CultureInfo previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = culture;
+            return Strings.Get(key);
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
     }
 
     private static HashSet<string> PlaceholdersOf(string key, CultureInfo culture)
