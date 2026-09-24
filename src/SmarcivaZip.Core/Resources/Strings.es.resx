@@ -654,4 +654,30 @@ https://www.7-zip.org/</value>
   <data name="Tab_Setup" xml:space="preserve">
     <value>Configuración</value>
   </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>Hay una nueva versión de smarcivaZIP ({0}). Está usando la {1}.
+
+¿Abrir la página de descarga?</value>
+  </data>
+  <data name="Update_CheckAutomatically" xml:space="preserve">
+    <value>Buscar nuevas versiones automáticamente</value>
+  </data>
+  <data name="Update_CheckNow" xml:space="preserve">
+    <value>Buscar ahora</value>
+  </data>
+  <data name="Update_Checking" xml:space="preserve">
+    <value>Buscando...</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>No se pudo buscar actualizaciones: {0}</value>
+  </data>
+  <data name="Update_Heading" xml:space="preserve">
+    <value>Actualizaciones</value>
+  </data>
+  <data name="Update_Help" xml:space="preserve">
+    <value>Una vez por semana, smarcivaZIP consulta a GitHub el número de la última versión. No se envía nada sobre usted ni sobre sus archivos.</value>
+  </data>
+  <data name="Update_UpToDate" xml:space="preserve">
+    <value>Tiene la última versión ({0}).</value>
+  </data>
 </root>

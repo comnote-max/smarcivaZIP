@@ -34,6 +34,21 @@ public static class NativeShell
         }
     }
 
+    /// <summary>既定のブラウザーでページを開く。https 以外は開かない。</summary>
+    public static void OpenWebPage(string url)
+    {
+        if (!url.StartsWith("https://", StringComparison.OrdinalIgnoreCase)) return;
+
+        try
+        {
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException)
+        {
+            // 既定のブラウザーが無い環境。開けないだけで、アプリは使い続けられる。
+        }
+    }
+
     /// <summary>Windows の「既定のアプリ」設定ページを開く。</summary>
     public static void OpenDefaultAppsSettings()
     {

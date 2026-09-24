@@ -12,6 +12,7 @@ using SmarcivaZip.Core.SevenZip;
 using SmarcivaZip.Core.Settings;
 using SmarcivaZip.Core.Shell;
 using SmarcivaZip.Core.Localization;
+using SmarcivaZip.Core.Updates;
 
 namespace SmarcivaZip.App.Views;
 
@@ -96,6 +97,7 @@ public partial class SettingsWindow : Window
         {
             ShellSection.Visibility = Visibility.Collapsed;
             PackagedShellSection.Visibility = Visibility.Visible;
+            UpdateSection.Visibility = Visibility.Collapsed;
         }
         else
         {
@@ -175,6 +177,8 @@ public partial class SettingsWindow : Window
         SelectByValue(DefaultFormatCombo, _settings.DefaultFormatId);
         SelectByValue(CompressionLevelCombo, _settings.CompressionLevel);
         ShowCompressDialogCheck.IsChecked = _settings.ShowCompressDialog;
+
+        CheckForUpdatesCheck.IsChecked = _settings.CheckForUpdates;
 
         LoadMenuFormats();
         LoadExtensions();
@@ -522,6 +526,41 @@ public partial class SettingsWindow : Window
         }
     }
 
+    private async void OnCheckForUpdatesClicked(object sender, RoutedEventArgs e)
+    {
+        CheckNowButton.IsEnabled = false;
+        UpdateResultText.Text = Strings.Get("Update_Checking");
+
+        try
+        {
+            UpdateInfo? update = await UpdateChecker.CheckAsync(App.CurrentVersion, TimeSpan.FromSeconds(15));
+
+            // 手で確認したのだから、自動確認の時計も進めておく。
+            UpdateState state = UpdateState.Load();
+            state.LastCheckUtc = DateTime.UtcNow;
+
+            if (update is null)
+            {
+                UpdateResultText.Text = Strings.Format("Update_UpToDate", App.CurrentVersion.ToString(3));
+                state.Save();
+                return;
+            }
+
+            UpdateResultText.Text = string.Empty;
+            state.NotifiedVersion = update.Version.ToString(3);
+            state.Save();
+            App.ShowUpdateAvailable(update, this);
+        }
+        catch (UpdateCheckException ex)
+        {
+            UpdateResultText.Text = Strings.Format("Update_Failed", ex.Message);
+        }
+        finally
+        {
+            CheckNowButton.IsEnabled = true;
+        }
+    }
+
     private void OnOpenDefaultAppsClicked(object sender, RoutedEventArgs e)
         => NativeShell.OpenDefaultAppsSettings();
 
@@ -557,6 +596,8 @@ public partial class SettingsWindow : Window
         _settings.DefaultFormatId = SelectedValue(DefaultFormatCombo, "zip") ?? "zip";
         _settings.CompressionLevel = SelectedValue(CompressionLevelCombo, 5);
         _settings.ShowCompressDialog = ShowCompressDialogCheck.IsChecked == true;
+
+        _settings.CheckForUpdates = CheckForUpdatesCheck.IsChecked == true;
 
         _settings.ContextMenuFormats = SelectedMenuItems().Select(i => i.Id).ToList();
 

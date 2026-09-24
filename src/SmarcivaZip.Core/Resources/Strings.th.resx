@@ -659,4 +659,30 @@ https://www.7-zip.org/</value>
   <data name="Tab_Setup" xml:space="preserve">
     <value>การตั้งค่า</value>
   </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>smarcivaZIP มีเวอร์ชันใหม่ ({0}) แล้ว คุณกำลังใช้เวอร์ชัน {1}
+
+เปิดหน้าดาวน์โหลดหรือไม่</value>
+  </data>
+  <data name="Update_CheckAutomatically" xml:space="preserve">
+    <value>ตรวจหาเวอร์ชันใหม่โดยอัตโนมัติ</value>
+  </data>
+  <data name="Update_CheckNow" xml:space="preserve">
+    <value>ตรวจหาเดี๋ยวนี้</value>
+  </data>
+  <data name="Update_Checking" xml:space="preserve">
+    <value>กำลังตรวจหา...</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>ไม่สามารถตรวจหาการอัปเดตได้: {0}</value>
+  </data>
+  <data name="Update_Heading" xml:space="preserve">
+    <value>การอัปเดต</value>
+  </data>
+  <data name="Update_Help" xml:space="preserve">
+    <value>smarcivaZIP จะสอบถามหมายเลขเวอร์ชันล่าสุดจาก GitHub สัปดาห์ละครั้ง โดยไม่ส่งข้อมูลใด ๆ เกี่ยวกับคุณหรือไฟล์ของคุณ</value>
+  </data>
+  <data name="Update_UpToDate" xml:space="preserve">
+    <value>คุณใช้เวอร์ชันล่าสุดแล้ว ({0})</value>
+  </data>
 </root>

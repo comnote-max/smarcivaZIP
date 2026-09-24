@@ -82,6 +82,14 @@ public sealed class AppSettings
     /// </summary>
     public string Language { get; set; } = string.Empty;
 
+    // ---- 更新 ----
+
+    /// <summary>
+    /// 新しいバージョンが出ていないか、週に 1 回 GitHub に問い合わせる。
+    /// ストア版ではストアが更新するので使わない。
+    /// </summary>
+    public bool CheckForUpdates { get; set; } = true;
+
     // ---- 関連付け ----
 
     /// <summary>ダブルクリックで smarcivaZIP が開く拡張子（＝チェックが入っているもの）。</summary>

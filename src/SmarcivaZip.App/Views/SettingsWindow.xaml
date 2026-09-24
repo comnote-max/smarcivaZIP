@@ -272,6 +272,19 @@
               </Hyperlink>
             </TextBlock>
 
+            <!-- ストア版はストアが更新するので出さない。 -->
+            <StackPanel x:Name="UpdateSection">
+              <TextBlock Text="{loc:L Update_Heading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
+              <CheckBox x:Name="CheckForUpdatesCheck" Content="{loc:L Update_CheckAutomatically}" Margin="0,6,0,0" />
+              <TextBlock Style="{StaticResource Caption}" Margin="22,2,0,0" TextWrapping="Wrap"
+                         Text="{loc:L Update_Help}" />
+              <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                <Button x:Name="CheckNowButton" Content="{loc:L Update_CheckNow}" Click="OnCheckForUpdatesClicked" />
+                <TextBlock x:Name="UpdateResultText" Style="{StaticResource Caption}" Margin="10,0,0,0"
+                           VerticalAlignment="Center" TextWrapping="Wrap" />
+              </StackPanel>
+            </StackPanel>
+
             <TextBlock Text="{loc:L About_EngineHeading}" Style="{StaticResource Heading}" Margin="0,20,0,0" />
             <TextBlock x:Name="EngineText" Style="{StaticResource Caption}" Margin="0,4,0,0" TextWrapping="Wrap" />
 

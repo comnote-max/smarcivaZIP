@@ -9,12 +9,18 @@ using SmarcivaZip.Core.SevenZip;
 using SmarcivaZip.Core.Settings;
 using SmarcivaZip.Core.Shell;
 using SmarcivaZip.Core.Localization;
+using SmarcivaZip.Core.Updates;
 
 namespace SmarcivaZip.App;
 
 public partial class App : Application
 {
     private AppSettings _settings = new();
+
+    /// <summary>実行中の更新確認。確認しない回は null。</summary>
+    private Task<UpdateInfo?>? _updateCheck;
+
+    public static Version CurrentVersion => typeof(App).Assembly.GetName().Version ?? new Version(1, 0, 0);
 
     /// <summary>
     /// 7z.dll の COM オブジェクトを扱う専用スレッド。
@@ -57,6 +63,7 @@ public partial class App : Application
         try
         {
             await RunAsync(command);
+            if (!command.Quiet) await NotifyUpdateAsync();
         }
         catch (SevenZipNotFoundException ex)
         {
@@ -155,6 +162,7 @@ public partial class App : Application
         }
 
         IReadOnlyList<string> archives = await CoalesceAsync("extract", command);
+        if (archives.Count > 0) StartUpdateCheckIfDue();
         string? lastDestination = null;
 
         foreach (string archive in archives)
@@ -371,6 +379,7 @@ public partial class App : Application
         string operationKey = $"compress:{format.Id}:{command.AskPassword}";
         IReadOnlyList<string> inputs = await CoalesceAsync(operationKey, command);
         if (inputs.Count == 0) return;
+        StartUpdateCheckIfDue();
 
         string? password = null;
         if (command.AskPassword)
@@ -485,8 +494,75 @@ public partial class App : Application
 
     private void ShowSettings()
     {
+        StartUpdateCheckIfDue();
         var window = new SettingsWindow(_settings);
         window.ShowDialog();
+    }
+
+    // ---------------------------------------------------------------- 更新のお知らせ
+
+    /// <summary>
+    /// 前回から 1 週間たっていれば、裏で更新を確認し始める。
+    /// 解凍や圧縮と並行して走らせ、結果は処理が終わってから <see cref="NotifyUpdateAsync"/> で見る。
+    ///
+    /// 呼ぶのは実際に処理をするプロセスだけ。複数選択で起動した残りのプロセスまで
+    /// 問い合わせると、同じ確認が選んだ数だけ飛ぶ。
+    /// </summary>
+    private void StartUpdateCheckIfDue()
+    {
+        if (_updateCheck is not null || !_settings.CheckForUpdates || PackageContext.IsPackaged) return;
+
+        UpdateState state = UpdateState.Load();
+        if (!UpdateChecker.IsDue(state.LastCheckUtc, DateTime.UtcNow)) return;
+
+        // 結果を待たずに記録する。つながらない環境で、起動のたびに問い合わせて待たせないため。
+        state.LastCheckUtc = DateTime.UtcNow;
+        state.Save();
+
+        _updateCheck = Task.Run(() => UpdateChecker.CheckAsync(CurrentVersion, TimeSpan.FromSeconds(10)));
+    }
+
+    /// <summary>
+    /// 新しいバージョンが見つかっていれば知らせる。同じバージョンは一度しか知らせない。
+    /// 確認が終わっていなければ少しだけ待ち、それでも終わらなければ今回は諦める。
+    /// </summary>
+    private async Task NotifyUpdateAsync()
+    {
+        if (_updateCheck is null) return;
+
+        UpdateInfo? update;
+        try
+        {
+            update = await _updateCheck.WaitAsync(TimeSpan.FromSeconds(5));
+        }
+        catch (Exception ex) when (ex is UpdateCheckException or TimeoutException)
+        {
+            Diagnostics.Trace($"update check failed: {ex.Message}");
+            return;
+        }
+
+        // 設定画面で確認を切った直後なら、もう知らせない。
+        if (update is null || !_settings.CheckForUpdates) return;
+
+        UpdateState state = UpdateState.Load();
+        string latest = update.Version.ToString(3);
+        if (state.NotifiedVersion == latest) return;
+
+        state.NotifiedVersion = latest;
+        state.Save();
+
+        ShowUpdateAvailable(update, owner: null);
+    }
+
+    /// <summary>「新しいバージョンがあります。ページを開きますか？」を出す。</summary>
+    internal static void ShowUpdateAvailable(UpdateInfo update, Window? owner)
+    {
+        string message = Strings.Format("Update_Available", update.Version.ToString(3), CurrentVersion.ToString(3));
+        MessageBoxResult answer = owner is null
+            ? MessageBox.Show(message, Strings.Get("Common_AppName"), MessageBoxButton.YesNo, MessageBoxImage.Information)
+            : MessageBox.Show(owner, message, Strings.Get("Common_AppName"), MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+        if (answer == MessageBoxResult.Yes) NativeShell.OpenWebPage(update.PageUrl);
     }
 
     /// <summary>

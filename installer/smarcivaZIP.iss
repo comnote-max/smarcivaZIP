@@ -241,6 +241,8 @@ begin
   else
   begin
     DeleteFile(SettingsDir + '\smarcivazip.log');
+    { 更新確認の記録は設定ではないので、残す理由が無い。 }
+    DeleteFile(SettingsDir + '\update.json');
     { 中身が空になったときだけ消える。設定が残っていれば何もしない。 }
     RemoveDir(SettingsDir);
   end;

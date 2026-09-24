@@ -654,4 +654,30 @@ https://www.7-zip.org/</value>
   <data name="Tab_Setup" xml:space="preserve">
     <value>설정</value>
   </data>
+  <data name="Update_Available" xml:space="preserve">
+    <value>smarcivaZIP의 새 버전({0})이 나왔습니다. 현재 사용 중인 버전은 {1}입니다.
+
+다운로드 페이지를 열까요?</value>
+  </data>
+  <data name="Update_CheckAutomatically" xml:space="preserve">
+    <value>새 버전을 자동으로 확인</value>
+  </data>
+  <data name="Update_CheckNow" xml:space="preserve">
+    <value>지금 확인</value>
+  </data>
+  <data name="Update_Checking" xml:space="preserve">
+    <value>확인하는 중...</value>
+  </data>
+  <data name="Update_Failed" xml:space="preserve">
+    <value>업데이트를 확인할 수 없습니다: {0}</value>
+  </data>
+  <data name="Update_Heading" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="Update_Help" xml:space="preserve">
+    <value>smarcivaZIP은 일주일에 한 번 GitHub에 최신 버전 번호를 물어봅니다. 사용자나 파일에 관한 정보는 보내지 않습니다.</value>
+  </data>
+  <data name="Update_UpToDate" xml:space="preserve">
+    <value>최신 버전입니다({0}).</value>
+  </data>
 </root>
