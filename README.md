@@ -250,10 +250,13 @@ smarcivaZIP をアンインストールしてください。右クリックメ�
 右クリックメニューに並べる圧縮形式は、設定画面の「圧縮」タブで選べます。
 並び順もそのまま反映されます。
 
+デスクトップの smarcivaZIP のアイコンにドロップしても使えます。書庫だけを落とすと解凍、
+普通のファイルやフォルダ（書庫が混ざっていても）を落とすと、既定の形式でまとめて圧縮します。
+
 ### コマンドライン
 
 ```
-SmarcivaZip.exe <アーカイブ>                     解凍する
+SmarcivaZip.exe <パス...>                        書庫だけなら解凍、それ以外なら既定の形式で圧縮する
 SmarcivaZip.exe --extract-to-folder <アーカイブ>  フォルダを作って解凍する
 SmarcivaZip.exe --extract-preview <アーカイブ>    文字コードを確認してから解凍する
 SmarcivaZip.exe --compress zip <パス...>          ZIP に圧縮する

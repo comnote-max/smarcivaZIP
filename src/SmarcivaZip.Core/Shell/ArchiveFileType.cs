@@ -53,6 +53,13 @@ public sealed record ArchiveFileType(
             ?? Fallback;
     }
 
+    /// <summary>いずれかの分類（受け皿を含む）に明示されている拡張子か。</summary>
+    public static bool IsKnownExtension(string extension)
+    {
+        string normalized = extension.Trim().TrimStart('.');
+        return All.Any(type => type.Extensions.Contains(normalized, StringComparer.OrdinalIgnoreCase));
+    }
+
     /// <summary>
     /// 指定した拡張子を扱うために、実際に登録が要る分類だけを返す。
     /// 使わない ProgID まで作ると、解除し忘れたときにレジストリに残り続ける。

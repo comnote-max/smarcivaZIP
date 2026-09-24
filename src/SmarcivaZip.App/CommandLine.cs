@@ -8,6 +8,12 @@ public enum AppMode
     /// <summary>引数なし。設定画面を出す。</summary>
     Settings,
 
+    /// <summary>
+    /// 動作の指定が無くパスだけある。書庫なら展開、それ以外なら圧縮（<see cref="Core.Shell.DropAction"/>）。
+    /// アイコンへのドロップと、関連付けからのダブルクリックがこれになる。
+    /// </summary>
+    Auto,
+
     /// <summary>アーカイブを展開する。</summary>
     Extract,
 
@@ -134,8 +140,9 @@ public sealed class CommandLine
             }
         }
 
-        // 関連付けからの起動は "SmarcivaZip.exe <アーカイブ>" という形で来る。
-        if (!modeSpecified && paths.Count > 0) mode = AppMode.Extract;
+        // 関連付けからの起動は "SmarcivaZip.exe <アーカイブ>"、アイコンへのドロップは
+        // "SmarcivaZip.exe <パス...>" という形で来る。どちらにするかは中身を見て決める。
+        if (!modeSpecified && paths.Count > 0) mode = AppMode.Auto;
 
         var result = new CommandLine
         {

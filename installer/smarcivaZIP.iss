@@ -172,7 +172,8 @@ ukrainian.DeleteSettings=Видалити також налаштування sm
 
 [Tasks]
 Name: "shellintegration"; Description: "{cm:ShellIntegration}"
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+; 既定でオン。外せるようにはしておく（勝手に置くと嫌がる人もいるので、選べることは残す）。
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
 Source: "{#SourceDir}\{#AppExe}"; DestDir: "{app}"; Flags: ignoreversion

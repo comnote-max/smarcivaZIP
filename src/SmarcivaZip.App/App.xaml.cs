@@ -118,6 +118,17 @@ public partial class App : Application
                 }
                 break;
 
+            case AppMode.Auto:
+                if (DropAction.Decide(command.Paths, _settings.AssociatedExtensions) == DropActionKind.Extract)
+                {
+                    await ExtractAsync(command);
+                }
+                else
+                {
+                    await CompressAsync(command);
+                }
+                break;
+
             case AppMode.Extract:
             case AppMode.ExtractWithPreview:
                 await ExtractAsync(command);
