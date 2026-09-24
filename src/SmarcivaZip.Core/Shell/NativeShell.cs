@@ -49,15 +49,32 @@ public static class NativeShell
         }
     }
 
-    /// <summary>Windows の「既定のアプリ」設定ページを開く。</summary>
+    /// <summary>
+    /// Windows の「既定のアプリ」設定を、できれば smarcivaZIP のページで開く。
+    /// そのページの「既定値に設定」を 1 回押せば、対応する拡張子がまとめて smarcivaZIP になる。
+    /// 一覧に載っていなければ（登録前など）、既定のアプリの最初のページを開く。
+    /// </summary>
     public static void OpenDefaultAppsSettings()
     {
         try
         {
-            Process.Start(new ProcessStartInfo("ms-settings:defaultapps") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(DefaultAppsUri()) { UseShellExecute = true });
         }
         catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException)
         {
         }
+    }
+
+    private static string DefaultAppsUri()
+    {
+        const string page = "ms-settings:defaultapps";
+
+        // ストア版はパッケージのアプリ ID（パッケージファミリー名!アプリ ID）で指す。
+        if (PackageContext.FamilyName is { } family)
+            return $"{page}?registeredAUMID={Uri.EscapeDataString(family + "!smarcivaZIP")}";
+
+        return ShellRegistration.HasDefaultAppsEntry()
+            ? $"{page}?registeredAppUser={Uri.EscapeDataString(ShellRegistration.RegisteredAppName)}"
+            : page;
     }
 }

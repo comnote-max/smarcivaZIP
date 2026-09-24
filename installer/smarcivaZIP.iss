@@ -104,71 +104,85 @@ ShellIntegration=Register the right-click menu and file associations
 RegisteringShell=Registering the right-click menu and file associations...
 RegisterFailed=The right-click menu and file associations could not be registered.%nYou can register them later from smarcivaZIP's settings.
 DeleteSettings=Also delete smarcivaZIP's settings?%n%nIf you keep them, your current settings will be back when you reinstall.%n%n%1
+OpenDefaultApps=Make smarcivaZIP the default app for archives (opens Windows Settings)
 
 japanese.ShellIntegration=右クリックメニューと関連付けを登録する
 japanese.RegisteringShell=右クリックメニューと関連付けを登録しています...
 japanese.RegisterFailed=右クリックメニューと関連付けを登録できませんでした。%nあとで smarcivaZIP の設定画面から登録できます。
 japanese.DeleteSettings=smarcivaZIP の設定も削除しますか？%n%n残しておくと、入れ直したときに今の設定のまま使えます。%n%n%1
+japanese.OpenDefaultApps=smarcivaZIP を書庫の既定のアプリにする（Windows の設定を開きます）
 
 spanish.ShellIntegration=Registrar el menú contextual y las asociaciones de archivos
 spanish.RegisteringShell=Registrando el menú contextual y las asociaciones de archivos...
 spanish.RegisterFailed=No se pudieron registrar el menú contextual y las asociaciones de archivos.%nPuede hacerlo más tarde desde la configuración de smarcivaZIP.
 spanish.DeleteSettings=¿Eliminar también la configuración de smarcivaZIP?%n%nSi la conserva, al reinstalar recuperará la configuración actual.%n%n%1
+spanish.OpenDefaultApps=Hacer de smarcivaZIP la aplicación predeterminada para archivos comprimidos (abre la Configuración de Windows)
 
 arabic.ShellIntegration=تسجيل قائمة السياق واقترانات الملفات
 arabic.RegisteringShell=جارٍ تسجيل قائمة السياق واقترانات الملفات...
 arabic.RegisterFailed=تعذّر تسجيل قائمة السياق واقترانات الملفات.%nيمكنك تسجيلها لاحقًا من إعدادات smarcivaZIP.
 arabic.DeleteSettings=هل تريد حذف إعدادات smarcivaZIP أيضًا؟%n%nإن أبقيتها، ستعود إعداداتك الحالية كما هي عند إعادة التثبيت.%n%n%1
+arabic.OpenDefaultApps=جعل smarcivaZIP التطبيق الافتراضي للأرشيفات (يفتح إعدادات Windows)
 
 brazilianportuguese.ShellIntegration=Registrar o menu de contexto e as associações de arquivos
 brazilianportuguese.RegisteringShell=Registrando o menu de contexto e as associações de arquivos...
 brazilianportuguese.RegisterFailed=Não foi possível registrar o menu de contexto e as associações de arquivos.%nVocê pode registrá-los depois nas configurações do smarcivaZIP.
 brazilianportuguese.DeleteSettings=Excluir também as configurações do smarcivaZIP?%n%nSe você as mantiver, suas configurações atuais voltarão ao reinstalar.%n%n%1
+brazilianportuguese.OpenDefaultApps=Tornar o smarcivaZIP o aplicativo padrão para arquivos compactados (abre as Configurações do Windows)
 
 french.ShellIntegration=Enregistrer le menu contextuel et les associations de fichiers
 french.RegisteringShell=Enregistrement du menu contextuel et des associations de fichiers...
 french.RegisterFailed=Le menu contextuel et les associations de fichiers n'ont pas pu être enregistrés.%nVous pourrez le faire plus tard depuis les réglages de smarcivaZIP.
 french.DeleteSettings=Supprimer aussi les réglages de smarcivaZIP ?%n%nSi vous les conservez, vous retrouverez vos réglages actuels en cas de réinstallation.%n%n%1
+french.OpenDefaultApps=Faire de smarcivaZIP l’application par défaut pour les archives (ouvre les Paramètres de Windows)
 
 russian.ShellIntegration=Зарегистрировать контекстное меню и связи с файлами
 russian.RegisteringShell=Регистрация контекстного меню и связей с файлами...
 russian.RegisterFailed=Не удалось зарегистрировать контекстное меню и связи с файлами.%nЭто можно сделать позже в настройках smarcivaZIP.
 russian.DeleteSettings=Удалить также настройки smarcivaZIP?%n%nЕсли их оставить, при повторной установке вернутся ваши текущие настройки.%n%n%1
+russian.OpenDefaultApps=Сделать smarcivaZIP приложением по умолчанию для архивов (откроются параметры Windows)
 
 german.ShellIntegration=Kontextmenü und Dateiverknüpfungen eintragen
 german.RegisteringShell=Kontextmenü und Dateiverknüpfungen werden eingetragen ...
 german.RegisterFailed=Kontextmenü und Dateiverknüpfungen konnten nicht eingetragen werden.%nSie können das später in den Einstellungen von smarcivaZIP nachholen.
 german.DeleteSettings=Auch die Einstellungen von smarcivaZIP löschen?%n%nWenn Sie sie behalten, sind nach einer Neuinstallation wieder Ihre jetzigen Einstellungen da.%n%n%1
+german.OpenDefaultApps=smarcivaZIP als Standard-App für Archive festlegen (öffnet die Windows-Einstellungen)
 
 korean.ShellIntegration=오른쪽 클릭 메뉴와 파일 연결 등록
 korean.RegisteringShell=오른쪽 클릭 메뉴와 파일 연결을 등록하는 중...
 korean.RegisterFailed=오른쪽 클릭 메뉴와 파일 연결을 등록하지 못했습니다.%n나중에 smarcivaZIP 설정 화면에서 등록할 수 있습니다.
 korean.DeleteSettings=smarcivaZIP 설정도 삭제할까요?%n%n남겨 두면 다시 설치했을 때 지금 설정 그대로 쓸 수 있습니다.%n%n%1
+korean.OpenDefaultApps=smarcivaZIP을 압축 파일의 기본 앱으로 설정(Windows 설정이 열립니다)
 
 turkish.ShellIntegration=Bağlam menüsünü ve dosya ilişkilendirmelerini kaydet
 turkish.RegisteringShell=Bağlam menüsü ve dosya ilişkilendirmeleri kaydediliyor...
 turkish.RegisterFailed=Bağlam menüsü ve dosya ilişkilendirmeleri kaydedilemedi.%nBunu daha sonra smarcivaZIP ayarlarından yapabilirsiniz.
 turkish.DeleteSettings=smarcivaZIP ayarları da silinsin mi?%n%nAyarları tutarsanız, yeniden kurduğunuzda şimdiki ayarlarınız geri gelir.%n%n%1
+turkish.OpenDefaultApps=smarcivaZIP’i arşivler için varsayılan uygulama yap (Windows Ayarları açılır)
 
 italian.ShellIntegration=Registra il menu contestuale e le associazioni dei file
 italian.RegisteringShell=Registrazione del menu contestuale e delle associazioni dei file...
 italian.RegisterFailed=Non è stato possibile registrare il menu contestuale e le associazioni dei file.%nPotrai farlo più tardi dalle impostazioni di smarcivaZIP.
 italian.DeleteSettings=Eliminare anche le impostazioni di smarcivaZIP?%n%nSe le conservi, reinstallando ritroverai le impostazioni attuali.%n%n%1
+italian.OpenDefaultApps=Imposta smarcivaZIP come app predefinita per gli archivi (apre le Impostazioni di Windows)
 
 polish.ShellIntegration=Zarejestruj menu podręczne i skojarzenia plików
 polish.RegisteringShell=Rejestrowanie menu podręcznego i skojarzeń plików...
 polish.RegisterFailed=Nie udało się zarejestrować menu podręcznego i skojarzeń plików.%nMożesz to zrobić później w ustawieniach smarcivaZIP.
 polish.DeleteSettings=Usunąć także ustawienia smarcivaZIP?%n%nJeśli je zachowasz, po ponownej instalacji wrócą Twoje obecne ustawienia.%n%n%1
+polish.OpenDefaultApps=Ustaw smarcivaZIP jako domyślną aplikację dla archiwów (otwiera Ustawienia systemu Windows)
 
 dutch.ShellIntegration=Contextmenu en bestandskoppelingen aanmelden
 dutch.RegisteringShell=Contextmenu en bestandskoppelingen worden aangemeld...
 dutch.RegisterFailed=Het contextmenu en de bestandskoppelingen konden niet worden aangemeld.%nJe kunt dat later doen via de instellingen van smarcivaZIP.
 dutch.DeleteSettings=Ook de instellingen van smarcivaZIP verwijderen?%n%nAls je ze bewaart, krijg je bij een nieuwe installatie je huidige instellingen terug.%n%n%1
+dutch.OpenDefaultApps=smarcivaZIP instellen als standaard-app voor archieven (opent Windows-instellingen)
 
 ukrainian.ShellIntegration=Зареєструвати контекстне меню та зв'язки з файлами
 ukrainian.RegisteringShell=Реєстрація контекстного меню та зв'язків з файлами...
 ukrainian.RegisterFailed=Не вдалося зареєструвати контекстне меню та зв'язки з файлами.%nЦе можна зробити пізніше в налаштуваннях smarcivaZIP.
 ukrainian.DeleteSettings=Видалити також налаштування smarcivaZIP?%n%nЯкщо залишити їх, після повторного встановлення повернуться ваші поточні налаштування.%n%n%1
+ukrainian.OpenDefaultApps=Зробити smarcivaZIP програмою за замовчуванням для архівів (відкриються параметри Windows)
 
 [Tasks]
 Name: "shellintegration"; Description: "{cm:ShellIntegration}"
@@ -191,6 +205,9 @@ Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopico
 
 [Run]
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
+; 既定のアプリは Windows が守っていて、アプリからは変えられない。設定アプリの smarcivaZIP のページを
+; 開き、「既定値に設定」を 1 回押してもらう。すでに既定なら（入れ直しなど）出さない。
+Filename: "ms-settings:defaultapps?registeredAppUser=smarcivaZIP"; Description: "{cm:OpenDefaultApps}"; Flags: shellexec nowait postinstall skipifsilent; Tasks: shellintegration; Check: not ZipAlreadyOurs
 
 [UninstallRun]
 ; ファイルを消す前に呼ぶ（[UninstallRun] は削除より先に走る）。
@@ -198,6 +215,19 @@ Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags
 Filename: "{app}\{#AppExe}"; Parameters: "--unregister --quiet"; Flags: runhidden waituntilterminated; RunOnceId: "UnregisterShell"
 
 [Code]
+{ .zip をダブルクリックしたとき、すでに smarcivaZIP が開くか。Windows 11 は UserChoiceLatest を、
+  それより前の Windows は UserChoice を見る。 }
+function ZipAlreadyOurs(): Boolean;
+var
+  ProgId: String;
+begin
+  Result := False;
+  if RegQueryStringValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.zip\UserChoiceLatest\ProgId', 'ProgId', ProgId) then
+    Result := Pos('smarcivaZIP.', ProgId) = 1
+  else if RegQueryStringValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.zip\UserChoice', 'ProgId', ProgId) then
+    Result := Pos('smarcivaZIP.', ProgId) = 1;
+end;
+
 { 登録はファイルを置き終えてから行う。レジストリに書くのは実行ファイルとアイコンの
   パスなので、それらが揃う前に書くと、途中で失敗したときに行き先の無い登録が残る。
   失敗は終了コードで判定する。[Run] 節では終了コードを見られないため、ここで呼ぶ。 }

@@ -23,6 +23,16 @@ public static class ShellRegistration
     private const string MenuKeyName = "smarcivaZIP";
     private const string ClassesRoot = @"Software\Classes";
 
+    /// <summary>
+    /// Windows の「既定のアプリ」に載せるための名前。RegisteredApplications の値の名前で、
+    /// 設定アプリを smarcivaZIP のページで直接開くとき（ms-settings の registeredAppUser）にも使う。
+    /// </summary>
+    public const string RegisteredAppName = "smarcivaZIP";
+
+    private const string AppKey = @"Software\smarcivaZIP";
+    private const string CapabilitiesKey = AppKey + @"\Capabilities";
+    private const string RegisteredApplicationsKey = @"Software\RegisteredApplications";
+
     /// <summary>アイコンを置くフォルダ名（実行ファイルからの相対）。</summary>
     private const string IconDirectoryName = "Icons";
 
@@ -83,7 +93,52 @@ public static class ShellRegistration
         }
 
         RegisterContextMenu(executablePath, compressMenuItems, extensions);
+        RegisterCapabilities(executablePath, extensions);
         NotifyShell();
+    }
+
+    /// <summary>
+    /// Windows の「既定のアプリ」の一覧に smarcivaZIP を載せる。
+    ///
+    /// これが無いと、設定アプリで smarcivaZIP を既定にするには拡張子を 1 つずつ選ぶしかない。
+    /// 載せておくと smarcivaZIP のページができ、Windows 11 ではそこの「既定値に設定」の
+    /// 1 回で、ここに書いた拡張子がまとめて smarcivaZIP になる。
+    /// 既定にするかどうかを決めるのは利用者で、アプリ側から既定にはしない（できない）。
+    /// </summary>
+    private static void RegisterCapabilities(string executablePath, IReadOnlyList<string> extensions)
+    {
+        using (RegistryKey capabilities = Registry.CurrentUser.CreateSubKey(CapabilitiesKey))
+        {
+            capabilities.SetValue("ApplicationName", "smarcivaZIP");
+            capabilities.SetValue("ApplicationDescription", Strings.Get("About_Description"));
+            capabilities.SetValue("ApplicationIcon", $"\"{executablePath}\",0");
+
+            // チェックを外した拡張子が残らないよう、毎回作り直す。
+            capabilities.DeleteSubKeyTree("FileAssociations", throwOnMissingSubKey: false);
+            using RegistryKey associations = capabilities.CreateSubKey("FileAssociations");
+
+            foreach (string extension in extensions.Select(Normalize).Where(e => e.Length > 0).Distinct())
+            {
+                associations.SetValue("." + extension, ArchiveFileType.ForExtension(extension).ProgId);
+            }
+        }
+
+        using RegistryKey registered = Registry.CurrentUser.CreateSubKey(RegisteredApplicationsKey);
+        registered.SetValue(RegisteredAppName, CapabilitiesKey);
+    }
+
+    /// <summary>「既定のアプリ」の一覧に載っているか。</summary>
+    public static bool HasDefaultAppsEntry()
+    {
+        try
+        {
+            using RegistryKey? registered = Registry.CurrentUser.OpenSubKey(RegisteredApplicationsKey);
+            return registered?.GetValue(RegisteredAppName) is string;
+        }
+        catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException)
+        {
+            return false;
+        }
     }
 
     private static string Normalize(string extension) => extension.TrimStart('.').ToLowerInvariant();
@@ -122,8 +177,15 @@ public static class ShellRegistration
     {
         try
         {
+            // Windows 11 は UserChoiceLatest を先に見る。
+            using (RegistryKey? latest = Registry.CurrentUser.OpenSubKey(
+                $@"{FileExtsKey}\.{extension}\UserChoiceLatest\ProgId"))
+            {
+                if (latest?.GetValue("ProgId") is string chosen && chosen.Length > 0) return chosen;
+            }
+
             using (RegistryKey? choice = Registry.CurrentUser.OpenSubKey(
-                $@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.{extension}\UserChoice"))
+                $@"{FileExtsKey}\.{extension}\UserChoice"))
             {
                 if (choice?.GetValue("ProgId") is string chosen && chosen.Length > 0) return chosen;
             }
@@ -171,6 +233,22 @@ public static class ShellRegistration
             DeleteSubKeyTreeIfExists(classes, @"Applications\SmarcivaZip.exe");
 
             RemoveFileAssociations(classes.GetSubKeyNames().Where(name => name.StartsWith('.')));
+        }
+
+        // 「既定のアプリ」の一覧から外す。
+        try
+        {
+            using (RegistryKey? registered = Registry.CurrentUser.OpenSubKey(RegisteredApplicationsKey, writable: true))
+            {
+                registered?.DeleteValue(RegisteredAppName, throwOnMissingValue: false);
+            }
+
+            Registry.CurrentUser.DeleteSubKeyTree(CapabilitiesKey, throwOnMissingSubKey: false);
+            DeleteKeyIfEmpty(AppKey);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // 消せなくても続行する。
         }
 
         NotifyShell();
@@ -290,6 +368,8 @@ public static class ShellRegistration
 
             string progId = ArchiveFileType.ForExtension(normalized).ProgId;
 
+            RemoveOrphanedUserChoices(normalized);
+
             using RegistryKey key = Registry.CurrentUser.CreateSubKey($@"{ClassesRoot}\.{normalized}");
             using RegistryKey progIds = key.CreateSubKey("OpenWithProgids");
 
@@ -318,6 +398,69 @@ public static class ShellRegistration
             // まだ誰も関連付けていない拡張子（.lzh など）なら、そのまま既定にできる。
             if (key.GetValue(null) is null or "") key.SetValue(null, progId);
         }
+    }
+
+    private const string FileExtsKey = @"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts";
+
+    /// <summary>
+    /// 利用者が選んだ既定のアプリ（UserChoice / UserChoiceLatest）が、もう存在しないアプリを
+    /// 指していたら、その記録だけを取り除く。
+    ///
+    /// アンインストールされたアプリの記録が残っていると、Windows はそれを優先したまま
+    /// 「アプリを選んでください」と聞き続け、ほかに登録されているアプリへ切り替えない。
+    /// 記録を消せば、Windows は通常の登録（ここで書く HKCU\Software\Classes\.拡張子）に戻る。
+    ///
+    /// 存在するアプリを指している記録には触らない。利用者が選んだものを奪うことはしない。
+    /// 既定を smarcivaZIP に書き換えることもしない（それは利用者が設定アプリで行う）。
+    /// </summary>
+    private static void RemoveOrphanedUserChoices(string extension)
+    {
+        string path = $@"{FileExtsKey}\.{extension}";
+
+        foreach (string choice in new[] { "UserChoiceLatest", "UserChoice" })
+        {
+            try
+            {
+                string? progId;
+                using (RegistryKey? key = Registry.CurrentUser.OpenSubKey($@"{path}\{choice}"))
+                {
+                    if (key is null) continue;
+
+                    // UserChoiceLatest は ProgId サブキーに、UserChoice は直下に値を持つ。
+                    using RegistryKey? latest = key.OpenSubKey("ProgId");
+                    progId = (latest ?? key).GetValue("ProgId") as string;
+                }
+
+                if (string.IsNullOrEmpty(progId) || ProgIdExists(progId)) continue;
+
+                // UserChoice は Windows が値の書き込みを禁じている。ツリーごとの削除は書き込み権で
+                // 開こうとして断られるので、サブキーの無い UserChoice はキー単体で消す（削除権だけで足りる）。
+                using RegistryKey? parent = Registry.CurrentUser.OpenSubKey(path, writable: true);
+                if (parent is null) continue;
+
+                using (RegistryKey? target = parent.OpenSubKey(choice))
+                {
+                    if (target?.SubKeyCount > 0)
+                    {
+                        parent.DeleteSubKeyTree(choice, throwOnMissingSubKey: false);
+                        continue;
+                    }
+                }
+
+                parent.DeleteSubKey(choice, throwOnMissingSubKey: false);
+            }
+            catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException or IOException)
+            {
+                // Windows が保護していて消せない環境もある。その場合は従来どおり、利用者に選んでもらう。
+            }
+        }
+    }
+
+    /// <summary>その ProgID（Applications\xxx.exe や AppX の ID を含む）が今も登録されているか。</summary>
+    private static bool ProgIdExists(string progId)
+    {
+        using RegistryKey? key = Registry.ClassesRoot.OpenSubKey(progId);
+        return key is not null;
     }
 
     private static void RegisterContextMenu(
