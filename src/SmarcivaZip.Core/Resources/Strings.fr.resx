@@ -566,17 +566,6 @@ Utilisation :
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Ouvrir les applications par défaut de Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Enregistré.
-
-Ces types de fichiers continuent de s'ouvrir avec une autre application au double-clic, car Windows réserve ce choix à l'utilisateur :
-
-{0}
-
-Le menu contextuel fonctionne malgré tout. Pour changer ce que fait le double-clic, ouvrez les applications par défaut de Windows, ou faites un clic droit sur un fichier et utilisez « Ouvrir avec » → « Choisir une autre application » → « Toujours utiliser cette application ».
-
-Ouvrir les applications par défaut maintenant ?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Dans la version Microsoft Store, Windows gère les associations de fichiers et le menu contextuel. Sous Windows 11, smarcivaZIP apparaît directement dans le premier menu contextuel. Pour choisir l'application qui ouvre un type de fichier par double-clic, utilisez les applications par défaut de Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Ouvrir la page de téléchargement ?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Vous avez la dernière version ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Ces types de fichiers sont cochés, mais un double-clic ne les ouvre pas encore avec smarcivaZIP :
+
+{0}
+
+Ce n’est pas un problème de smarcivaZIP. Windows ne permet pas aux applications de changer l’application qui ouvre un type de fichier ; vous seul pouvez la choisir, une fois par type. Ensuite, ces fichiers s’ouvriront avec smarcivaZIP.
+
+Ouvrir maintenant les Paramètres de Windows pour choisir smarcivaZIP ?
+(Vous pouvez aussi double-cliquer sur un fichier de ce type, choisir smarcivaZIP puis « Toujours ».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>pas encore choisi (Windows demande à chaque fois)</value>
   </data>
 </root>

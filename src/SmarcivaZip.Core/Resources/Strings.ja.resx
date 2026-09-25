@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Windows の「既定のアプリ」を開く</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>登録しました。
-
-ただし次の拡張子は、ダブルクリックすると今も別のアプリが開きます。どのアプリを既定にするかは利用者しか変更できない決まりのためです。
-
-{0}
-
-右クリックメニューはこのままでも使えます。ダブルクリックも変えたい場合は、Windows の「既定のアプリ」を開くか、ファイルを右クリックして「プログラムから開く」→「別のプログラムを選択」→「常にこのアプリを使う」を選んでください。
-
-「既定のアプリ」を開きますか？</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>ストア版では、関連付けと右クリックメニューを Windows が管理します。Windows 11 では、右クリックして最初に出るメニューに smarcivaZIP が表示されます。ダブルクリックでどのアプリが開くかは、Windows の「既定のアプリ」で選んでください。</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>最新版です（{0}）。</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>次の形式はチェックが入っていますが、ダブルクリックしてもまだ smarcivaZIP で開きません。
+
+{0}
+
+これは smarcivaZIP の不具合ではありません。どのアプリで開くかは Windows の決まりで利用者本人しか変更できず、アプリからは切り替えられないためです。形式ごとに一度選べば、以後は smarcivaZIP で開きます。
+
+Windows の設定を開いて smarcivaZIP を選びますか？
+（その形式のファイルをダブルクリックして smarcivaZIP を選び「常に使う」を押しても同じです）</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>未選択（開くたびに Windows が確認）</value>
   </data>
 </root>

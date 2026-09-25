@@ -566,17 +566,6 @@ Usage:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Open Windows Default apps</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Registered.
-
-These file types are still opened by another application on double-click, because Windows lets only the user change that:
-
-{0}
-
-The context menu works regardless. To change what double-click does, open Windows Default apps, or right-click a file and use "Open with" -&gt; "Choose another app" -&gt; "Always use this app".
-
-Open Default apps now?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>In the Microsoft Store version, Windows manages file associations and the context menu. On Windows 11, smarcivaZIP appears directly in the first context menu. To choose which app opens a file type on double-click, use Windows' Default apps.</value>
   </data>
@@ -679,5 +668,18 @@ Open the download page?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>You have the latest version ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>These file types are checked, but double-clicking them does not open smarcivaZIP yet:
+
+{0}
+
+This is not a problem with smarcivaZIP. Windows does not let apps change which app opens a file type; only you can choose it, once for each type. After that, those files open with smarcivaZIP.
+
+Open Windows Settings now to choose smarcivaZIP?
+(You can also double-click a file of that type, pick smarcivaZIP and choose "Always".)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>not chosen yet (Windows asks every time)</value>
   </data>
 </root>

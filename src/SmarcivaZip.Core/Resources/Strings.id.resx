@@ -566,17 +566,6 @@ Cara pakai:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Buka aplikasi bawaan Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Sudah didaftarkan.
-
-Jenis berkas berikut tetap dibuka oleh aplikasi lain saat diklik ganda, karena Windows menyerahkan pilihan itu kepada penggunanya:
-
-{0}
-
-Menu klik kanan tetap berfungsi. Untuk mengubah perilaku klik ganda, bukalah aplikasi bawaan Windows, atau klik kanan sebuah berkas lalu pilih «Buka dengan» → «Pilih aplikasi lain» → «Selalu gunakan aplikasi ini».
-
-Buka aplikasi bawaan sekarang?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Pada versi Microsoft Store, Windows mengelola pengaitan berkas dan menu klik kanan. Di Windows 11, smarcivaZIP langsung muncul di menu klik kanan pertama. Untuk memilih aplikasi yang membuka suatu jenis berkas saat diklik ganda, gunakan aplikasi bawaan Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Buka halaman unduhan?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Anda sudah memakai versi terbaru ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Jenis file berikut sudah dicentang, tetapi saat diklik dua kali belum terbuka dengan smarcivaZIP:
+
+{0}
+
+Ini bukan masalah smarcivaZIP. Windows tidak mengizinkan aplikasi mengubah aplikasi yang membuka suatu jenis file; hanya Anda yang dapat memilihnya, sekali untuk setiap jenis. Setelah itu, file tersebut akan terbuka dengan smarcivaZIP.
+
+Buka Pengaturan Windows sekarang untuk memilih smarcivaZIP?
+(Anda juga bisa mengklik dua kali file jenis itu, memilih smarcivaZIP, lalu "Selalu".)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>belum dipilih (Windows bertanya setiap kali)</value>
   </data>
 </root>

@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Windows의 "기본 앱" 열기</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>등록했습니다.
-
-다만 다음 확장자는 두 번 눌렀을 때 지금도 다른 앱이 엽니다. 어느 앱을 기본으로 할지는 사용자만 바꿀 수 있기 때문입니다.
-
-{0}
-
-오른쪽 클릭 메뉴는 이대로도 쓸 수 있습니다. 두 번 누를 때의 동작도 바꾸려면 Windows의 "기본 앱"을 열거나, 파일을 오른쪽 클릭해 "연결 프로그램" → "다른 앱 선택" → "항상 이 앱 사용"을 고르세요.
-
-"기본 앱"을 열까요?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Microsoft Store 버전에서는 파일 연결과 오른쪽 클릭 메뉴를 Windows가 관리합니다. Windows 11에서는 smarcivaZIP이 첫 번째 오른쪽 클릭 메뉴에 바로 표시됩니다. 두 번 클릭했을 때 어떤 앱으로 열지는 Windows의 '기본 앱'에서 선택하세요.</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>최신 버전입니다({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>다음 형식은 체크되어 있지만, 두 번 클릭해도 아직 smarcivaZIP으로 열리지 않습니다.
+
+{0}
+
+smarcivaZIP의 문제가 아닙니다. Windows는 앱이 파일 형식을 여는 앱을 바꾸지 못하게 하며, 사용자 본인만 형식마다 한 번 선택할 수 있습니다. 한 번 선택하면 그다음부터는 smarcivaZIP으로 열립니다.
+
+지금 Windows 설정을 열어 smarcivaZIP을 선택할까요?
+(그 형식의 파일을 두 번 클릭하고 smarcivaZIP을 고른 뒤 "항상"을 눌러도 됩니다.)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>아직 선택 안 함(Windows가 매번 물어봄)</value>
   </data>
 </root>

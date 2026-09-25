@@ -626,7 +626,9 @@ public partial class SettingsWindow : Window
         // 「保存」を押した人はそれで反映されたつもりでいるので、ここで登録まで済ませる。
         if (ShellRegistration.IsRegistered())
         {
-            TryRegister(showConfirmation: false);
+            // 保存のたびに完了ダイアログは出さない。ただ、チェックを入れたのに Windows 側で
+            // まだ切り替わっていない形式があれば、黙っていると「効かない」ので知らせる。
+            if (TryRegister(showConfirmation: false)) WarnIfNotYetDefault();
         }
         else if (AskToRegister())
         {
@@ -636,30 +638,39 @@ public partial class SettingsWindow : Window
         DialogResult = true;
     }
 
-    /// <summary>
-    /// 登録の結果を伝える。別のアプリが既定を握っている拡張子があれば、
-    /// 「登録したのにダブルクリックで開かない」の理由をその場で説明する。
-    /// </summary>
+    /// <summary>登録の結果を伝える。まだ切り替わっていない形式があれば、その説明を優先する。</summary>
     private void ReportRegistrationOutcome()
     {
-        IReadOnlyList<(string Extension, string Owner)> owned =
-            ShellRegistration.FindExtensionsOwnedByOthers(_settings.AssociatedExtensions);
+        if (WarnIfNotYetDefault()) return;
 
-        if (owned.Count == 0)
-        {
-            MessageBox.Show(this, Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
-                MessageBoxButton.OK, MessageBoxImage.Information);
-            return;
-        }
+        MessageBox.Show(this, Strings.Get("Setup_RegisteredMessage"), Strings.Get("Common_AppName"),
+            MessageBoxButton.OK, MessageBoxImage.Information);
+    }
 
-        string list = string.Join(Environment.NewLine, owned.Select(
-            o => Strings.Format("Setup_OwnedByOthersItem", "." + o.Extension, o.Owner)));
+    /// <summary>
+    /// チェックを入れたのにダブルクリックで smarcivaZIP が開かない形式があれば、理由を説明して
+    /// Windows の設定（smarcivaZIP のページ）を開くか尋ねる。
+    ///
+    /// どのアプリで開くかは Windows が利用者本人にしか変えさせない。アプリの不具合ではないことと、
+    /// 本人が一度選べば済むことを、はっきり伝える。知らせる形式が無ければ false。
+    /// </summary>
+    private bool WarnIfNotYetDefault()
+    {
+        IReadOnlyList<(string Extension, string? Owner)> pending =
+            ShellRegistration.FindExtensionsNotOpenedBy(App.ExecutablePath, _settings.AssociatedExtensions);
+
+        if (pending.Count == 0) return false;
+
+        string list = string.Join(Environment.NewLine, pending.Select(p =>
+            Strings.Format("Setup_OwnedByOthersItem", "." + p.Extension,
+                p.Owner ?? Strings.Get("Setup_OwnerNotChosen"))));
 
         MessageBoxResult answer = MessageBox.Show(this,
-            Strings.Format("Setup_OwnedByOthers", list), Strings.Get("Common_AppName"),
-            MessageBoxButton.YesNo, MessageBoxImage.Information);
+            Strings.Format("Setup_NotDefaultYet", list), Strings.Get("Common_AppName"),
+            MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
         if (answer == MessageBoxResult.Yes) NativeShell.OpenDefaultAppsSettings();
+        return true;
     }
 
     private bool AskToRegister()

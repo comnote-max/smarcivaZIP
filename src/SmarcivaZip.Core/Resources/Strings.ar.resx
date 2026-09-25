@@ -571,17 +571,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>فتح التطبيقات الافتراضية في Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>تم التسجيل.
-
-هذه الأنواع من الملفات ما زال يفتحها تطبيق آخر عند النقر المزدوج، لأن Windows يترك هذا الاختيار للمستخدم:
-
-{0}
-
-ومع ذلك تعمل قائمة السياق. ولتغيير ما يفعله النقر المزدوج، افتح التطبيقات الافتراضية في Windows، أو انقر على ملف بالزر الأيمن واختر «فتح باستخدام» ثم «اختيار تطبيق آخر» ثم «استخدام هذا التطبيق دائمًا».
-
-هل تفتح التطبيقات الافتراضية الآن؟</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>في إصدار Microsoft Store، يتولى Windows إدارة اقترانات الملفات وقائمة السياق. في Windows 11 يظهر smarcivaZIP مباشرةً في قائمة السياق الأولى. لاختيار التطبيق الذي يفتح كل نوع من الملفات عند النقر المزدوج، استخدم التطبيقات الافتراضية في Windows.</value>
   </data>
@@ -684,5 +673,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>لديك أحدث إصدار ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>أنواع الملفات التالية محددة، لكن النقر المزدوج عليها لا يفتحها بعد في smarcivaZIP:
+
+{0}
+
+هذه ليست مشكلة في smarcivaZIP. لا يسمح Windows للتطبيقات بتغيير التطبيق الذي يفتح نوع ملف؛ أنت وحدك يمكنك اختياره، مرة واحدة لكل نوع. بعد ذلك ستُفتح هذه الملفات في smarcivaZIP.
+
+هل تريد فتح إعدادات Windows الآن لاختيار smarcivaZIP؟
+(يمكنك أيضًا النقر المزدوج على ملف من هذا النوع، واختيار smarcivaZIP ثم «دائمًا».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>لم يُختر بعد (يسأل Windows في كل مرة)</value>
   </data>
 </root>

@@ -566,17 +566,6 @@ Uso:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Apri le app predefinite di Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Registrato.
-
-Questi tipi di file continuano ad aprirsi con un'altra applicazione al doppio clic, perché Windows lascia questa scelta all'utente:
-
-{0}
-
-Il menu contestuale funziona lo stesso. Per cambiare il comportamento del doppio clic apri le app predefinite di Windows, oppure fai clic destro su un file e scegli «Apri con» → «Scegli un'altra app» → «Usa sempre questa app».
-
-Vuoi aprire ora le app predefinite?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Nella versione di Microsoft Store, le associazioni dei file e il menu contestuale sono gestiti da Windows. In Windows 11 smarcivaZIP compare direttamente nel primo menu contestuale. Per scegliere quale app apre un tipo di file con un doppio clic, usa le app predefinite di Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Aprire la pagina di download?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Hai l’ultima versione ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Questi tipi di file sono selezionati, ma con un doppio clic non si aprono ancora con smarcivaZIP:
+
+{0}
+
+Non è un problema di smarcivaZIP. Windows non consente alle app di cambiare quale app apre un tipo di file; solo tu puoi sceglierla, una volta per tipo. Dopo di che, quei file si apriranno con smarcivaZIP.
+
+Aprire ora le Impostazioni di Windows per scegliere smarcivaZIP?
+(Puoi anche fare doppio clic su un file di quel tipo, scegliere smarcivaZIP e poi «Sempre».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>non ancora scelto (Windows chiede ogni volta)</value>
   </data>
 </root>

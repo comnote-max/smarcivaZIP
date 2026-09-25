@@ -571,17 +571,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>เปิดแอปเริ่มต้นของ Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>ลงทะเบียนแล้ว
-
-ไฟล์ชนิดต่อไปนี้ยังคงเปิดด้วยโปรแกรมอื่นเมื่อดับเบิลคลิก เพราะ Windows สงวนการเลือกนี้ไว้ให้ผู้ใช้เป็นคนตัดสิน:
-
-{0}
-
-เมนูคลิกขวายังใช้งานได้ตามปกติ หากต้องการเปลี่ยนสิ่งที่ดับเบิลคลิกทำ ให้เปิดแอปเริ่มต้นของ Windows หรือคลิกขวาที่ไฟล์แล้วเลือก «เปิดด้วย» → «เลือกแอปอื่น» → «ใช้แอปนี้เสมอ»
-
-จะเปิดแอปเริ่มต้นตอนนี้เลยไหม</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>ในเวอร์ชัน Microsoft Store นั้น Windows เป็นผู้จัดการการเชื่อมโยงไฟล์และเมนูคลิกขวา บน Windows 11 smarcivaZIP จะแสดงในเมนูคลิกขวาชั้นแรกโดยตรง หากต้องการเลือกว่าแอปใดจะเปิดไฟล์แต่ละชนิดเมื่อดับเบิลคลิก ให้ตั้งค่าที่แอปเริ่มต้นของ Windows</value>
   </data>
@@ -684,5 +673,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>คุณใช้เวอร์ชันล่าสุดแล้ว ({0})</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>ไฟล์ชนิดต่อไปนี้ถูกเลือกไว้แล้ว แต่เมื่อดับเบิลคลิกยังไม่เปิดด้วย smarcivaZIP:
+
+{0}
+
+นี่ไม่ใช่ปัญหาของ smarcivaZIP Windows ไม่อนุญาตให้แอปเปลี่ยนแอปที่ใช้เปิดไฟล์แต่ละชนิด มีเพียงคุณเท่านั้นที่เลือกได้ ชนิดละหนึ่งครั้ง หลังจากนั้นไฟล์เหล่านั้นจะเปิดด้วย smarcivaZIP
+
+เปิดการตั้งค่า Windows ตอนนี้เพื่อเลือก smarcivaZIP หรือไม่
+(หรือดับเบิลคลิกไฟล์ชนิดนั้น เลือก smarcivaZIP แล้วกด "เสมอ" ก็ได้)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>ยังไม่ได้เลือก (Windows จะถามทุกครั้ง)</value>
   </data>
 </root>

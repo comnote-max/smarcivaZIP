@@ -144,66 +144,35 @@ public static class ShellRegistration
     private static string Normalize(string extension) => extension.TrimStart('.').ToLowerInvariant();
 
     /// <summary>
-    /// 関連付けたつもりでも、実際にはダブルクリックで別のアプリが開く拡張子を返す。
+    /// チェックを入れた（関連付けた）のに、ダブルクリックしても smarcivaZIP が開かない拡張子を返す。
     ///
-    /// どのアプリを既定にするかは UserChoice というハッシュで保護された領域が握っており、
-    /// アプリ側からは変更できない（変更すべきでもない）。
-    /// 黙って効かないままにすると「登録したのに開かない」と受け取られるので、
-    /// どの拡張子が誰に取られているかを名指しで返す。
+    /// どのアプリで開くかは、利用者が選んだ記録（UserChoice）で決まり、Windows はアプリが
+    /// それを変えることを禁じている。本人がまだ選んでいない形式は、登録があっても Windows が
+    /// 初回に「どのアプリで開くか」を確認する。黙って効かないままにすると「登録したのに開かない」と
+    /// 受け取られるので、Windows に実際の動きを問い合わせて名指しで返す。
+    /// Owner が null なら「まだ選ばれていない（開くたびに確認される）」。
     /// </summary>
-    public static IReadOnlyList<(string Extension, string Owner)> FindExtensionsOwnedByOthers(
-        IReadOnlyList<string> extensions)
+    public static IReadOnlyList<(string Extension, string? Owner)> FindExtensionsNotOpenedBy(
+        string executablePath, IReadOnlyList<string> extensions)
     {
-        var owned = new List<(string, string)>();
+        var result = new List<(string, string?)>();
 
-        foreach (string extension in extensions)
+        foreach (string extension in extensions.Select(Normalize).Where(e => e.Length > 0).Distinct())
         {
-            string normalized = Normalize(extension);
-            if (normalized.Length == 0) continue;
+            string? command = NativeShell.QueryAssociation("." + extension, NativeShell.AssocString.Command);
 
-            string? owner = ResolveCurrentOwner(normalized);
-            if (owner is not null && !owner.StartsWith(ProgIdPrefix, StringComparison.OrdinalIgnoreCase))
-                owned.Add((normalized, owner));
+            if (command is not null && command.Contains(executablePath, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            bool notChosen = string.IsNullOrEmpty(command)
+                             || command.Contains("OpenWith.exe", StringComparison.OrdinalIgnoreCase);
+
+            result.Add((extension, notChosen
+                ? null
+                : NativeShell.QueryAssociation("." + extension, NativeShell.AssocString.FriendlyAppName) ?? command));
         }
 
-        return owned;
-    }
-
-    /// <summary>
-    /// その拡張子を今どのアプリが開くか。
-    /// UserChoice があればそれが最優先で、無ければ HKCU / HKCR の既定値を見る。
-    /// </summary>
-    private static string? ResolveCurrentOwner(string extension)
-    {
-        try
-        {
-            // Windows 11 は UserChoiceLatest を先に見る。
-            using (RegistryKey? latest = Registry.CurrentUser.OpenSubKey(
-                $@"{FileExtsKey}\.{extension}\UserChoiceLatest\ProgId"))
-            {
-                if (latest?.GetValue("ProgId") is string chosen && chosen.Length > 0) return chosen;
-            }
-
-            using (RegistryKey? choice = Registry.CurrentUser.OpenSubKey(
-                $@"{FileExtsKey}\.{extension}\UserChoice"))
-            {
-                if (choice?.GetValue("ProgId") is string chosen && chosen.Length > 0) return chosen;
-            }
-
-            using (RegistryKey? user = Registry.CurrentUser.OpenSubKey($@"{ClassesRoot}\.{extension}"))
-            {
-                if (user?.GetValue(null) is string userDefault && userDefault.Length > 0) return userDefault;
-            }
-
-            using RegistryKey? machine = Registry.ClassesRoot.OpenSubKey($".{extension}");
-            if (machine?.GetValue(null) is string machineDefault && machineDefault.Length > 0)
-                return machineDefault;
-        }
-        catch (Exception ex) when (ex is UnauthorizedAccessException or System.Security.SecurityException)
-        {
-        }
-
-        return null;
+        return result;
     }
 
     /// <summary>

@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>打开 Windows 的“默认应用”</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>已注册。
-
-不过以下扩展名双击时仍会由其他应用打开，因为只有用户本人才能更改默认应用：
-
-{0}
-
-右键菜单不受影响，可以照常使用。若也想改变双击的行为，请打开 Windows 的“默认应用”，或右键点击文件，选择“打开方式”→“选择其他应用”→“始终使用此应用”。
-
-现在打开“默认应用”吗？</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>在 Microsoft Store 版本中，文件关联和右键菜单由 Windows 管理。在 Windows 11 中，smarcivaZIP 会直接显示在第一层右键菜单中。要选择双击时用哪个应用打开，请在 Windows 的“默认应用”中设置。</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>已是最新版本（{0}）。</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>以下文件类型已勾选，但双击时仍不会用 smarcivaZIP 打开：
+
+{0}
+
+这不是 smarcivaZIP 的问题。Windows 不允许应用更改用哪个应用打开某种文件类型，只有您本人可以为每种类型选择一次。选择之后，这些文件就会用 smarcivaZIP 打开。
+
+要现在打开 Windows 设置来选择 smarcivaZIP 吗？
+（也可以双击该类型的文件，选择 smarcivaZIP 并点“始终”。）</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>尚未选择（Windows 每次都会询问）</value>
   </data>
 </root>

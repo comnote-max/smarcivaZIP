@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Відкрити типові застосунки Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Зареєстровано.
-
-Ці типи файлів за подвійним клацанням досі відкриває інша програма, бо Windows лишає такий вибір за користувачем:
-
-{0}
-
-Контекстне меню при цьому працює. Щоб змінити поведінку подвійного клацання, відкрийте типові застосунки Windows або клацніть файл правою кнопкою і виберіть «Відкрити за допомогою» → «Вибрати інший застосунок» → «Завжди використовувати цей застосунок».
-
-Відкрити типові застосунки зараз?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>У версії з Microsoft Store зв'язками з файлами та контекстним меню керує Windows. У Windows 11 smarcivaZIP з'являється одразу в першому контекстному меню. Щоб вибрати, який застосунок відкриває файли подвійним клацанням, скористайтеся типовими застосунками Windows.</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>У вас остання версія ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Ці типи файлів позначено, але за подвійним клацанням вони ще не відкриваються в smarcivaZIP:
+
+{0}
+
+Це не помилка smarcivaZIP. Windows не дозволяє програмам змінювати, чим відкривається тип файлу; вибрати можете лише ви — один раз для кожного типу. Після цього такі файли відкриватимуться в smarcivaZIP.
+
+Відкрити параметри Windows, щоб вибрати smarcivaZIP?
+(Можна також двічі клацнути файл цього типу, вибрати smarcivaZIP і натиснути «Завжди».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>не вибрано (Windows питає щоразу)</value>
   </data>
 </root>

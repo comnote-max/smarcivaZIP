@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>開啟 Windows 的「預設應用程式」</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>已註冊。
-
-不過以下副檔名按兩下時仍會由其他應用程式開啟，因為只有使用者本人才能變更預設應用程式：
-
-{0}
-
-右鍵選單不受影響，可以照常使用。若也想改變按兩下的行為，請開啟 Windows 的「預設應用程式」，或在檔案上按右鍵，選擇「開啟檔案」→「選擇其他應用程式」→「一律使用此應用程式」。
-
-現在要開啟「預設應用程式」嗎？</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>在 Microsoft Store 版本中，檔案關聯與右鍵選單由 Windows 管理。在 Windows 11 中，smarcivaZIP 會直接顯示在第一層右鍵選單中。若要選擇按兩下時用哪個應用程式開啟，請在 Windows 的「預設應用程式」中設定。</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>已是最新版本（{0}）。</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>以下檔案類型已勾選，但按兩下時仍不會用 smarcivaZIP 開啟：
+
+{0}
+
+這不是 smarcivaZIP 的問題。Windows 不允許應用程式變更用哪個應用程式開啟某種檔案類型，只有您本人可以為每種類型選擇一次。選擇之後，這些檔案就會用 smarcivaZIP 開啟。
+
+要現在開啟 Windows 設定來選擇 smarcivaZIP 嗎？
+（也可以按兩下該類型的檔案，選擇 smarcivaZIP 並按「一律使用」。）</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>尚未選擇（Windows 每次都會詢問）</value>
   </data>
 </root>

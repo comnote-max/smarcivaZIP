@@ -11,6 +11,36 @@ public static class NativeShell
     [DllImport("shell32.dll")]
     private static extern void SHChangeNotify(uint eventId, uint flags, IntPtr item1, IntPtr item2);
 
+    public enum AssocString
+    {
+        Command = 1,
+        FriendlyAppName = 4
+    }
+
+    [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
+    private static extern int AssocQueryStringW(
+        int flags, int str, string assoc, string? extra, System.Text.StringBuilder? output, ref uint size);
+
+    /// <summary>
+    /// その拡張子をダブルクリックしたときに Windows が実際に使うもの（コマンドやアプリ名）を尋ねる。
+    /// 利用者の選択（UserChoice）も含めて Windows 自身が解決した結果なので、レジストリを
+    /// 自前で読み解くより確か。答えが無ければ null。
+    /// </summary>
+    public static string? QueryAssociation(string extension, AssocString what)
+    {
+        try
+        {
+            uint size = 1024;
+            var buffer = new System.Text.StringBuilder((int)size);
+            int hr = AssocQueryStringW(0, (int)what, extension, "open", buffer, ref size);
+            return hr == 0 && buffer.Length > 0 ? buffer.ToString() : null;
+        }
+        catch (DllNotFoundException)
+        {
+            return null;
+        }
+    }
+
     /// <summary>関連付けが変わったことをエクスプローラーへ通知する。</summary>
     public static void NotifyAssociationChanged()
     {

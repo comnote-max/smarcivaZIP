@@ -566,17 +566,6 @@ Verwendung:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Standard-Apps von Windows öffnen</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Eingetragen.
-
-Diese Dateitypen werden beim Doppelklick weiterhin von einem anderen Programm geöffnet, weil Windows diese Entscheidung den Benutzenden vorbehält:
-
-{0}
-
-Das Kontextmenü funktioniert trotzdem. Um zu ändern, was der Doppelklick tut, öffnen Sie die Standard-Apps von Windows, oder klicken Sie eine Datei mit der rechten Maustaste an und wählen Sie „Öffnen mit" → „Andere App auswählen" → „Immer diese App verwenden".
-
-Sollen die Standard-Apps jetzt geöffnet werden?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>In der Microsoft-Store-Version verwaltet Windows die Dateiverknüpfungen und das Kontextmenü. Unter Windows 11 erscheint smarcivaZIP direkt im ersten Kontextmenü. Welche App einen Dateityp per Doppelklick öffnet, legen Sie in den Standard-Apps von Windows fest.</value>
   </data>
@@ -679,5 +668,18 @@ Downloadseite öffnen?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Sie haben die neueste Version ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Diese Dateitypen sind angehakt, werden per Doppelklick aber noch nicht mit smarcivaZIP geöffnet:
+
+{0}
+
+Das ist kein Fehler von smarcivaZIP. Windows erlaubt Apps nicht festzulegen, womit ein Dateityp geöffnet wird; nur Sie selbst können das wählen, einmal pro Typ. Danach öffnen sich diese Dateien mit smarcivaZIP.
+
+Jetzt die Windows-Einstellungen öffnen, um smarcivaZIP auszuwählen?
+(Sie können auch eine Datei dieses Typs doppelklicken, smarcivaZIP wählen und „Immer“ klicken.)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>noch nicht gewählt (Windows fragt jedes Mal)</value>
   </data>
 </root>

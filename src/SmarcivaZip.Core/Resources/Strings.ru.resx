@@ -566,17 +566,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Открыть приложения по умолчанию Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Зарегистрировано.
-
-Эти типы файлов по двойному щелчку по-прежнему открывает другая программа, потому что Windows оставляет такой выбор за пользователем:
-
-{0}
-
-Контекстное меню при этом работает. Чтобы изменить поведение двойного щелчка, откройте приложения по умолчанию Windows либо щёлкните файл правой кнопкой и выберите «Открыть с помощью» → «Выбрать другое приложение» → «Всегда использовать это приложение».
-
-Открыть приложения по умолчанию сейчас?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>В версии из Microsoft Store связями с файлами и контекстным меню управляет Windows. В Windows 11 smarcivaZIP появляется прямо в первом контекстном меню. Чтобы выбрать, какое приложение открывает файлы по двойному щелчку, используйте приложения по умолчанию Windows.</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>У вас последняя версия ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Эти типы файлов отмечены, но по двойному щелчку они пока не открываются в smarcivaZIP:
+
+{0}
+
+Это не ошибка smarcivaZIP. Windows не позволяет приложениям менять, чем открывается тип файла; выбрать можете только вы — один раз для каждого типа. После этого такие файлы будут открываться в smarcivaZIP.
+
+Открыть параметры Windows, чтобы выбрать smarcivaZIP?
+(Можно также дважды щёлкнуть файл этого типа, выбрать smarcivaZIP и нажать «Всегда».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>не выбрано (Windows спрашивает каждый раз)</value>
   </data>
 </root>

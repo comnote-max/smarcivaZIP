@@ -571,17 +571,6 @@
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Windows की तयशुदा ऐप्स खोलें</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>पंजीकृत हो गया।
-
-दोहरे क्लिक पर ये फ़ाइल-प्रकार अब भी किसी दूसरे प्रोग्राम से ही खुलेंगे, क्योंकि Windows यह चुनाव उपयोगकर्ता के हाथ में रखता है:
-
-{0}
-
-दायाँ-क्लिक मेन्यू फिर भी काम करता है। दोहरे क्लिक का व्यवहार बदलना हो तो Windows की तयशुदा ऐप्स खोलें, या किसी फ़ाइल पर दायाँ क्लिक करके «इससे खोलें» → «कोई दूसरा ऐप चुनें» → «हमेशा यही ऐप इस्तेमाल करें» चुनें।
-
-क्या अभी तयशुदा ऐप्स खोलें?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Microsoft Store संस्करण में फ़ाइल-संबद्धता और दायाँ-क्लिक मेन्यू Windows सँभालता है। Windows 11 में smarcivaZIP सीधे पहले दायाँ-क्लिक मेन्यू में दिखता है। दोहरे क्लिक पर कौन-सा ऐप फ़ाइल खोले, यह Windows की तयशुदा ऐप्स में चुनें।</value>
   </data>
@@ -684,5 +673,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>आपके पास नवीनतम संस्करण है ({0})।</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>ये फ़ाइल प्रकार चुने हुए हैं, लेकिन डबल-क्लिक करने पर अभी smarcivaZIP में नहीं खुलते:
+
+{0}
+
+यह smarcivaZIP की समस्या नहीं है। Windows ऐप्स को यह बदलने नहीं देता कि कौन-सा ऐप किसी फ़ाइल प्रकार को खोले; इसे केवल आप ही चुन सकते हैं, हर प्रकार के लिए एक बार। उसके बाद ये फ़ाइलें smarcivaZIP में खुलेंगी।
+
+smarcivaZIP चुनने के लिए अभी Windows सेटिंग्स खोलें?
+(आप उस प्रकार की किसी फ़ाइल पर डबल-क्लिक करके smarcivaZIP चुनें और "हमेशा" भी दबा सकते हैं।)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>अभी नहीं चुना (Windows हर बार पूछता है)</value>
   </data>
 </root>

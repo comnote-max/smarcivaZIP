@@ -566,17 +566,6 @@ Użycie:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Otwórz aplikacje domyślne Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Zarejestrowano.
-
-Te typy plików nadal otwiera po podwójnym kliknięciu inny program, ponieważ Windows zostawia ten wybór użytkownikowi:
-
-{0}
-
-Menu podręczne mimo to działa. Aby zmienić działanie podwójnego kliknięcia, otwórz aplikacje domyślne Windows albo kliknij plik prawym przyciskiem i wybierz „Otwórz za pomocą" → „Wybierz inną aplikację" → „Zawsze używaj tej aplikacji".
-
-Otworzyć teraz aplikacje domyślne?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>W wersji z Microsoft Store skojarzeniami plików i menu podręcznym zarządza Windows. W Windows 11 smarcivaZIP pojawia się bezpośrednio w pierwszym menu podręcznym. Aby wybrać, która aplikacja otwiera dany typ pliku po dwukrotnym kliknięciu, użyj aplikacji domyślnych Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Otworzyć stronę pobierania?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Masz najnowszą wersję ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Te typy plików są zaznaczone, ale po dwukrotnym kliknięciu nadal nie otwierają się w smarcivaZIP:
+
+{0}
+
+To nie jest błąd smarcivaZIP. Windows nie pozwala aplikacjom zmieniać, czym otwiera się dany typ pliku; możesz to wybrać tylko Ty, raz dla każdego typu. Potem te pliki będą otwierać się w smarcivaZIP.
+
+Otworzyć teraz Ustawienia systemu Windows, aby wybrać smarcivaZIP?
+(Możesz też dwukrotnie kliknąć plik tego typu, wybrać smarcivaZIP i kliknąć „Zawsze”.)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>jeszcze nie wybrano (Windows pyta za każdym razem)</value>
   </data>
 </root>

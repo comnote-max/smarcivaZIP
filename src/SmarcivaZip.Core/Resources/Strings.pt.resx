@@ -566,17 +566,6 @@ Uso:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Abrir os aplicativos padrão do Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Registrado.
-
-Estas extensões continuam abrindo com outro aplicativo no duplo clique, porque o Windows deixa isso a cargo apenas do usuário:
-
-{0}
-
-O menu de contexto funciona de qualquer forma. Para mudar o que o duplo clique faz, abra os aplicativos padrão do Windows, ou clique com o botão direito em um arquivo e use «Abrir com» → «Escolher outro aplicativo» → «Sempre usar este aplicativo».
-
-Abrir agora os aplicativos padrão?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Na versão da Microsoft Store, o Windows gerencia as associações de arquivos e o menu de contexto. No Windows 11, o smarcivaZIP aparece diretamente no primeiro menu de contexto. Para escolher qual aplicativo abre cada tipo de arquivo com clique duplo, use os aplicativos padrão do Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Abrir a página de download?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Você tem a versão mais recente ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Estes tipos de arquivo estão marcados, mas ao clicar duas vezes eles ainda não abrem no smarcivaZIP:
+
+{0}
+
+Não é um problema do smarcivaZIP. O Windows não permite que aplicativos mudem qual aplicativo abre um tipo de arquivo; só você pode escolher, uma vez para cada tipo. Depois disso, esses arquivos abrirão no smarcivaZIP.
+
+Abrir agora as Configurações do Windows para escolher o smarcivaZIP?
+(Você também pode clicar duas vezes em um arquivo desse tipo, escolher o smarcivaZIP e clicar em "Sempre".)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>ainda não escolhido (o Windows pergunta toda vez)</value>
   </data>
 </root>

@@ -566,17 +566,6 @@ Cách dùng:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Mở phần ứng dụng mặc định của Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Đã đăng ký.
-
-Những loại tệp sau khi nháy đúp vẫn mở bằng ứng dụng khác, vì Windows dành quyền chọn đó cho người dùng:
-
-{0}
-
-Trình đơn chuột phải thì vẫn chạy bình thường. Muốn đổi việc nháy đúp làm gì, hãy mở phần ứng dụng mặc định của Windows, hoặc nháy chuột phải lên một tệp rồi chọn «Mở bằng» → «Chọn ứng dụng khác» → «Luôn dùng ứng dụng này».
-
-Mở phần ứng dụng mặc định ngay bây giờ chứ?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Ở phiên bản Microsoft Store, Windows quản lý liên kết tệp và trình đơn chuột phải. Trên Windows 11, smarcivaZIP hiện ngay trong trình đơn chuột phải đầu tiên. Để chọn ứng dụng mở một loại tệp khi nháy đúp, hãy dùng phần ứng dụng mặc định của Windows.</value>
   </data>
@@ -679,5 +668,18 @@ Mở trang tải xuống?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Bạn đang dùng phiên bản mới nhất ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Các loại tệp sau đã được đánh dấu, nhưng khi nhấp đúp vẫn chưa mở bằng smarcivaZIP:
+
+{0}
+
+Đây không phải lỗi của smarcivaZIP. Windows không cho ứng dụng thay đổi ứng dụng mở một loại tệp; chỉ bạn mới có thể chọn, mỗi loại một lần. Sau đó, các tệp này sẽ mở bằng smarcivaZIP.
+
+Mở Cài đặt Windows ngay để chọn smarcivaZIP?
+(Bạn cũng có thể nhấp đúp vào một tệp loại đó, chọn smarcivaZIP rồi chọn "Luôn luôn".)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>chưa chọn (Windows hỏi mỗi lần)</value>
   </data>
 </root>

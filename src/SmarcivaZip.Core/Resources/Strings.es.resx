@@ -566,17 +566,6 @@ Uso:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Abrir las aplicaciones predeterminadas de Windows</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Registrado.
-
-Estas extensiones se siguen abriendo con otra aplicación al hacer doble clic, porque Windows solo permite cambiarlo al usuario:
-
-{0}
-
-El menú contextual funciona igualmente. Para cambiar lo que hace el doble clic, abra las aplicaciones predeterminadas de Windows, o haga clic con el botón derecho en un archivo y use «Abrir con» → «Elegir otra aplicación» → «Usar siempre esta aplicación».
-
-¿Abrir ahora las aplicaciones predeterminadas?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>En la versión de Microsoft Store, Windows gestiona las asociaciones de archivos y el menú contextual. En Windows 11, smarcivaZIP aparece directamente en el primer menú contextual. Para elegir qué aplicación abre cada tipo de archivo con doble clic, use las aplicaciones predeterminadas de Windows.</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>Tiene la última versión ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Estos tipos de archivo están marcados, pero al hacer doble clic todavía no se abren con smarcivaZIP:
+
+{0}
+
+No es un problema de smarcivaZIP. Windows no permite que las aplicaciones cambien qué aplicación abre un tipo de archivo; solo usted puede elegirla, una vez por tipo. Después, esos archivos se abrirán con smarcivaZIP.
+
+¿Abrir ahora la Configuración de Windows para elegir smarcivaZIP?
+(También puede hacer doble clic en un archivo de ese tipo, elegir smarcivaZIP y pulsar «Siempre».)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>sin elegir (Windows pregunta cada vez)</value>
   </data>
 </root>

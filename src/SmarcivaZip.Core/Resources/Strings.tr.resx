@@ -566,17 +566,6 @@ Kullanım:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>Windows'un varsayılan uygulamalarını aç</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Kaydedildi.
-
-Şu dosya türleri çift tıklandığında hâlâ başka bir uygulamayla açılıyor; çünkü Windows bu seçimi kullanıcıya bırakır:
-
-{0}
-
-Bağlam menüsü yine de çalışır. Çift tıklamanın davranışını değiştirmek için Windows'un varsayılan uygulamalarını açın ya da bir dosyaya sağ tıklayıp «Birlikte aç» → «Başka bir uygulama seç» → «Her zaman bu uygulamayı kullan» yolunu izleyin.
-
-Varsayılan uygulamalar şimdi açılsın mı?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>Microsoft Store sürümünde dosya ilişkilendirmelerini ve bağlam menüsünü Windows yönetir. Windows 11'de smarcivaZIP doğrudan ilk bağlam menüsünde görünür. Bir dosya türünü çift tıklamada hangi uygulamanın açacağını seçmek için Windows'un varsayılan uygulamalarını kullanın.</value>
   </data>
@@ -679,5 +668,18 @@ https://www.7-zip.org/</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>En son sürümü kullanıyorsunuz ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Bu dosya türleri işaretli, ancak çift tıklandığında henüz smarcivaZIP ile açılmıyor:
+
+{0}
+
+Bu smarcivaZIP’in bir sorunu değil. Windows, bir dosya türünü hangi uygulamanın açacağını uygulamaların değiştirmesine izin vermez; yalnızca siz, her tür için bir kez seçebilirsiniz. Bundan sonra bu dosyalar smarcivaZIP ile açılır.
+
+smarcivaZIP’i seçmek için Windows Ayarları şimdi açılsın mı?
+(Bu türden bir dosyaya çift tıklayıp smarcivaZIP’i seçerek "Her zaman" da diyebilirsiniz.)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>henüz seçilmedi (Windows her seferinde sorar)</value>
   </data>
 </root>

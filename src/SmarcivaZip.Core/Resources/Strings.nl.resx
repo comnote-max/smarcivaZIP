@@ -566,17 +566,6 @@ Gebruik:
   <data name="Setup_OpenDefaultApps" xml:space="preserve">
     <value>De standaard-apps van Windows openen</value>
   </data>
-  <data name="Setup_OwnedByOthers" xml:space="preserve">
-    <value>Aangemeld.
-
-Deze bestandssoorten worden bij dubbelklikken nog steeds door een ander programma geopend, omdat Windows die keuze aan de gebruiker laat:
-
-{0}
-
-Het contextmenu werkt wel gewoon. Wil je veranderen wat dubbelklikken doet, open dan de standaard-apps van Windows, of klik met de rechtermuisknop op een bestand en kies «Openen met» → «Een andere app kiezen» → «Altijd deze app gebruiken».
-
-Nu de standaard-apps openen?</value>
-  </data>
   <data name="Setup_PackagedNote" xml:space="preserve">
     <value>In de Microsoft Store-versie beheert Windows de bestandskoppelingen en het contextmenu. Op Windows 11 verschijnt smarcivaZIP direct in het eerste contextmenu. Kies in de standaard-apps van Windows welke app een bestandstype opent bij dubbelklikken.</value>
   </data>
@@ -679,5 +668,18 @@ De downloadpagina openen?</value>
   </data>
   <data name="Update_UpToDate" xml:space="preserve">
     <value>U hebt de nieuwste versie ({0}).</value>
+  </data>
+  <data name="Setup_NotDefaultYet" xml:space="preserve">
+    <value>Deze bestandstypen zijn aangevinkt, maar openen bij dubbelklikken nog niet met smarcivaZIP:
+
+{0}
+
+Dit is geen probleem van smarcivaZIP. Windows staat apps niet toe te bepalen welke app een bestandstype opent; alleen u kunt dat kiezen, één keer per type. Daarna openen deze bestanden met smarcivaZIP.
+
+Nu Windows-instellingen openen om smarcivaZIP te kiezen?
+(U kunt ook op een bestand van dat type dubbelklikken, smarcivaZIP kiezen en "Altijd" kiezen.)</value>
+  </data>
+  <data name="Setup_OwnerNotChosen" xml:space="preserve">
+    <value>nog niet gekozen (Windows vraagt het elke keer)</value>
   </data>
 </root>
