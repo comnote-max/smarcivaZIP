@@ -395,8 +395,15 @@ public static class ShellRegistration
                 key.SetValue(null, progId);
             }
 
-            // まだ誰も関連付けていない拡張子（.lzh など）なら、そのまま既定にできる。
-            if (key.GetValue(null) is null or "") key.SetValue(null, progId);
+            // 誰も関連付けていない拡張子（.lzh など）、Windows 標準の ZIP フォルダ機能、
+            // アンインストールされたアプリの残骸なら、smarcivaZIP を既定にする。
+            // ほかのアプリ（Lhaplus など）が今も関連付けているなら、それは残す。
+            // ここは利用者の選択（UserChoice）ではなく各アプリが書く通常の登録で、
+            // 利用者がアプリを選んでいればそちらが優先される。
+            if (key.GetValue(null) is not string owner || IsReplaceableDefault(owner))
+            {
+                key.SetValue(null, progId);
+            }
         }
     }
 
@@ -455,6 +462,15 @@ public static class ShellRegistration
             }
         }
     }
+
+    /// <summary>
+    /// 既定の登録として上書きしてよい ProgID か。
+    /// 空、Windows 標準の ZIP フォルダ（CompressedFolder）、存在しない ProgID（アンインストール済み）。
+    /// </summary>
+    private static bool IsReplaceableDefault(string progId)
+        => progId.Length == 0
+           || progId.Equals("CompressedFolder", StringComparison.OrdinalIgnoreCase)
+           || !ProgIdExists(progId);
 
     /// <summary>その ProgID（Applications\xxx.exe や AppX の ID を含む）が今も登録されているか。</summary>
     private static bool ProgIdExists(string progId)
